@@ -10,8 +10,12 @@ import {SidebarModule} from "primeng/sidebar";
 import {BadgeModule} from "primeng/badge";
 import {RadioButtonModule} from "primeng/radiobutton";
 import {InputSwitchModule} from "primeng/inputswitch";
-
-
+import { DialogModule } from 'primeng/dialog';
+import {DialogService, DynamicDialogModule} from 'primeng/dynamicdialog';
+import { MessagesModule } from 'primeng/messages';
+import {PasswordModule} from "primeng/password";
+import {CheckboxModule} from "primeng/checkbox";
+import {MessageService} from "primeng/api";
 @NgModule({
   declarations: [],
   imports: [
@@ -28,6 +32,13 @@ import {InputSwitchModule} from "primeng/inputswitch";
     RadioButtonModule,
     InputSwitchModule,
     RippleModule,
+    DialogModule,
+    DynamicDialogModule,
+    MessagesModule,
+    PasswordModule,
+    CheckboxModule
+
+
   ],
   exports: [
     /**PRIME-NG**/
@@ -42,8 +53,16 @@ import {InputSwitchModule} from "primeng/inputswitch";
     RadioButtonModule,
     InputSwitchModule,
     RippleModule,
+    DialogModule,
+    DynamicDialogModule,
+    MessagesModule,
+    PasswordModule,
+    CheckboxModule
   ],
-  providers: []
+  providers: [
+    MessageService,
+    DialogService
+  ]
 })
 export class PrimeNgModule {
 }
