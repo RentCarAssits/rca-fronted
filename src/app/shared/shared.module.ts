@@ -10,6 +10,7 @@ import { TopBarComponent } from './pages/topbar/topbar.component';
 import {RouterLink, RouterLinkActive, RouterOutlet} from "@angular/router";
 import {PrimeNgModule} from "../prime-ng/prime-ng.module";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {HttpClientModule} from "@angular/common/http";
 
 
 
@@ -31,7 +32,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     RouterLinkActive
   ],
   providers:[
-    LayoutService
+    LayoutService,
+    HttpClientModule
   ]
 })
 export class SharedModule { }
