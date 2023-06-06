@@ -108,7 +108,7 @@ import { CarouselModule } from 'primeng/carousel';
     ImageModule,
     GalleriaModule,
     CarouselModule,
-    PrimeNgModule
+
 
   ],
   providers: [
