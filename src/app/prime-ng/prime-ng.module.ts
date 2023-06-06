@@ -26,7 +26,9 @@ import {FormsModule} from "@angular/forms";
 import {CascadeSelectModule} from "primeng/cascadeselect";
 import {MultiSelectModule} from "primeng/multiselect";
 import {InputTextareaModule} from "primeng/inputtextarea";
-
+import {CardModule} from "primeng/card";
+import { ChipModule } from 'primeng/chip';
+import { TagModule } from 'primeng/tag';
 @NgModule({
   declarations: [],
   imports: [
@@ -58,7 +60,10 @@ import {InputTextareaModule} from "primeng/inputtextarea";
     CascadeSelectModule,
     MultiSelectModule,
     InputTextareaModule,
-    InputTextModule
+    InputTextModule,
+    CardModule,
+    ChipModule,
+    TagModule
   ],
   exports: [
     /**PRIME-NG**/
@@ -88,7 +93,11 @@ import {InputTextareaModule} from "primeng/inputtextarea";
     CascadeSelectModule,
     MultiSelectModule,
     InputTextareaModule,
-    InputTextModule
+    InputTextModule,
+    CardModule,
+    ChipModule,
+    TagModule
+
   ],
   providers: [
     MessageService,

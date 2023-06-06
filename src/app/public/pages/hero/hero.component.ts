@@ -41,6 +41,7 @@ export class HeroComponent {
   }
 
 
+
   showRegister() {
     this.ref = this.dialogService.open(SignUpComponent, {
       width: '45%',

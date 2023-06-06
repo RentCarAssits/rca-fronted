@@ -1,5 +1,11 @@
 import {Component} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {AuthService} from "../../services/auth.service";
+import {RegisterUser} from "../../models/registerUser";
+import {Profile} from "../../models/profile";
+import {Router} from "@angular/router";
+import {DialogService, DynamicDialogRef} from "primeng/dynamicdialog";
+import {LoginFormComponent} from "../sign-in/login-form.component";
 
 @Component({
   selector: 'app-sign-up',
@@ -8,9 +14,13 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 })
 export class SignUpComponent {
   signupForm!: FormGroup;
-  selectedState: any = null;
+  dialogRef!: DynamicDialogRef;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder,
+              private authService: AuthService,
+              private router: Router,
+              private dialogService: DialogService
+  ) {
     this.signupForm = formBuilder.group({
       userName: ['', Validators.required],
       userType: ['renter', Validators.required],
@@ -31,18 +41,43 @@ export class SignUpComponent {
   ];
 
 
-  onSubmit(){
-    const formData = {
-      userName: this.signupForm.value.userName,
-      userType: this.signupForm.getRawValue().userType,
-      email:this.signupForm.value.email,
-      password: this.signupForm.value.password,
-      firstname: this.signupForm.value.firstname,
-      lastname: this.signupForm.value.lastname,
+  onSubmit() {
+
+    const profile: Profile = {
+      fullName: `${this.signupForm.value.firstname} ${this.signupForm.value.lastname}`,
       address: this.signupForm.value.address,
-      dni: this.signupForm.value.dni,
-      phone:this.signupForm.value.phone,
-    };
-    console.log(this.signupForm.getRawValue());
+      phone: this.signupForm.value.phone,
+      dni: this.signupForm.value.dni
+    }
+    const registerUser: RegisterUser = {
+      userName: this.signupForm.value.userName,
+      email: this.signupForm.value.email,
+      password: this.signupForm.value.password,
+      roles: [this.signupForm.value.userType],
+      profile: profile
+    }
+
+    this.authService.signUp(registerUser).subscribe(response => {
+      this.authService.setToken(JSON.stringify(response.token));
+      this.authService.setCurrentUser(response);
+      this.router.navigate(['/public/landing']).then();
+      this.closeDialog()
+      this.openLoginFormDialog()
+    });
+
   }
+
+
+
+  openLoginFormDialog() {
+    this.dialogRef = this.dialogService.open(LoginFormComponent, {
+      contentStyle: { overflow: 'auto' },
+      baseZIndex: 10000
+    });
+  }
+
+  closeDialog() {
+    this.dialogRef.close();
+  }
+
 }

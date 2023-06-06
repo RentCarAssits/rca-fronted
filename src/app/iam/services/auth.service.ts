@@ -4,6 +4,7 @@ import {HttpClient} from "@angular/common/http";
 import {User} from "../models/user";
 import {catchError, Observable, retry} from "rxjs";
 import {AuthenticationResponse} from "../models/authentication-response";
+import {RegisterUser} from "../models/registerUser";
 
 const TOKEN_KEY = 'accessToken';
 const CURRENT_USER_KEY = 'currentUser';
@@ -21,7 +22,7 @@ export class AuthService extends  BaseService{
   }
 
   // Sign-Up
-  signUp(user: User): Observable<AuthenticationResponse> {
+  signUp(user: RegisterUser): Observable<AuthenticationResponse> {
     return this.http.post<AuthenticationResponse>(`${this.basePath}/register`, user, this.httpOptions)
       .pipe(retry(2), catchError(this.handleError));
   }
@@ -29,7 +30,7 @@ export class AuthService extends  BaseService{
   // Sign-In
   signIn(user: User): Observable<AuthenticationResponse> {
     return this.http.post<AuthenticationResponse>(`${this.basePath}/login`, user, this.httpOptions)
-      .pipe(retry(2), catchError(this.handleError));
+      .pipe(retry(1), catchError(this.handleError));
   }
 
   // Get Token

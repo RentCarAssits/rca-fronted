@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {LayoutService} from "../../../services/layout/layout.service";
+import {AuthService} from "../../../../iam/services/auth.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-menu',
@@ -9,7 +11,8 @@ import {LayoutService} from "../../../services/layout/layout.service";
 export class MenuComponent implements OnInit {
   model: any[] = [];
 
-  constructor(public layoutService: LayoutService) {
+  constructor(public layoutService: LayoutService, private router: Router,
+              private authService: AuthService) {
   }
 
   ngOnInit() {
@@ -23,8 +26,8 @@ export class MenuComponent implements OnInit {
       {
         label: 'UI Components',
         items: [
-          {label: 'Form Layout', icon: 'pi pi-fw pi-id-card', routerLink: ['/uikit/formlayout']},
-          {label: 'Input', icon: 'pi pi-fw pi-check-square', routerLink: ['/uikit/input']},
+          {label: 'Browse Cars', icon: 'pi pi-fw pi-car', routerLink: ['/renting/cars-catalog']},
+          {label: 'Input', icon: 'pi pi-fw pi-car', routerLink: ['/uikit/floatlabel']},
           {label: 'Float Label', icon: 'pi pi-fw pi-bookmark', routerLink: ['/uikit/floatlabel']},
           {label: 'Invalid State', icon: 'pi pi-fw pi-exclamation-circle', routerLink: ['/uikit/invalidstate']},
           {label: 'Button', icon: 'pi pi-fw pi-box', routerLink: ['/uikit/button']},
@@ -89,9 +92,9 @@ export class MenuComponent implements OnInit {
             icon: 'pi pi-fw pi-user',
             items: [
               {
-                label: 'Login',
+                label: 'Logout',
                 icon: 'pi pi-fw pi-sign-in',
-                routerLink: ['/auth/login']
+                command: () => this.logout()
               },
               {
                 label: 'Error',
@@ -108,22 +111,22 @@ export class MenuComponent implements OnInit {
           {
             label: 'Crud',
             icon: 'pi pi-fw pi-pencil',
-            routerLink: ['/pages/crud']
+           // routerLink: ['/pages/crud']
           },
           {
             label: 'Timeline',
             icon: 'pi pi-fw pi-calendar',
-            routerLink: ['/pages/timeline']
+           // routerLink: ['/pages/timeline']
           },
           {
             label: 'Not Found',
             icon: 'pi pi-fw pi-exclamation-circle',
-            routerLink: ['/notfound']
+           // routerLink: ['/notfound']
           },
           {
             label: 'Empty',
             icon: 'pi pi-fw pi-circle-off',
-            routerLink: ['/pages/empty']
+            //routerLink: ['/pages/empty']
           },
         ]
       },
@@ -178,11 +181,14 @@ export class MenuComponent implements OnInit {
           {
             label: 'View Source',
             icon: 'pi pi-fw pi-search',
-            url: ['https://github.com/primefaces/sakai-ng'],
-            target: '_blank'
           }
         ]
       }
     ];
+  }
+
+  private logout() {
+      this.authService.signOut();
+      this.router.navigate(['/public/landing']);
   }
 }
