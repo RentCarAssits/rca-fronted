@@ -10,12 +10,23 @@ import {SidebarModule} from "primeng/sidebar";
 import {BadgeModule} from "primeng/badge";
 import {RadioButtonModule} from "primeng/radiobutton";
 import {InputSwitchModule} from "primeng/inputswitch";
-import { DialogModule } from 'primeng/dialog';
+import {DialogModule} from 'primeng/dialog';
 import {DialogService, DynamicDialogModule} from 'primeng/dynamicdialog';
-import { MessagesModule } from 'primeng/messages';
+import {MessagesModule} from 'primeng/messages';
 import {PasswordModule} from "primeng/password";
 import {CheckboxModule} from "primeng/checkbox";
 import {MessageService} from "primeng/api";
+import {InputNumberModule} from "primeng/inputnumber";
+import {InputMaskModule} from "primeng/inputmask";
+import {DropdownModule} from "primeng/dropdown";
+import {ChipsModule} from "primeng/chips";
+import {CalendarModule} from "primeng/calendar";
+import {AutoCompleteModule} from "primeng/autocomplete";
+import {FormsModule} from "@angular/forms";
+import {CascadeSelectModule} from "primeng/cascadeselect";
+import {MultiSelectModule} from "primeng/multiselect";
+import {InputTextareaModule} from "primeng/inputtextarea";
+
 @NgModule({
   declarations: [],
   imports: [
@@ -36,9 +47,18 @@ import {MessageService} from "primeng/api";
     DynamicDialogModule,
     MessagesModule,
     PasswordModule,
-    CheckboxModule
-
-
+    CheckboxModule,
+    FormsModule,
+    AutoCompleteModule,
+    CalendarModule,
+    ChipsModule,
+    DropdownModule,
+    InputMaskModule,
+    InputNumberModule,
+    CascadeSelectModule,
+    MultiSelectModule,
+    InputTextareaModule,
+    InputTextModule
   ],
   exports: [
     /**PRIME-NG**/
@@ -57,7 +77,18 @@ import {MessageService} from "primeng/api";
     DynamicDialogModule,
     MessagesModule,
     PasswordModule,
-    CheckboxModule
+    CheckboxModule,
+    FormsModule,
+    AutoCompleteModule,
+    CalendarModule,
+    ChipsModule,
+    DropdownModule,
+    InputMaskModule,
+    InputNumberModule,
+    CascadeSelectModule,
+    MultiSelectModule,
+    InputTextareaModule,
+    InputTextModule
   ],
   providers: [
     MessageService,

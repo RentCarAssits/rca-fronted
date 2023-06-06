@@ -3,14 +3,16 @@ import {CommonModule} from '@angular/common';
 import {LoginFormComponent} from './pages/sign-in/login-form.component';
 import {PrimeNgModule} from "../prime-ng/prime-ng.module";
 import {PasswordModule} from "primeng/password";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {RouterLink} from "@angular/router";
 import {AuthService} from "./services/auth.service";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
+import { SignUpComponent } from './pages/sign-up/sign-up.component';
 
 @NgModule({
   declarations: [
-    LoginFormComponent
+    LoginFormComponent,
+    SignUpComponent
   ],
   imports: [
     CommonModule,
@@ -18,6 +20,7 @@ import {HttpClient, HttpClientModule} from "@angular/common/http";
     PasswordModule,
     FormsModule,
     RouterLink,
+    ReactiveFormsModule,
   ],
   providers: [
     AuthService,

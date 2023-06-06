@@ -1,0 +1,53 @@
+<form class="col-12" [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+  <div class="text-center mb-5">
+    <img src="../../../../assets/layout/images/rca.png" alt="Image" height="50" class="mb-3">
+    <div class="text-900 text-3xl font-medium mb-3">Welcome!</div>
+    <span class="text-600 font-medium">Sign up to continue</span>
+  </div>
+  <div class="card-register">
+    <div class="p-fluid p-formgrid grid">
+      <div class="field col-12 md:col-6">
+        <label htmlFor="userNAme">User Name</label>
+        <input pInputText id="userNAme" type="text" formControlName="userName"/>
+      </div>
+      <div class="field col-12 md:col-6">
+        <label for="userType">User Type</label>
+        <p-dropdown [options]="rolUser"   optionLabel="name" formControlName="userType"  id="userType"  optionValue="code"></p-dropdown>
+
+      </div>
+
+      <div class="field col-12">
+        <label for="email1">Email</label>
+        <input pInputTextarea id="email1" name="email" type="text" placeholder="Email address" rows="4" formControlName="email">
+      </div>
+      <div class="field col-12">
+        <label for="password1">Password</label>
+        <input pInputTextarea id="password1" name="email" type="text" placeholder="Password" rows="4" formControlName="password">
+      </div>
+      <h5 class="field col-12" >Personal Information</h5>
+      <div class="field col-12 md:col-6">
+        <label htmlFor="firstname2">Firstname</label>
+        <input pInputText id="firstname2" type="text" formControlName="firstname"/>
+      </div>
+      <div class="field col-12 md:col-6">
+        <label htmlFor="lastname2">Lastname</label>
+        <input pInputText id="lastname2" type="text" formControlName="lastname"/>
+      </div>
+      <div class="field col-12">
+        <label htmlFor="address">Address</label>
+        <input pInputTextarea id="address" rows="4" formControlName="address"/>
+      </div>
+      <div class="field col-12 md:col-6">
+        <label htmlFor="dni">Dni</label>
+        <input pInputText id="Dni" type="text" formControlName="dni"/>
+      </div>
+      <div class="field col-12 md:col-6">
+        <label htmlFor="phone">Phone Number</label>
+        <input pInputText id="phone" type="text" formControlName="phone"/>
+      </div>
+      <button type="submit"  class="field col-12" pButton pRipple label="Sign In" class="w-full p-3 text-xl"></button>
+    </div>
+  </div>
+</form>
+
+<!--[(ngModel)]="email"-->
