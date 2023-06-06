@@ -29,10 +29,6 @@ import {InputTextareaModule} from "primeng/inputtextarea";
 import {CardModule} from "primeng/card";
 import { ChipModule } from 'primeng/chip';
 import { TagModule } from 'primeng/tag';
-import { ImageModule } from 'primeng/image';
-import { GalleriaModule } from 'primeng/galleria';
-import { CarouselModule } from 'primeng/carousel';
-
 @NgModule({
   declarations: [],
   imports: [
@@ -67,11 +63,7 @@ import { CarouselModule } from 'primeng/carousel';
     InputTextModule,
     CardModule,
     ChipModule,
-    TagModule,
-    ImageModule,
-    GalleriaModule,
-    CarouselModule,
-
+    TagModule
   ],
   exports: [
     /**PRIME-NG**/
@@ -104,11 +96,7 @@ import { CarouselModule } from 'primeng/carousel';
     InputTextModule,
     CardModule,
     ChipModule,
-    TagModule,
-    ImageModule,
-    GalleriaModule,
-    CarouselModule,
-    PrimeNgModule
+    TagModule
 
   ],
   providers: [
