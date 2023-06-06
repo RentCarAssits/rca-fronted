@@ -1,47 +1,87 @@
-<div class="flex flex-column align-content-end align-items-start md:align-items-center">
-  <div class="col-9" *ngFor="let car of cars">
+<h5>Recomendados</h5>
+<div class="grid p-fluid">
+  <div class="col-12">
     <div class="card">
-      <div class="text-2xl font-bold text-900  pb-3" >{{ car.name }}</div>
-      <div class="p-fluid p-formgrid grid">
-        <div class="field col-12 md:col-6">
-          <div class="flex flex-column gap-4" >
-            <span class="font-semibold"> Marca: {{car.brand }}</span>
-            <span class="font-semibold"> Modelo: {{car.model }}</span>
-            <span class="font-semibold"> Año: {{car.year }}</span>
+      <h5>Garantizados</h5>
+      <p-carousel [value]="cars" [numVisible]="3" [numScroll]="3" [circular]="false"
+                  [responsiveOptions]="responsiveOptions">
+        <ng-template let-car pTemplate="item">
+          <div class="border-round m-2 text-center p-2" style="border: 1px solid var(--surface-d)">
+            <div class="my-5">
+              <img src="{{car.image}}" [alt]="car.name" class="shadow-4" width="50%"/>
+            </div>
+            <div>
+              <h5 class="mb-1">{{car.name}}</h5>
+              <h6 class="mt-0 mb-3">$40</h6>
+              <span [class]="'product-badge status-'+car.name.toLowerCase()">{{car.name}}</span>
+              <div class="flex flex-row justify-content-center gap-1">
+                <div *ngFor="let category of car.categories">
+                  <div>
+                    <p-tag [value]="category" severity="warning"></p-tag>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="field col-12 md:col-6 flex justify-content-center">
-          <img [src]="car.image" alt="Car Image" class="w-full border-round">
-        </div>
-        <div class="field col-12 md:col-2 ">
-          <div>
-          <p-button class="w-full">ver</p-button>
+        </ng-template>
+      </p-carousel>
+    </div>
+  </div>
+
+  <div class="col-12">
+    <div class="card">
+      <h5>Recién Llegados</h5>
+      <p-carousel [value]="cars" [numVisible]="3" [numScroll]="3" [circular]="false"
+                  [responsiveOptions]="responsiveOptions">
+        <ng-template let-car pTemplate="item">
+          <div class="border-round m-2 text-center p-2" style="border: 1px solid var(--surface-d)">
+            <div class="my-5">
+              <img src="{{car.image}}" [alt]="car.name" class="shadow-4" width="50%"/>
+            </div>
+            <div>
+              <h5 class="mb-1">{{car.name}}</h5>
+              <h6 class="mt-0 mb-3">$40</h6>
+              <span [class]="'product-badge status-'+car.name.toLowerCase()">{{car.name}}</span>
+              <div class="flex flex-row justify-content-center gap-1">
+                <div *ngFor="let category of car.categories">
+                  <div>
+                    <p-tag [value]="category" severity="warning"></p-tag>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="field col-12 md:col-4">
-        </div>
-        <div class="field col-12 md:col-6 flex  gap-1">
-          <p-tag severity="warning" [value]="category" *ngFor="let category of car.categories"></p-tag>
-        </div>
-      </div>
+        </ng-template>
+      </p-carousel>
+    </div>
+  </div>
+
+  <div class="col-12">
+    <div class="card">
+      <h5>Mejor Puntuados</h5>
+      <p-carousel [value]="cars" [numVisible]="3" [numScroll]="3" [circular]="false"
+                  [responsiveOptions]="responsiveOptions">
+        <ng-template let-car pTemplate="item">
+          <div class="border-round m-2 text-center p-2" style="border: 1px solid var(--surface-d)">
+            <div class="my-5">
+              <img src="{{car.image}}" [alt]="car.name" class="shadow-4" width="50%"/>
+            </div>
+            <div>
+              <h5 class="mb-1">{{car.name}}</h5>
+              <h6 class="mt-0 mb-3">$40</h6>
+              <span [class]="'product-badge status-'+car.name.toLowerCase()">{{car.name}}</span>
+              <div class="flex flex-row justify-content-center gap-1">
+                <div *ngFor="let category of car.categories">
+                  <div>
+                    <p-tag [value]="category" severity="warning"></p-tag>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </p-carousel>
     </div>
   </div>
 </div>
 
-<!--
-<div *ngFor="let car of cars" class="card flex justify-content-center">
-  <div class="car-info">
-    <p-card header="{{ car.name }}">
-      <p class="m-0">
-        Brand: {{ car.brand }}
-      </p>
-      <p class="m-0">
-        Model: {{ car.model }}
-      </p>
-    </p-card>
-  </div>
-  <div class="car-image p-d-flex">
-    <img [src]="car.image" alt="Car Image" class="p-flex-3">
-  </div>
-</div>
--->
