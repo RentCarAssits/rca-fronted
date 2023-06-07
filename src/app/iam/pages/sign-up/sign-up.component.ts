@@ -6,6 +6,7 @@ import {Profile} from "../../models/profile";
 import {Router} from "@angular/router";
 import {DialogService, DynamicDialogRef} from "primeng/dynamicdialog";
 import {LoginFormComponent} from "../sign-in/login-form.component";
+import {RefDialogServiceService} from "../../services/ref-dialog-service.service";
 
 @Component({
   selector: 'app-sign-up',
@@ -16,21 +17,22 @@ export class SignUpComponent {
   signupForm!: FormGroup;
   dialogRef!: DynamicDialogRef;
 
+
   constructor(private formBuilder: FormBuilder,
               private authService: AuthService,
               private router: Router,
-              private dialogService: DialogService
+              private refRegisterDialog : RefDialogServiceService
   ) {
     this.signupForm = formBuilder.group({
-      userName: ['', Validators.required],
-      userType: ['renter', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required],
-      firstname: ['', Validators.required],
-      lastname: ['', Validators.required],
-      address: ['', Validators.required],
-      dni: ['', Validators.required],
-      phone: ['', Validators.required]
+      userName: ['',],
+      userType: ['renter',],
+      email: ['', ],
+      password: ['', ],
+      firstname: ['', ],
+      lastname: ['', ],
+      address: ['', ],
+      dni: ['', ],
+      phone: ['',]
     });
   }
 
@@ -57,27 +59,17 @@ export class SignUpComponent {
       profile: profile
     }
 
+    this.router.navigate(['/public/landing']).then();
     this.authService.signUp(registerUser).subscribe(response => {
       this.authService.setToken(JSON.stringify(response.token));
       this.authService.setCurrentUser(response);
-      this.router.navigate(['/public/landing']).then();
-      this.closeDialog()
-      this.openLoginFormDialog()
+      this.refRegisterDialog.registerCompleted();
     });
 
   }
 
 
 
-  openLoginFormDialog() {
-    this.dialogRef = this.dialogService.open(LoginFormComponent, {
-      contentStyle: { overflow: 'auto' },
-      baseZIndex: 10000
-    });
-  }
 
-  closeDialog() {
-    this.dialogRef.close();
-  }
 
 }

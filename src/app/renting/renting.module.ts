@@ -15,6 +15,9 @@ import {ChartModule} from "primeng/chart";
     CarRentalListComponent,
     DashboardComponent
   ],
+  exports: [
+    CarRentalListComponent
+  ],
   imports: [
     CommonModule,
     RentingRoutingModule,
