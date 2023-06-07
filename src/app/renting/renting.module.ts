@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {RentingRoutingModule} from "./renting-routing.module";
-import { CarRentalListComponent } from './pages/car-rental-list/car-rental-list.component';
+import { CarsPrincipalPage } from './pages/cars-principal-page/cars-principal-page';
 import {PrimeNgModule} from "../prime-ng/prime-ng.module";
 import { DashboardComponent } from './pages/dashboard/dashboard/dashboard.component';
 import {MenuModule} from "primeng/menu";
@@ -12,11 +12,11 @@ import {ChartModule} from "primeng/chart";
 
 @NgModule({
   declarations: [
-    CarRentalListComponent,
+    CarsPrincipalPage,
     DashboardComponent
   ],
   exports: [
-    CarRentalListComponent
+    CarsPrincipalPage
   ],
   imports: [
     CommonModule,

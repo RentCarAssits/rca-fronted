@@ -10,7 +10,8 @@ import {SharedModule} from "./shared/shared.module";
 import {PublicRoutingModule} from "./public/public-routing.module";
 import {IAMModule} from "./iam/iam.module";
 import {AuthService} from "./iam/services/auth.service";
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
+import {JWTInterceptorService} from "./iam/interceptor/jwtinterceptor.service";
 
 
 @NgModule({
@@ -30,7 +31,7 @@ import {HttpClientModule} from "@angular/common/http";
     RentingModule //BC
     /**Modules**/
   ],
-  providers: [AuthService],
+  providers: [AuthService, { provide: HTTP_INTERCEPTORS, useClass: JWTInterceptorService, multi: true }],
   bootstrap: [AppComponent],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA

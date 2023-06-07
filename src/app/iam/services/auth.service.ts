@@ -35,7 +35,9 @@ export class AuthService extends  BaseService{
 
   // Get Token
   getToken() {
-    return localStorage.getItem(TOKEN_KEY);
+    const token = localStorage.getItem(TOKEN_KEY);
+   // console.log('token: ', token)
+    return token;
   }
 
   // Set Token

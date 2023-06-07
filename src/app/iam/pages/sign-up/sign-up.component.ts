@@ -61,7 +61,7 @@ export class SignUpComponent {
 
     this.router.navigate(['/public/landing']).then();
     this.authService.signUp(registerUser).subscribe(response => {
-      this.authService.setToken(JSON.stringify(response.token));
+      this.authService.setToken(response.token);
       this.authService.setCurrentUser(response);
       this.refRegisterDialog.registerCompleted();
     });
