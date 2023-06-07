@@ -7,13 +7,16 @@ import { DashboardComponent } from './pages/dashboard/dashboard/dashboard.compon
 import {MenuModule} from "primeng/menu";
 import {TableModule} from "primeng/table";
 import {ChartModule} from "primeng/chart";
+import { RentingOrderItemsComponent } from './components/renting-items/renting-order-items/renting-order-items.component';
 
 
 
 @NgModule({
   declarations: [
     CarsPrincipalPage,
-    DashboardComponent
+    DashboardComponent,
+    DashboardComponent,
+    RentingOrderItemsComponent
   ],
   exports: [
     CarsPrincipalPage
