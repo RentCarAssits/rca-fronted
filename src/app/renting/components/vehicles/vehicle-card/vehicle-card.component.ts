@@ -7,15 +7,19 @@ import {CarService} from "../../../services/car/car.service";
   templateUrl: './vehicle-card.component.html',
   styleUrls: ['./vehicle-card.component.css']
 })
-export class VehicleCardComponent implements OnInit{
+export class VehicleCardComponent implements OnInit {
 
   ownerCars: any[] = [];
+  items: any[] = [];
 
   constructor(private http: HttpClient, private service: CarService) {
   }
 
   ngOnInit(): void {
     this.getVehiclesByOwner()
+    this.items = [
+      {label: 'Add New', icon: 'pi pi-fw pi-plus'}
+    ];
   }
 
   getVehiclesByOwner() {
@@ -26,8 +30,6 @@ export class VehicleCardComponent implements OnInit{
       console.log(error)
     });
   }
-
-
 
 
 }
