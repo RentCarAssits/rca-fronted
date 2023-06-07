@@ -8,6 +8,8 @@ import {MenuModule} from "primeng/menu";
 import {TableModule} from "primeng/table";
 import {ChartModule} from "primeng/chart";
 import { RentingOrderItemsComponent } from './components/renting-items/renting-order-items/renting-order-items.component';
+import {VehicleCardComponent} from "./components/vehicles/vehicle-card/vehicle-card.component";
+
 
 
 
@@ -16,7 +18,8 @@ import { RentingOrderItemsComponent } from './components/renting-items/renting-o
     CarsPrincipalPage,
     DashboardComponent,
     DashboardComponent,
-    RentingOrderItemsComponent
+    RentingOrderItemsComponent,
+    VehicleCardComponent
   ],
   exports: [
     CarsPrincipalPage

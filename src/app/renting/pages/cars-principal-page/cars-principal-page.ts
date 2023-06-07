@@ -50,14 +50,14 @@ export class CarsPrincipalPage implements OnInit {
 
     this.service.getLastYearVehicles().subscribe((response: any) => {
       this.thisYearVehicles = response.result;
-      console.log(response)
+      //console.log(response)
     }, (error) => {
       console.log(error)
     });
 
     this.service.getVehiclesByMostStars().subscribe((response: any) => {
       this.mostStarsVehicles = response.result;
-      console.log(response)
+      //console.log(response)
     }, (error) => {
       console.log(error)
     });

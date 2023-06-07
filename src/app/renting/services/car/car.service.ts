@@ -26,6 +26,11 @@ export class CarService extends ResourceService<any>{
       .pipe(retry(2), catchError(this.handleError));
   }
 
+  getVehicleByOwner(): Observable<any> {
+    return this.http.get<any>(`${this.basePath}/by/owner`, this.httpOptions)
+      .pipe(retry(2), catchError(this.handleError));
+  }
+
 
 
 }
