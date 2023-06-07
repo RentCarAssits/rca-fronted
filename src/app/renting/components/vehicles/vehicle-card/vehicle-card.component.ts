@@ -23,7 +23,7 @@ export class VehicleCardComponent implements OnInit {
   }
 
   getVehiclesByOwner() {
-    this.service.getLastYearVehicles().subscribe((response: any) => {
+    this.service.getVehicleByOwner().subscribe((response: any) => {
       this.ownerCars = response.result;
       console.log('ownerCars: ', this.ownerCars)
     }, (error) => {
@@ -32,4 +32,8 @@ export class VehicleCardComponent implements OnInit {
   }
 
 
+  editVehicleById(id:number) {
+    console.log(id)
+
+  }
 }

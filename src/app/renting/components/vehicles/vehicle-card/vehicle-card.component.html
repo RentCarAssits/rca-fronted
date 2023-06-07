@@ -32,7 +32,7 @@
         <td style="width: 35%; min-width: 8rem;">{{'20' | currency:'USD'}}</td>
         <td style="width: 35%; min-width: 8rem;"><i class="mt-0 mb-3 pi pi-star-fill" style="color: rgb(246,143,61)"> {{car.stars}}</i></td>
         <td style="width: 15%;">
-          <button pButton pRipple type="button" icon="pi pi-file-edit"
+          <button (click)="editVehicleById(car.id)" pButton pRipple type="button" icon="pi pi-file-edit"
                   class="p-button p-component p-button-text p-button-icon-only"></button>
         </td>
       </tr>

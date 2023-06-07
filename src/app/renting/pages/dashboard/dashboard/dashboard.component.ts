@@ -101,7 +101,7 @@ export class DashboardComponent {
   }
 
   getTotalVehicles() {
-    this.carService.getVehiclesByMostStars().subscribe(
+    this.carService.getVehicleByOwner().subscribe(
       (response: any) => {
         this.totalVehicles = Number(response.result?.length);
         console.log(this.totalVehicles);
