@@ -20,13 +20,13 @@ export class MenuComponent implements OnInit {
       {
         label: 'Home',
         items: [
-          {label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/']}
+          {label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/renting/dashboard']}
         ]
       },
       {
         label: 'UI Components',
         items: [
-          {label: 'Browse Cars', icon: 'pi pi-fw pi-car', routerLink: ['/renting/cars-catalog']},
+          {label: 'Cars', icon: 'pi pi-fw pi-car', routerLink: ['/renting/cars-catalog']},
           {label: 'Input', icon: 'pi pi-fw pi-car', routerLink: ['/uikit/floatlabel']},
           {label: 'Float Label', icon: 'pi pi-fw pi-bookmark', routerLink: ['/uikit/floatlabel']},
           {label: 'Invalid State', icon: 'pi pi-fw pi-exclamation-circle', routerLink: ['/uikit/invalidstate']},
