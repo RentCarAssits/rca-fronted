@@ -19,4 +19,14 @@ export class RentingOrderItemsService extends ResourceService<RentingOrderItem>{
     console.log(jsonBody);
     return this.http.post<any>(`${this.basePath}/get-by-vehicles`, jsonBody,this.httpOptions);
   }
+  updateRentingItemStateId(rentingId:number,state:string):Observable<any>{
+    const body = { id: rentingId,state:state };
+    const jsonBody = JSON.stringify(body);
+    console.log(jsonBody);
+    return this.http.put<any>(`${this.basePath}/${rentingId}`, jsonBody,this.httpOptions);
+  }
+
+  override getById(id: any): Observable<any> {
+    return this.http.get<any>(`${this.basePath}/${id}`,this.httpOptions);
+  }
 }

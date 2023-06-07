@@ -1,24 +1,27 @@
-<ul class="p-0 mx-0 mt-0 mb-4 list-none">
-  <li class="flex align-items-center py-2 border-bottom-1 surface-border" *ngFor="let item of rentingOrderItems">
-    <div [ngClass]="getCircleClass(item.state)" class="w-3rem h-3rem flex align-items-center justify-content-center border-circle mr-3 flex-shrink-0">
-      <i [ngClass]="getIconClass(item.state)" class="pi text-xl"></i>
-    </div>
-    <span class="text-900 line-height-3">{{ item.name }}
-      <span class="text-700"> Request  <span class="text-blue-500">{{ item.rentingPrice }} {{ item.currency }}</span></span>
-    </span>
-    <div class="ml-auto">
-      <button *ngIf="item.state === 'O'" class="btn btn-sm btn-success rounded-circle" (click)="acceptRequest(item.id)">
-        <i class="pi pi-check"></i>
-      </button>
-      <button *ngIf="item.state === 'O'" class="btn btn-sm btn-danger rounded-circle" (click)="denyRequest(item.id)">
-        <i class="pi pi-times"></i>
-      </button>
-      <span *ngIf="item.state === 'A'" class="text-success">Accepted</span>
-      <span *ngIf="item.state === 'D'" class="text-danger">Denied</span>
-    </div>
-  </li>
-</ul>
+<ng-container *ngIf="rentingOrderItems && rentingOrderItems.length > 0; else noRequests">
+  <ul class="p-0 mx-0 mt-0 mb-4 list-none">
+    <li class="flex align-items-center py-2 border-bottom-1 surface-border" *ngFor="let item of rentingOrderItems">
+      <div [ngClass]="getCircleClass(item.state)" class="w-3rem h-3rem flex align-items-center justify-content-center border-circle mr-3 flex-shrink-0">
+        <i [ngClass]="getIconClass(item.state)" class="pi text-xl" [ngStyle]="{ color: item.state === 'A' ? 'green' : item.state === 'D' ? 'red' : 'blue' }"></i>
+      </div>
+      <span class="text-900 line-height-3">{{ item.name }}
+        <span class="text-700"> Request  <span class="text-blue-500">{{ item.rentingPrice }} {{ item.currency }}</span></span>
+      </span>
+      <div class="ml-auto button-group">
+        <button icon="pi pi-eye" pButton pRipple class="p-button p-button-info rounded-circle small-button" (click)="showItemDialog(item)"></button>
+        <button icon="pi pi-check" pButton pRipple *ngIf="item.state === 'O'" class="p-button p-button-success rounded-circle small-button" (click)="acceptRequest(item.id)"></button>
+        <button icon="pi pi-times" pButton pRipple *ngIf="item.state === 'O'" class="p-button p-button-danger rounded-circle small-button" (click)="denyRequest(item.id)"></button>
+        <span *ngIf="item.state === 'A'" class="text-success uppercase">Accepted</span>
+        <span *ngIf="item.state === 'D'" class="text-danger uppercase">Denied</span>
+      </div>
+    </li>
+  </ul>
+</ng-container>
 
 <ng-template #noRequests>
   <div class="text-center">No requests at the moment</div>
+</ng-template>
+
+<ng-template #itemDialog>
+  <app-selected-renting-order-item-dialog></app-selected-renting-order-item-dialog>
 </ng-template>

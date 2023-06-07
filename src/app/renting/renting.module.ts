@@ -11,6 +11,9 @@ import { RentingOrderItemsComponent } from './components/renting-items/renting-o
 import {VehicleCardComponent} from "./components/vehicles/vehicle-card/vehicle-card.component";
 
 
+import { DialogModule } from 'primeng/dialog';
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
+import { SelectedRentingOrderItemDialogComponent } from './components/renting-items/selected-renting-order-item-dialog/selected-renting-order-item-dialog.component';
 
 
 @NgModule({
@@ -19,7 +22,8 @@ import {VehicleCardComponent} from "./components/vehicles/vehicle-card/vehicle-c
     DashboardComponent,
     DashboardComponent,
     RentingOrderItemsComponent,
-    VehicleCardComponent
+    VehicleCardComponent,
+    SelectedRentingOrderItemDialogComponent
   ],
   exports: [
     CarsPrincipalPage
@@ -31,6 +35,8 @@ import {VehicleCardComponent} from "./components/vehicles/vehicle-card/vehicle-c
     MenuModule,
     TableModule,
     ChartModule,
+    DialogModule,
+    DynamicDialogModule
   ]
 })
 export class RentingModule { }
