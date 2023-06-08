@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {LayoutService} from "../../../../shared/services/layout/layout.service";
 import {MenuItem} from "primeng/api";
 import {CarService} from "../../../services/car/car.service";
@@ -20,6 +20,10 @@ export class DashboardComponent {
   subscription!: any;
   totalVehicles!: number;
 
+  data: any;
+
+  options: any;
+
   constructor( public layoutService: LayoutService, private carService: CarService) {
     this.subscription = this.layoutService.configUpdate$.subscribe(() => {
       this.initChart();
@@ -27,12 +31,40 @@ export class DashboardComponent {
   }
 
   ngOnInit() {
+
+    const documentStyle = getComputedStyle(document.documentElement);
+    const textColor = documentStyle.getPropertyValue('--text-color');
+
     this.initChart();
     this.getTotalVehicles();
     this.items = [
       { label: 'Add New', icon: 'pi pi-fw pi-plus' },
       { label: 'Remove', icon: 'pi pi-fw pi-minus' }
     ];
+
+    this.data = {
+      labels: ['A', 'B', 'C'],
+      datasets: [
+          {
+              data: [5, 12, 20],
+              backgroundColor: [documentStyle.getPropertyValue('--blue-500'), documentStyle.getPropertyValue('--yellow-500'), documentStyle.getPropertyValue('--green-500')],
+              hoverBackgroundColor: [documentStyle.getPropertyValue('--blue-400'), documentStyle.getPropertyValue('--yellow-400'), documentStyle.getPropertyValue('--green-400')]
+          }
+      ]
+    };
+
+    this.options = {
+      plugins: {
+          legend: {
+              labels: {
+                  usePointStyle: true,
+                  color: textColor
+              }
+          }
+      }
+  };
+    
+
   }
 
   initChart() {
@@ -124,3 +156,7 @@ export class DashboardComponent {
 
   }
 }
+
+
+
+
