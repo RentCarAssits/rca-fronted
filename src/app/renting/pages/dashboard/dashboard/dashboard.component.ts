@@ -111,5 +111,16 @@ export class DashboardComponent {
       }
     );
   }
+  getVehiclesId() {
+    this.carService.getVehicleByOwner().subscribe(
+      (response: any) => {
+        this.totalVehicles = Number(response.result?.length);
+        console.log(this.totalVehicles);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
 
+  }
 }

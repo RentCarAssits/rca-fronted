@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {RentingOrderItemsService} from "../../../service/renting-items/renting-order-items.service";
+import {RentingOrderItemsService} from "../../../services/renting-items/renting-order-items.service";
 import { DialogService } from 'primeng/dynamicdialog';
 import {
   SelectedRentingOrderItemDialogComponent
