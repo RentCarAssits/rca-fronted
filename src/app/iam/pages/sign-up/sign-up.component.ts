@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../services/auth.service";
 import {RegisterUser} from "../../models/registerUser";
 import {Profile} from "../../models/profile";
@@ -7,6 +7,7 @@ import {Router} from "@angular/router";
 import {DialogService, DynamicDialogRef} from "primeng/dynamicdialog";
 import {LoginFormComponent} from "../sign-in/login-form.component";
 import {RefDialogServiceService} from "../../services/ref-dialog-service.service";
+import { ToastModule } from 'primeng/toast';
 
 @Component({
   selector: 'app-sign-up',
@@ -21,13 +22,14 @@ export class SignUpComponent {
   constructor(private formBuilder: FormBuilder,
               private authService: AuthService,
               private router: Router,
-              private refRegisterDialog : RefDialogServiceService
+              private refRegisterDialog : RefDialogServiceService,
   ) {
+    
     this.signupForm = formBuilder.group({
       userName: ['',],
       userType: ['renter',],
-      email: ['', ],
-      password: ['', ],
+      email: ['', [Validators.required,Validators.email]],
+      password: ['', [Validators.required, this.validarMayuscula]],
       firstname: ['', ],
       lastname: ['', ],
       address: ['', ],
@@ -44,8 +46,8 @@ export class SignUpComponent {
 
 
   onSubmit() {
-
-    const profile: Profile = {
+console.log(this.signupForm)
+    /*const profile: Profile = {
       fullName: `${this.signupForm.value.firstname} ${this.signupForm.value.lastname}`,
       address: this.signupForm.value.address,
       phone: this.signupForm.value.phone,
@@ -65,11 +67,14 @@ export class SignUpComponent {
       this.authService.setCurrentUser(response);
       this.refRegisterDialog.registerCompleted();
     });
-
+*/
   }
 
-
-
-
-
+  validarMayuscula(control:AbstractControl) {
+    const tieneMayuscula = /[A-Z]/.test(control.value);
+    if (!tieneMayuscula) {
+      return { faltaMayuscula: true };
+    }else
+    return null;
+  }
 }
