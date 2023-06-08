@@ -12,16 +12,14 @@
     <ng-template pTemplate="header">
       <tr>
         <th>Vehiculo</th>
-        <th pSortableColumn="name">Modelo
-          <p-sortIcon field="name"></p-sortIcon>
+        <th pSortableColumn="name" class="font-semibold">Model
         </th>
         <th pSortableColumn="price">$/día
-          <p-sortIcon field="price"></p-sortIcon>
+
         </th>
         <th pSortableColumn="stars">Stars
-          <p-sortIcon field="stars"></p-sortIcon>
         </th>
-        <th>View</th>
+        <th></th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-car>
@@ -30,9 +28,11 @@
           <img  src="{{ car.image }}"  class="shadow-4" alt="{{car.name}}"
                width="50">
         </td>
-        <td style="width: 35%; min-width: 7rem;">{{car.name}}</td>
-        <td style="width: 35%; min-width: 8rem;">{{'20' | currency:'USD'}}</td>
-        <td style="width: 35%; min-width: 8rem;"><i class="mt-0 mb-3 pi pi-star-fill" style="color: rgb(246,143,61)"> {{car.stars}}</i></td>
+        <td style="width: 35%; min-width: 7rem;" class="font-normal">{{car.name}}</td>
+        <td style="width: 35%; min-width: 7rem;" class="font-normal">{{'20' | currency:'USD'}}</td>
+        <td style="width: 35%; min-width: 7rem;" class="font-normal">{{car.stars}}
+          <i class="mt-0 mb-3 pi pi-star-fill" style="color: rgb(255,177,89)"></i>
+        </td>
         <td style="width: 15%;">
           <button (click)="editVehicleById(car)" pButton pRipple type="button" icon="pi pi-file-edit"
                   class="p-button p-component p-button-text p-button-icon-only"></button>

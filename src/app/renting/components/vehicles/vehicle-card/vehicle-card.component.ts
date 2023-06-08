@@ -36,9 +36,17 @@ export class VehicleCardComponent implements OnInit {
   }
 
   showVehicleDialog(car: any) {
+    let width = '60%';
+    const windowWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    if (windowWidth < 768) {
+      width = '100%';
+    } else if (windowWidth < 1200) {
+      width = '80%';
+    }
+
     this.ref = this.dialogService.open(EditFormCarComponent, {
       data: {car: car},
-      width: '60%',
+      width: width,
       contentStyle: {overflow: 'auto'},
       baseZIndex: 10000,
     });

@@ -5,8 +5,18 @@
         <h5>Crear vehiculo</h5>
         <div class="flex justify-content-center max-h-12rem">
           <input type="file" class="max-h-12rem" #fileInput (change)="onFileChange($event)" accept=".png, .jpg, .jpeg" [style.display]="'none'" />
-          <p-image *ngIf="imageToShow || 'https://cdn.pixabay.com/photo/2017/11/10/05/24/add-2935429_1280.png'" [src]="imageToShow || 'https://cdn.pixabay.com/photo/2017/11/10/05/24/add-2935429_1280.png'" alt="Image" width="250"  (click)="fileInput.click()"  height="192"></p-image>
+          <div class="shadow-4">
+            <p-image *ngIf="imageToShow" [src]="imageToShow" alt="Image" width="250" height="192" (click)="fileInput.click()"></p-image>
+            <div *ngIf="!imageToShow"
+                 style="background-color: #888888; height: 192px;
+                 width: 250px; cursor: pointer;
+                 display: flex; align-items: center;
+                 justify-content: center;" (click)="fileInput.click()">
+              <i class="pi pi-plus" style="font-size: 2rem; color: white;"></i>
+            </div>
+          </div>
         </div>
+
 
         <h5>Información del Vehiculo</h5>
         <div class="p-fluid p-formgrid grid">

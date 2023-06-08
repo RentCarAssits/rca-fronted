@@ -3,17 +3,17 @@
     <div class="col-12">
       <form [formGroup]="carForm" (ngSubmit)="onSubmit()">
         <h5>Editar vehiculo</h5>
-        <div class="flex justify-content-center h-12rem ">
+        <div class="flex justify-content-center h-12rem">
           <input type="file" class="h-12rem" #fileInput (change)="onFileChange($event)" accept=".png, .jpg, .jpeg"
                  [style.display]="'none'"/>
-          <div class="shadow-2">
-            <p-image
-              *ngIf="imageToShow || car.image"
-              [src]="imageToShow || car.image"
-              alt="Image" width="250" (click)="fileInput.click()" height="192"></p-image>
+          <div class="shadow-4">
+            <p-image *ngIf="imageToShow || car.image" [src]="imageToShow || car.image" alt="Image" width="250" height="192" (click)="fileInput.click()"></p-image>
+            <div *ngIf="!(imageToShow || car.image)" style="background-color: #888888; height: 192px; width: 250px; cursor: pointer; display: flex; align-items: center; justify-content: center;"
+                 (click)="fileInput.click()">
+              <i class="pi pi-plus" style="font-size: 2rem; color: white;"></i>
+            </div>
           </div>
         </div>
-
         <h5>Información del Vehiculo</h5>
         <div class="p-fluid p-formgrid grid">
           <div class="field col-12 md:col-6">
