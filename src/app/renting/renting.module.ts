@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {CommonModule, DatePipe} from '@angular/common';
 import {RentingRoutingModule} from "./renting-routing.module";
 import { CarsPrincipalPage } from './pages/cars-principal-page/cars-principal-page';
 import {PrimeNgModule} from "../prime-ng/prime-ng.module";
@@ -14,6 +14,9 @@ import {VehicleCardComponent} from "./components/vehicles/vehicle-card/vehicle-c
 import { DialogModule } from 'primeng/dialog';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { SelectedRentingOrderItemDialogComponent } from './components/renting-items/selected-renting-order-item-dialog/selected-renting-order-item-dialog.component';
+import { EditFormCarComponent } from './components/vehicles/edit-form-car/edit-form-car.component';
+import {ReactiveFormsModule} from "@angular/forms";
+import { CreateCarFormComponent } from './components/vehicles/create-car-form/create-car-form.component';
 
 
 @NgModule({
@@ -23,20 +26,24 @@ import { SelectedRentingOrderItemDialogComponent } from './components/renting-it
     DashboardComponent,
     RentingOrderItemsComponent,
     VehicleCardComponent,
-    SelectedRentingOrderItemDialogComponent
+    SelectedRentingOrderItemDialogComponent,
+    EditFormCarComponent,
+    CreateCarFormComponent
   ],
   exports: [
     CarsPrincipalPage
   ],
-  imports: [
-    CommonModule,
-    RentingRoutingModule,
-    PrimeNgModule,
-    MenuModule,
-    TableModule,
-    ChartModule,
-    DialogModule,
-    DynamicDialogModule
-  ]
+    imports: [
+        CommonModule,
+        RentingRoutingModule,
+        PrimeNgModule,
+        MenuModule,
+        TableModule,
+        ChartModule,
+        DialogModule,
+        DynamicDialogModule,
+        ReactiveFormsModule
+    ],
+  providers:[DatePipe]
 })
 export class RentingModule { }

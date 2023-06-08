@@ -11,6 +11,10 @@ import {RouterLink, RouterLinkActive, RouterOutlet} from "@angular/router";
 import {PrimeNgModule} from "../prime-ng/prime-ng.module";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {HttpClientModule} from "@angular/common/http";
+import {BaseService} from "./services/base/base.service";
+import {MenuService} from "./services/menu/menu.service";
+import {CloudinaryService} from "./services/cloudinary/cloudinary.service";
+import {ResourceService} from "./services/base/resource.service";
 
 
 
@@ -33,7 +37,10 @@ import {HttpClientModule} from "@angular/common/http";
   ],
   providers:[
     LayoutService,
-    HttpClientModule
+    MenuService,
+    ResourceService,
+    HttpClientModule,
+    CloudinaryService
   ]
 })
 export class SharedModule { }

@@ -2,8 +2,10 @@
   <div class="flex justify-content-between align-items-center mb-5">
     <h5>Mis vehiculos</h5>
     <div>
-      <button pButton type="button" icon="pi pi-ellipsis-v" class="p-button-rounded p-button-text p-button-plain" (click)="menu.toggle($event)"></button>
-      <p-menu #menu [popup]="true" [model]="items"></p-menu>
+     <!-- <button pButton type="button" icon="pi pi-ellipsis-v" class="p-button-rounded p-button-text p-button-plain" (click)="menu.toggle($event)"></button>
+      <p-menu #menu [popup]="true" [model]="items"></p-menu>-->
+      <p-button (click)="showCreateDialog()" icon="pi pi-plus" styleClass="p-button-rounded p-button-text p-button-raised"></p-button>
+
     </div>
   </div>
   <p-table [value]="ownerCars" [paginator]="true" [rows]="5" responsiveLayout="scroll">
@@ -28,11 +30,11 @@
           <img  src="{{ car.image }}"  class="shadow-4" alt="{{car.name}}"
                width="50">
         </td>
-        <td style="width: 35%; min-width: 7rem;">{{car.model}}</td>
+        <td style="width: 35%; min-width: 7rem;">{{car.name}}</td>
         <td style="width: 35%; min-width: 8rem;">{{'20' | currency:'USD'}}</td>
         <td style="width: 35%; min-width: 8rem;"><i class="mt-0 mb-3 pi pi-star-fill" style="color: rgb(246,143,61)"> {{car.stars}}</i></td>
         <td style="width: 15%;">
-          <button (click)="editVehicleById(car.id)" pButton pRipple type="button" icon="pi pi-file-edit"
+          <button (click)="editVehicleById(car)" pButton pRipple type="button" icon="pi pi-file-edit"
                   class="p-button p-component p-button-text p-button-icon-only"></button>
         </td>
       </tr>
