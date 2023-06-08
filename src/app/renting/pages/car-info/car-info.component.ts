@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {DataServiceService} from "../../services/data/data-service.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-car-info',
@@ -7,13 +8,16 @@ import {DataServiceService} from "../../services/data/data-service.service";
   styleUrls: ['./car-info.component.css']
 })
 export class CarInfoComponent {
-  vehicle: any;
+  car: any;
 
-  constructor(private data: DataServiceService) { }
+  constructor(private data: DataServiceService, private router:Router) { }
 
   ngOnInit() {
-    this.data.currentVehicleId.subscribe(vehicle => this.vehicle = vehicle);
-    console.log('aqui :', this.vehicle)
+    this.data.currentVehicleId.subscribe(car => this.car = car);
+    if(!this.car.image){
+      this.router.navigate(['renting/dashboard']);
+    }
+    console.log('aqui :', this.car)
   }
 
 

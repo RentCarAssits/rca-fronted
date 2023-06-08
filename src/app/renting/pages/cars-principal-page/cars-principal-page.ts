@@ -69,9 +69,9 @@ export class CarsPrincipalPage implements OnInit {
     });
   }
 
-  requestVehicle(vehicle: any) {
-    console.log('vehicle: ', vehicle);
-    this.dataService.changeVehicleId(vehicle);
+  requestVehicle(car: any) {
+    console.log('vehicle: ', car);
+    this.dataService.changeVehicleId(car);
     this.router.navigate(['renting/car-info-request']);
 
   }

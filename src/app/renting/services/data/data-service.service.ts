@@ -9,9 +9,9 @@ export class DataServiceService {
   currentVehicleId = this.vehicleSource.asObservable();
   DataServiceService() { }
 
-  changeVehicleId(id: number) {
+  changeVehicleId(car: any) {
 
-    this.vehicleSource.next(id);
+    this.vehicleSource.next(car);
   }
   constructor() { }
 }

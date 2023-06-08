@@ -9,7 +9,7 @@
         <ng-template let-car pTemplate="item">
           <div class="border-round m-2 text-center p-2" style="border: 1px solid var(--surface-d)">
             <div class="my-5">
-              <img *ngIf="car.image" src="{{ car.image }}" [alt]="car.name" class="shadow-4" width="50%" (click)="requestVehicle(car.id)"/>
+              <img *ngIf="car.image" src="{{ car.image }}" [alt]="car.name" class="shadow-4" width="50%" (click)="requestVehicle(car)"/>
             </div>
             <div>
               <h5 class="mb-1">{{car.name}}</h5>
@@ -37,7 +37,7 @@
         <ng-template let-car pTemplate="item">
           <div class="border-round m-2 text-center p-2" style="border: 1px solid var(--surface-d)">
             <div class="my-5">
-              <img *ngIf="car.image" src="{{ car.image }}" [alt]="car.name" class="shadow-4" width="50%" (click)="requestVehicle(car.id)"/>
+              <img *ngIf="car.image" src="{{ car.image }}" [alt]="car.name" class="shadow-4" width="50%" (click)="requestVehicle(car)"/>
             </div>
             <div>
               <h5 class="mb-1">{{car.name}}</h5>
@@ -65,7 +65,7 @@
         <ng-template let-car pTemplate="item">
           <div class="border-round m-2 text-center p-2" style="border: 1px solid var(--surface-d)">
             <div class="my-5">
-              <img *ngIf="car.image" src="{{ car.image }}" [alt]="car.name" class="shadow-4" width="50%" (click)="requestVehicle(car.id)"/>
+              <img *ngIf="car.image" src="{{ car.image }}" [alt]="car.name" class="shadow-4" width="50%" (click)="requestVehicle(car)"/>
             </div>
             <div>
               <h5 class="mb-1">{{car.name}}</h5>
