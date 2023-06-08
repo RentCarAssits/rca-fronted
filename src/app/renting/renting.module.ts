@@ -18,6 +18,7 @@ import { EditFormCarComponent } from './components/vehicles/edit-form-car/edit-f
 import {ReactiveFormsModule} from "@angular/forms";
 import { CreateCarFormComponent } from './components/vehicles/create-car-form/create-car-form.component';
 import { CarInfoComponent } from './pages/car-info/car-info.component';
+import { CreateRentingItemComponent } from './components/renting-items/create-renting-item/create-renting-item.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { CarInfoComponent } from './pages/car-info/car-info.component';
     SelectedRentingOrderItemDialogComponent,
     EditFormCarComponent,
     CreateCarFormComponent,
-    CarInfoComponent
+    CarInfoComponent,
+    CreateRentingItemComponent
   ],
   exports: [
     CarsPrincipalPage
