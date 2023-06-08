@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {LayoutService} from "../../../../shared/services/layout/layout.service";
 import {MenuItem} from "primeng/api";
+import {CarService} from "../../../services/car/car.service";
 
 @Component({
   selector: 'app-dashboard',
@@ -17,8 +18,9 @@ export class DashboardComponent {
   chartOptions: any;
 
   subscription!: any;
+  totalVehicles!: number;
 
-  constructor( public layoutService: LayoutService) {
+  constructor( public layoutService: LayoutService, private carService: CarService) {
     this.subscription = this.layoutService.configUpdate$.subscribe(() => {
       this.initChart();
     });
@@ -26,7 +28,7 @@ export class DashboardComponent {
 
   ngOnInit() {
     this.initChart();
-
+    this.getTotalVehicles();
     this.items = [
       { label: 'Add New', icon: 'pi pi-fw pi-plus' },
       { label: 'Remove', icon: 'pi pi-fw pi-minus' }
@@ -96,5 +98,29 @@ export class DashboardComponent {
     if (this.subscription) {
       this.subscription.unsubscribe();
     }
+  }
+
+  getTotalVehicles() {
+    this.carService.getVehicleByOwner().subscribe(
+      (response: any) => {
+        this.totalVehicles = Number(response.result?.length);
+        console.log(this.totalVehicles);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+  getVehiclesId() {
+    this.carService.getVehicleByOwner().subscribe(
+      (response: any) => {
+        this.totalVehicles = Number(response.result?.length);
+        console.log(this.totalVehicles);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+
   }
 }

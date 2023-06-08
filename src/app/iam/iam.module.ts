@@ -6,8 +6,9 @@ import {PasswordModule} from "primeng/password";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {RouterLink} from "@angular/router";
 import {AuthService} from "./services/auth.service";
-import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from "@angular/common/http";
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
+import {JWTInterceptorService} from "./interceptor/jwtinterceptor.service";
 
 @NgModule({
   declarations: [
@@ -25,7 +26,7 @@ import { SignUpComponent } from './pages/sign-up/sign-up.component';
   providers: [
     AuthService,
     HttpClient,
-    HttpClientModule
+    HttpClientModule,
     // MessageService
   ],
   exports: [

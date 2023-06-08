@@ -6,12 +6,14 @@ export class BaseService {
   dev = 'http://localhost:8080/api/v1'
   prod = 'http://localhost:8080/api/v1'
 
+  token = localStorage.getItem('accessToken')
   // Students Endpoint
   basePath = this.dev || this.prod;
 
   httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Authorization' : `Bearer ${this.token}`
     })
   };
 

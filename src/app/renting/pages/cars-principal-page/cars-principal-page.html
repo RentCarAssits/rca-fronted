@@ -1,0 +1,97 @@
+<h5>Recomendados</h5>
+<div class="grid p-fluid">
+  <!--MEJORES PUNTUADOS-->
+  <div class="col-12">
+    <div class="card">
+      <h5>Mejores Puntuados</h5>
+      <p-carousel [value]="mostStarsVehicles" [numVisible]="3" [numScroll]="3" [circular]="false"
+                  [responsiveOptions]="responsiveOptions">
+        <ng-template let-car pTemplate="item">
+          <div class="border-round m-2 text-center p-2" style="border: 1px solid var(--surface-d)">
+            <div class="my-5">
+              <img *ngIf="car.image" src="{{ car.image }}" [alt]="car.name" class="shadow-4" width="50%"/>
+              <img *ngIf="!car.image"
+                   src="https://resources.autopia.pe/keys/zm5hshphk3izvwnoazf1tgprd1bvut09/20230316165541_1679517783195_L/hyundai-tucson-2018-Plata.jpg"
+                   [alt]="car.name" class="shadow-4" width="50%"/>
+            </div>
+            <div>
+              <h5 class="mb-1">{{car.name}}</h5>
+              <span [class]="'product-badge status-'+car.name.toLowerCase()">{{car.model}}</span>
+              <i class="mt-0 mb-3 pi pi-star-fill" style="color: rgb(246,143,61)"> {{car.stars}}</i>
+              <div class="flex flex-row justify-content-center gap-1">
+                <div  class="mb-1" *ngFor="let category of car.categories">
+                  <div>
+                    <span  class="customer-badge status-new">{{category}}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </p-carousel>
+    </div>
+  </div>
+  <!--ESTE AÑO-->
+  <div class="col-12">
+    <div class="card">
+      <h5>Este Año!</h5>
+      <p-carousel [value]="thisYearVehicles" [numVisible]="3" [numScroll]="3" [circular]="false"
+                  [responsiveOptions]="responsiveOptions">
+        <ng-template let-car pTemplate="item">
+          <div class="border-round m-2 text-center p-2" style="border: 1px solid var(--surface-d)">
+            <div class="my-5">
+              <img *ngIf="car.image" src="{{ car.image }}" [alt]="car.name" class="shadow-4" width="50%"/>
+              <img *ngIf="!car.image"
+                   src="https://resources.autopia.pe/keys/zm5hshphk3izvwnoazf1tgprd1bvut09/20230316165541_1679517783195_L/hyundai-tucson-2018-Plata.jpg"
+                   [alt]="car.name" class="shadow-4" width="50%"/>
+            </div>
+            <div>
+              <h5 class="mb-1">{{car.name}}</h5>
+              <span [class]="'product-badge'">{{car.model}}</span>
+              <i class="mt-0 mb-3 pi pi-star-fill" style="color: rgb(246,143,61)"> {{car.stars}}</i>
+              <div class="flex flex-row justify-content-center gap-1">
+                <div class="mb-1" *ngFor="let category of car.categories">
+                  <div>
+                    <span  class="customer-badge status-new">{{category}}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </p-carousel>
+    </div>
+  </div>
+  <!--Todos-->
+  <div class="col-12">
+    <div class="card">
+      <h5>Garantizados</h5>
+      <p-carousel [value]="dataSource" [numVisible]="3" [numScroll]="3" [circular]="false"
+                  [responsiveOptions]="responsiveOptions">
+        <ng-template let-car pTemplate="item">
+          <div class="border-round m-2 text-center p-2" style="border: 1px solid var(--surface-d)">
+            <div class="my-5">
+              <img *ngIf="car.image" src="{{ car.image }}" [alt]="car.name" class="shadow-4" width="50%"/>
+              <img *ngIf="!car.image"
+                   src="https://resources.autopia.pe/keys/zm5hshphk3izvwnoazf1tgprd1bvut09/20230316165541_1679517783195_L/hyundai-tucson-2018-Plata.jpg"
+                   [alt]="car.name" class="shadow-4" width="50%"/>
+            </div>
+            <div>
+              <h5 class="mb-1">{{car.name}}</h5>
+              <span [class]="'product-badge status-'+car.name.toLowerCase()">{{car.model}}</span>
+              <i class="mt-0 mb-3 pi pi-star-fill" style="color: rgb(246,143,61)"> {{car.stars}}</i>
+              <div class="flex flex-row justify-content-center gap-1">
+                <div  class="mb-1" *ngFor="let category of car.categories">
+                  <div>
+                    <span  class="customer-badge status-new">{{category}}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </p-carousel>
+    </div>
+  </div>
+</div>
+

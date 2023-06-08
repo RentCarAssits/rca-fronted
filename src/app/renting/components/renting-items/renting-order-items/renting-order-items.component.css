@@ -1,0 +1,18 @@
+.uppercase {
+  text-transform: uppercase;
+}
+
+.text-success {
+  color: green;
+}
+
+.text-danger {
+  color: red;
+}
+.small-button {
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  font-size: 12px;
+  margin-right: 4px;
+}

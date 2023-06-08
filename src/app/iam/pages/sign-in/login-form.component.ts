@@ -25,10 +25,9 @@ export class LoginFormComponent {
       email: this.email,
       password: this.password
     }).subscribe(response => {
-      this.authService.setToken(JSON.stringify(response.token));
-      console.log('response: ', response )
+      this.authService.setToken(response.token);
       this.authService.setCurrentUser(response);
-      console.log(`accessToken: ${this.authService.getToken()}`);
+     // console.log(`accessToken: ${this.authService.getToken()}`);
       this.router.navigate(['']).then();
     });
   }
