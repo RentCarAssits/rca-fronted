@@ -93,7 +93,11 @@
   <div class="col-12 xl:col-6">
     <div class="card">
       <h5>Sales Overview</h5>
-      <p-chart></p-chart>
+
+      
+      <p-chart type="bar" [data]="basicData" [options]="basicOptions"></p-chart>
+      
+    
     </div>
 
     <div class="card">
