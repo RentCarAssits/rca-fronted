@@ -18,11 +18,7 @@ export class UserGuard implements CanActivate {
     const requiresAuth = route.data['requiresAuth'];
 
     if (requiresAuth === false) {
-      if (isAuthenticated) {
-        return false;
-      } else {
-        return true;
-      }
+      return !isAuthenticated;
     } else {
       if (isAuthenticated) {
         return true;

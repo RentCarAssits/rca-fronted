@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {
   HttpClient,
   HttpErrorResponse,
   HttpEvent,
-  HttpHandler,
+  HttpHandler, HttpHeaders,
   HttpInterceptor,
   HttpRequest,
   HttpResponse
@@ -15,30 +15,27 @@ import {catchError, Observable, tap, throwError} from "rxjs";
 @Injectable({
   providedIn: 'root'
 })
-export class JWTInterceptorService implements HttpInterceptor{
-  constructor(    private router: Router) {}
-
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-
-    const token: any  = localStorage.getItem('accessToken') ;
-
-    let request = req;
-
-    const authReq = req.clone({headers: req.headers.set('Authorization', token)});
-
-    return next.handle(request).pipe(
-      catchError((err: HttpErrorResponse) => {
-
-        if (err.status === 401) {
-          this.router.navigateByUrl('/public/landing');
-        }
-
-        return throwError( err );
-
-      })
-    );
+export class JWTInterceptorService implements HttpInterceptor {
+  constructor(private authService: AuthService) {
   }
 
+  intercept(
+    request: HttpRequest<unknown>,
+    next: HttpHandler
+  ): Observable<HttpEvent<unknown>> {
+    const token = this.authService.getToken();
+    console.log('token');
+    if (token) {
+      const requestWithToken = request.clone({
+        headers: new HttpHeaders({
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        }),
+      });
+      return next.handle(requestWithToken);
+    }
+    return next.handle(request);
+  }
 
 
 }
