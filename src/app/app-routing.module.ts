@@ -11,7 +11,8 @@ const routes: Routes = [
   {
     path: '',
     component: LayoutComponent,
-    canActivate: [UserGuard],
+    canLoad: [ UserGuard ],
+    canActivate: [ UserGuard ],
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' }, // Redirigir a la ruta del dashboard
       { path: 'dashboard', component: DashboardComponent }, // Agrega aquí tu componente Dashboard
