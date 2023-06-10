@@ -19,10 +19,17 @@
       <div class="field col-12">
         <label for="email1">Email</label>
         <input pInputTextarea id="email1" name="email" type="text" placeholder="Email address" rows="4" formControlName="email">
+        <div *ngIf="signupForm.get('email')?.hasError('email')" class="error-message" style="color: red">
+          The email does not have the correct format.</div>
+        <div *ngIf="signupForm.get('email')?.touched && signupForm.get('email')?.hasError('required')" class="error-message" style="color: red">
+          Enter your email.</div>
       </div>
-      <div class="field col-12">
+      <div class="field col-12">  
         <label for="password1">Password</label>
         <input pInputTextarea id="password1" name="email" type="text" placeholder="Password" rows="4" formControlName="password">
+        <div  *ngIf="signupForm.get('password')?.touched && signupForm.get('password')?.hasError('faltaMayuscula')" class="error-message" style="color:red">
+          The password must contain at least one capital letter.
+        </div>
       </div>
       <h5 class="field col-12" >Personal Information</h5>
       <div class="field col-12 md:col-6">
@@ -45,6 +52,7 @@
         <label htmlFor="phone">Phone Number</label>
         <input pInputText id="phone" type="text" formControlName="phone"/>
       </div>
+   
       <button type="submit"  class="field col-12" pButton pRipple label="Sign In" class="w-full p-3 text-xl"></button>
     </div>
   </div>
