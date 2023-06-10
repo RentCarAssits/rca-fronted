@@ -9,6 +9,8 @@
       <div class="field col-12 md:col-6">
         <label htmlFor="userNAme">User Name</label>
         <input pInputText id="userNAme" type="text" formControlName="userName"/>
+        <div *ngIf="signupForm.get('userName')?.touched && signupForm.get('userName')?.hasError('required')" class="error-message" style="color: red">
+          Enter your username.</div>
       </div>
       <div class="field col-12 md:col-6">
         <label for="userType">User Type</label>
@@ -24,9 +26,9 @@
         <div *ngIf="signupForm.get('email')?.touched && signupForm.get('email')?.hasError('required')" class="error-message" style="color: red">
           Enter your email.</div>
       </div>
-      <div class="field col-12">  
+      <div class="field col-12">
         <label for="password1">Password</label>
-        <input pInputTextarea id="password1" name="email" type="text" placeholder="Password" rows="4" formControlName="password">
+        <p-password id="password1" name="email" placeholder="Password" formControlName="password" [toggleMask]="true"></p-password>
         <div  *ngIf="signupForm.get('password')?.touched && signupForm.get('password')?.hasError('faltaMayuscula')" class="error-message" style="color:red">
           The password must contain at least one capital letter.
         </div>
@@ -35,24 +37,34 @@
       <div class="field col-12 md:col-6">
         <label htmlFor="firstname2">Firstname</label>
         <input pInputText id="firstname2" type="text" formControlName="firstname"/>
+        <div *ngIf="signupForm.get('firstname')?.touched && signupForm.get('firstname')?.hasError('required')" class="error-message" style="color: red">
+          Enter your firstname.</div>
       </div>
       <div class="field col-12 md:col-6">
         <label htmlFor="lastname2">Lastname</label>
         <input pInputText id="lastname2" type="text" formControlName="lastname"/>
+        <div *ngIf="signupForm.get('lastname')?.touched && signupForm.get('lastname')?.hasError('required')" class="error-message" style="color: red">
+          Enter your lastname.</div>
       </div>
       <div class="field col-12">
         <label htmlFor="address">Address</label>
         <input pInputTextarea id="address" rows="4" formControlName="address"/>
+        <div *ngIf="signupForm.get('address')?.touched && signupForm.get('address')?.hasError('required')" class="error-message" style="color: red">
+          Enter your address.</div>
       </div>
       <div class="field col-12 md:col-6">
         <label htmlFor="dni">Dni</label>
         <input pInputText id="Dni" type="text" formControlName="dni"/>
+        <div *ngIf="signupForm.get('dni')?.touched && signupForm.get('dni')?.hasError('required')" class="error-message" style="color: red">
+          Enter your DNI.</div>
       </div>
       <div class="field col-12 md:col-6">
         <label htmlFor="phone">Phone Number</label>
         <input pInputText id="phone" type="text" formControlName="phone"/>
+                <div *ngIf="signupForm.get('phone')?.touched && signupForm.get('phone')?.hasError('required')" class="error-message" style="color: red">
+          Enter your phone.</div>
       </div>
-   
+
       <button type="submit"  class="field col-12" pButton pRipple label="Sign In" class="w-full p-3 text-xl"></button>
     </div>
   </div>
