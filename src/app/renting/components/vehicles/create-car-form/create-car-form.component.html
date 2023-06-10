@@ -1,0 +1,71 @@
+<div class="col-12">
+  <div class="card1">
+    <div class="col-12">
+      <form [formGroup]="carForm" (ngSubmit)="onSubmit()">
+        <h5>Crear vehiculo</h5>
+        <div class="flex justify-content-center max-h-12rem">
+          <input type="file" class="max-h-12rem" #fileInput (change)="onFileChange($event)" accept=".png, .jpg, .jpeg" [style.display]="'none'" />
+          <div class="shadow-4">
+            <p-image *ngIf="imageToShow" [src]="imageToShow" alt="Image" width="250" height="192" (click)="fileInput.click()"></p-image>
+            <div *ngIf="!imageToShow"
+                 style="background-color: #888888; height: 192px;
+                 width: 250px; cursor: pointer;
+                 display: flex; align-items: center;
+                 justify-content: center;" (click)="fileInput.click()">
+              <i class="pi pi-plus" style="font-size: 2rem; color: white;"></i>
+            </div>
+          </div>
+        </div>
+
+
+        <h5>Información del Vehiculo</h5>
+        <div class="p-fluid p-formgrid grid">
+          <div class="field col-12 md:col-6">
+            <label for="name">Nombre</label>
+            <input pInputText id="name" type="text" formControlName="name"/>
+          </div>
+          <div class="field col-12 md:col-6">
+            <label for="brand">Marca</label>
+            <input pInputText id="brand" type="text" formControlName="brand"/>
+          </div>
+          <div class="field col-12 md:col-6">
+            <label for="model">Modelo</label>
+            <input pInputText id="model" type="text" formControlName="model"/>
+          </div>
+          <div class="field col-12 md:col-6">
+            <label for="state">State</label>
+            <p-dropdown  id="state" [options]="vehicleState" formControlName="state"  optionLabel="code" optionValue="name">
+            </p-dropdown>
+          </div>
+
+          <div class="field col-12 md:col-6">
+            <label for="price">Precio</label>
+            <input pInputText id="price" type="text" formControlName="price"/>
+          </div>
+          <div class="field col-12 md:col-6">
+            <label for="unit">Tiempo</label>
+            <input pInputText id="unit" type="text" formControlName="unit"/>
+          </div>
+          <div class="field col-12">
+            <label for="integrity">Integridad del Vehiculo</label>
+            <textarea id="integrity" rows="2" cols="30" placeholder="Cómo se Encuentra el vehiculo ?" pInputTextarea formControlName="integrity"></textarea>
+          </div>
+
+          <div class="field col-12">
+            <label for="year">Año del Vehiculo</label>
+            <p-calendar id="year" formControlName="year" dateFormat="dd/mm/yy"></p-calendar>
+          </div>
+          <div class="field col-12 md:col-12">
+            <label for="categories">Categorías</label>
+            <p-chips id="categories" formControlName="categories"></p-chips>
+          </div>
+        </div>
+        <div class="flex justify-content-end">
+          <p-button type="submit">Guardar</p-button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!--[options]="dropdownItems" optionLabel="name" [(ngModel)]="selectedState"-->

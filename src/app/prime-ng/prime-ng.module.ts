@@ -10,7 +10,28 @@ import {SidebarModule} from "primeng/sidebar";
 import {BadgeModule} from "primeng/badge";
 import {RadioButtonModule} from "primeng/radiobutton";
 import {InputSwitchModule} from "primeng/inputswitch";
-
+import {DialogModule} from 'primeng/dialog';
+import {DialogService, DynamicDialogModule} from 'primeng/dynamicdialog';
+import {MessagesModule} from 'primeng/messages';
+import {PasswordModule} from "primeng/password";
+import {CheckboxModule} from "primeng/checkbox";
+import {MessageService} from "primeng/api";
+import {InputNumberModule} from "primeng/inputnumber";
+import {InputMaskModule} from "primeng/inputmask";
+import {DropdownModule} from "primeng/dropdown";
+import {ChipsModule} from "primeng/chips";
+import {CalendarModule} from "primeng/calendar";
+import {AutoCompleteModule} from "primeng/autocomplete";
+import {FormsModule} from "@angular/forms";
+import {CascadeSelectModule} from "primeng/cascadeselect";
+import {MultiSelectModule} from "primeng/multiselect";
+import {InputTextareaModule} from "primeng/inputtextarea";
+import {CardModule} from "primeng/card";
+import { ChipModule } from 'primeng/chip';
+import { TagModule } from 'primeng/tag';
+import { ImageModule } from 'primeng/image';
+import { GalleriaModule } from 'primeng/galleria';
+import { CarouselModule } from 'primeng/carousel';
 
 @NgModule({
   declarations: [],
@@ -28,6 +49,29 @@ import {InputSwitchModule} from "primeng/inputswitch";
     RadioButtonModule,
     InputSwitchModule,
     RippleModule,
+    DialogModule,
+    DynamicDialogModule,
+    MessagesModule,
+    PasswordModule,
+    CheckboxModule,
+    FormsModule,
+    AutoCompleteModule,
+    CalendarModule,
+    ChipsModule,
+    DropdownModule,
+    InputMaskModule,
+    InputNumberModule,
+    CascadeSelectModule,
+    MultiSelectModule,
+    InputTextareaModule,
+    InputTextModule,
+    CardModule,
+    ChipModule,
+    TagModule,
+    ImageModule,
+    GalleriaModule,
+    CarouselModule,
+
   ],
   exports: [
     /**PRIME-NG**/
@@ -42,8 +86,35 @@ import {InputSwitchModule} from "primeng/inputswitch";
     RadioButtonModule,
     InputSwitchModule,
     RippleModule,
+    DialogModule,
+    DynamicDialogModule,
+    MessagesModule,
+    PasswordModule,
+    CheckboxModule,
+    FormsModule,
+    AutoCompleteModule,
+    CalendarModule,
+    ChipsModule,
+    DropdownModule,
+    InputMaskModule,
+    InputNumberModule,
+    CascadeSelectModule,
+    MultiSelectModule,
+    InputTextareaModule,
+    InputTextModule,
+    CardModule,
+    ChipModule,
+    TagModule,
+    ImageModule,
+    GalleriaModule,
+    CarouselModule,
+
+
   ],
-  providers: []
+  providers: [
+    MessageService,
+    DialogService
+  ]
 })
 export class PrimeNgModule {
 }

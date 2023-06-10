@@ -1,0 +1,21 @@
+<div class="details-container">
+  <div class="image-container">
+    <img [src]="car.image" alt="Image">
+  </div>
+  <div class="details-content">
+    <ul>
+      <li>Renting Price: {{ rentingItem?.rentingPrice }} {{ rentingItem?.currency }}</li>
+      <li>Renting Unit: {{ rentingItem?.rentingUnit === 'D' ? 'Days' : 'Week' }}</li>
+      <li>Start Date: {{ rentingItem?.startDate }}</li>
+      <li>End Date: {{ rentingItem?.endDate }}</li>
+      <li>Status: <span [ngClass]="{
+          'text-orange': rentingItem?.state === 'O',
+          'text-green': rentingItem?.state === 'A',
+          'text-red': rentingItem?.state === 'D'
+        }">
+          {{ rentingItem?.state === 'O' ? 'On Request' : rentingItem?.state === 'A' ? 'Accepted' : 'Denied' }}
+        </span>
+      </li>
+    </ul>
+  </div>
+</div>

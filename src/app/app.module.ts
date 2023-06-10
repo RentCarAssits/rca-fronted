@@ -8,6 +8,10 @@ import {PublicModule} from "./public/public.module";
 import {AppRoutingModule} from "./app-routing.module";
 import {SharedModule} from "./shared/shared.module";
 import {PublicRoutingModule} from "./public/public-routing.module";
+import {IAMModule} from "./iam/iam.module";
+import {AuthService} from "./iam/services/auth.service";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
+import {JWTInterceptorService} from "./iam/interceptor/jwtinterceptor.service";
 
 
 @NgModule({
@@ -17,15 +21,17 @@ import {PublicRoutingModule} from "./public/public-routing.module";
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     /**Modules**/
     PrimeNgModule,
     PublicModule,
     SharedModule,
     PublicRoutingModule,
+    IAMModule,
     RentingModule //BC
     /**Modules**/
   ],
-  providers: [],
+  providers: [AuthService, { provide: HTTP_INTERCEPTORS, useClass: JWTInterceptorService, multi: true }],
   bootstrap: [AppComponent],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA

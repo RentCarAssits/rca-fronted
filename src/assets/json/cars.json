@@ -1,0 +1,109 @@
+[
+  {
+    "name": "Aston Martin Vulcan",
+    "brand": "Aston Martin",
+    "model": "Vulcan",
+    "integrity": "The vehicle is in perfect condition",
+    "state": 3,
+    "year": "2018-05-31",
+    "categories": [
+      "sports",
+      "luxury"
+    ],
+    "image": "https://images.unsplash.com/photo-1506015391300-4802dc74de2e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1559&q=80"
+  },
+  {
+    "name": "Ferrari 812 Superfast",
+    "brand": "Ferrari",
+    "model": "812 Superfast",
+    "integrity": "The vehicle is in excellent condition",
+    "state": 4,
+    "year": "2020-01-15",
+    "categories": [
+      "sports",
+      "luxury"
+    ],
+    "image": "https://images.unsplash.com/photo-1506015391300-4802dc74de2e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1559&q=80"
+  },
+  {
+    "name": "Porsche 911 Carrera",
+    "brand": "Porsche",
+    "model": "911 Carrera",
+    "integrity": "The vehicle is well-maintained",
+    "state": 3,
+    "year": "2019-09-20",
+    "categories": ["sports", "casual"],
+    "image": "https://images.unsplash.com/photo-1506015391300-4802dc74de2e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1559&q=80"
+  },
+  {
+    "name": "BMW M3",
+    "brand": "BMW",
+    "model": "M3",
+    "integrity": "The vehicle is in good condition",
+    "state": 3,
+    "year": "2017-12-05",
+    "categories": ["sports", "luxury"],
+    "image": "https://images.unsplash.com/photo-1506015391300-4802dc74de2e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1559&q=80"
+  },
+  {
+    "name": "Mercedes-Benz C-Class",
+    "brand": "Mercedes-Benz",
+    "model": "C-Class",
+    "integrity": "The vehicle is in great shape",
+    "state": 4,
+    "year": "2021-03-10",
+    "categories": ["luxury", "casual"],
+    "image": "https://images.unsplash.com/photo-1506015391300-4802dc74de2e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1559&q=80"
+  },
+  {
+    "name": "Lamborghini Aventador",
+    "brand": "Lamborghini",
+    "model": "Aventador",
+    "integrity": "The vehicle is in pristine condition",
+    "state": 5,
+    "year": "2022-02-28",
+    "categories": ["sports", "luxury"],
+    "image": "https://images.unsplash.com/photo-1506015391300-4802dc74de2e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1559&q=80"
+  },
+  {
+    "name": "Audi Q7",
+    "brand": "Audi",
+    "model": "Q7",
+    "integrity": "The vehicle is in good shape",
+    "state": 3,
+    "year": "2020-07-15",
+    "categories": ["SUV", "luxury", "SUV", "SUV", "SUV", "suv"],
+    "image": "https://images.unsplash.com/photo-1506015391300-4802dc74de2e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1559&q=80"
+  },
+  {
+    "name": "Tesla Model S",
+    "brand": "Tesla",
+    "model": "Model S",
+    "integrity": "The vehicle is in excellent condition",
+    "state": 4,
+    "year": "2019-11-01",
+    "categories": ["electric", "luxury"],
+    "image": "https://images.unsplash.com/photo-1506015391300-4802dc74de2e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1559&q=80"
+  },
+  {
+    "name": "Jaguar F-Type",
+    "brand": "Jaguar",
+    "model": "F-Type",
+    "integrity": "The vehicle is in perfect condition",
+    "state": 5,
+    "year": "2022-06-20",
+    "categories": ["sports", "luxury"],
+    "image": "https://images.unsplash.com/photo-1506015391300-4802dc74de2e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1559&q=80"
+  },
+  {
+    "name": "Chevrolet Camaro",
+    "brand": "Chevrolet",
+    "model": "Camaro",
+    "integrity": "The vehicle is in great condition",
+    "state": 4,
+    "year": "2020-04-05",
+    "categories": ["sports", "casual"],
+    "image": "https://images.unsplash.com/photo-1506015391300-4802dc74de2e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1559&q=80"
+  }
+
+]
