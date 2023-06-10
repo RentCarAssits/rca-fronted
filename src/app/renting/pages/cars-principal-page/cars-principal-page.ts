@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {CarService} from "../../services/car/car.service";
+import {DataServiceService} from "../../services/data/data-service.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-cars-principal-page',
@@ -14,7 +16,11 @@ export class CarsPrincipalPage implements OnInit {
   thisYearVehicles: any[] = []
   mostStarsVehicles: any [] = []
 
-  constructor(private http: HttpClient, private service: CarService) {
+  constructor(private http: HttpClient,
+              private service: CarService,
+              private dataService : DataServiceService,
+              private router: Router
+              ) {
   }
 
 
@@ -61,5 +67,12 @@ export class CarsPrincipalPage implements OnInit {
     }, (error) => {
       console.log(error)
     });
+  }
+
+  requestVehicle(car: any) {
+    console.log('vehicle: ', car);
+    this.dataService.changeVehicleId(car);
+    this.router.navigate(['renting/car-info-request']);
+
   }
 }
