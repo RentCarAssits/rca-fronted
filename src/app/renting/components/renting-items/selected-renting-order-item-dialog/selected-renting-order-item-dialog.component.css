@@ -7,7 +7,6 @@
   width: 150px; /* Adjust the width as needed */
   height: 150px; /* Adjust the height as needed */
   overflow: hidden;
-  border-radius: 50%;
   margin-right: 20px; /* Adjust the margin as needed */
 }
 
@@ -17,9 +16,10 @@
   object-fit: cover;
 }
 
+/*
 .details-content {
-  /* Add additional styling as desired */
 }
+*/
 
 ul {
   list-style-type: none;

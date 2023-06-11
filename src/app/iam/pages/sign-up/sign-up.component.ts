@@ -24,7 +24,7 @@ export class SignUpComponent {
               private router: Router,
               private refRegisterDialog : RefDialogServiceService,
   ) {
-    
+
     this.signupForm = formBuilder.group({
       userName: ['',],
       userType: ['renter',],
@@ -46,8 +46,7 @@ export class SignUpComponent {
 
 
   onSubmit() {
-console.log(this.signupForm)
-    /*const profile: Profile = {
+    const profile: Profile = {
       fullName: `${this.signupForm.value.firstname} ${this.signupForm.value.lastname}`,
       address: this.signupForm.value.address,
       phone: this.signupForm.value.phone,
@@ -67,7 +66,6 @@ console.log(this.signupForm)
       this.authService.setCurrentUser(response);
       this.refRegisterDialog.registerCompleted();
     });
-*/
   }
 
   validarMayuscula(control:AbstractControl) {

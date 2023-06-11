@@ -20,7 +20,8 @@ export class SelectedRentingOrderItemDialogComponent {
   }
   ngOnInit(): void {
     this.rentingItem=this.item;
-    this.getCarById(this.rentingItem.id);
+    console.log("🚀 ~ file: selected-renting-order-item-dialog.component.ts:23 ~ SelectedRentingOrderItemDialogComponent ~ ngOnInit ~ this.rentingItem:", this.rentingItem)
+    this.getCarById(this.rentingItem?.vehicleId);
   }
   getCarById(id:number){
     this.carService.getById(id).subscribe(

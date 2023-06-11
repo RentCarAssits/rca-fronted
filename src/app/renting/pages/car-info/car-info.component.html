@@ -1,4 +1,103 @@
+<div class="card">
+  <form class="grid mb-7" [formGroup]="rentingItemForm" (ngSubmit)="onSubmit()">
+    <div class="col-12 lg:col-8">
+      <div class="flex">
+        <div class="flex flex-column w-2 justify-content-between" style="row-gap:1rem ; ">
+          <img
+            class="w-full cursor-pointer border-2 border-transparent transition-colors transition-duration-150 border-round ng-star-inserted border-primary"
+            src="{{car.image}}" alt="car-img">
+          <img
+            class="w-full cursor-pointer border-2 border-transparent transition-colors transition-duration-150 border-round ng-star-inserted border-primary"
+            src="{{car.image}}" alt="car-img">
+          <img
+            class="w-full cursor-pointer border-2 border-transparent transition-colors transition-duration-150 border-round ng-star-inserted border-primary"
+            src="{{car.image}}" alt="car-img">
+          <img
+            class="w-full cursor-pointer border-2 border-transparent transition-colors transition-duration-150 border-round ng-star-inserted border-primary"
+            src="{{car.image}}" alt="car-img">
+        </div>
+        <div class="pl-3 w-10 flx">
+          <img
+            class="w-full border-2 border-transparent border-round"
+            src="{{car.image}}" alt="car-img">
+        </div>
+      </div>
+    </div>
+    <div class="col-12 lg:col-4 border-100">
+      <div class="text-900 font-bold text-700 mb-1 mb-2">{{car.name}}</div>
+      <div class="flex align-items-center justify-content-between mb-2">
+        <div class="text-600 font-medium text-600 mb-1"> Rental Price :</div>
+        <span class="text-600 font-semibold text-blue-600 block">
+          <label *ngIf="car.currency == 'dólares'">$</label>
+          <label *ngIf="car.currency == 'soles'">S/</label>{{car.price}} per
+          <label *ngIf="car.timeUnit == 'D'">day</label>
+          <label *ngIf="car.timeUnit == 'W'">week</label>
+          <label *ngIf="car.timeUnit == 'M'">month</label>
+        </span>
+      </div>
+      <div class="flex align-items-center justify-content-between mb-2">
+        <div class="text-600 font-medium text-600 mb-1">Brand :</div>
+        <span class="text-600 font-semibold text-blue-600 block">
+          {{car.brand}}
+        </span>
+      </div>
+      <div class="flex align-items-center justify-content-between mb-2">
+        <div class="text-600 font-medium text-600 mb-1">Model :</div>
+        <span class="text-600 font-semibold text-blue-600 block">
+          {{car.model}}
+        </span>
+      </div>
+      <div class="flex align-items-center justify-content-between mb-3">
+        <div class="text-600 font-medium text-600 mb-1">Year :</div>
+        <span class="text-600 font-semibold text-blue-600 block">
+         {{car.year | date:'yyyy/MM/dd'}}
+        </span>
+      </div>
+      <div class="flex align-items-center justify-content-between  mb-2 border-top-2">
+        <div class="text-900 font-bold text-600 mb-1 my-2">Request for Vehicle Rental</div>
+        <span class="text-600 font-semibold text-blue-900 block pi pi-car">
+        </span>
+      </div>
+      <label for="startDate" class="text-600 font-medium text-600 mb-2">Star day :</label>
+      <p-calendar [showIcon]="true" id="startDate" formControlName="startDate"
+                  dateFormat="dd/mm/yy"
+                  [style]="{'width':'100%'}" [inputStyle]="{'width':'100%'}"
+      ></p-calendar>
+      <label for="endDate" class="text-600 font-medium text-600 mb-2">End day :</label>
+      <p-calendar [showIcon]="true" id="endDate"
+                  formControlName="endDate"
+                  dateFormat="dd/mm/yy"
+                  [style]="{'width':'100%'}" [inputStyle]="{'width':'100%'}"
+      ></p-calendar>
+      <div class="flex align-items-center justify-content-end">
+        <p-button type="submit" icon="pi pi-check" class="flex w-full justify-content-end py-5" label="Request vehicle" styleClass="p-button-raised">
+        </p-button>
+      </div>
+    </div>
+  </form>
+  <div class="p-tabview-panels">
+    <p-tabView>
+      <p-tabPanel role="tabpanel" class="p-tabview-panel ng-star-inserted" id="p-tabpanel-0" aria-hidden="false"
+                  aria-labelledby="p-tabpanel-0-label">
+        <div class="text-900 font-bold text-2xl mb-4 mt-2">Vehicle Details</div>
+        <p class="line-height-3 text-600 p-0 mx-0 mt-0 mb-4">
+          "{{car.integrity}}"
+        </p>
+      </p-tabPanel>
 
+    </p-tabView>
+  </div>
+</div>
+
+<!-- <div class="flex align-items-center">
+     <span class="text-sm">
+       <b class="text-900 mr-1">{{car.stars}}</b>
+       <span class="text-500"></span>
+       "reviews"
+     </span>
+   </div>-->
+
+<!--
 <div class="flex flex-column align-content-end align-items-start md:align-items-center">
   <div class="col-12" >
     <div class="card">
@@ -28,7 +127,7 @@
     </div>
   </div>
 </div>
-
+-->
 <!--
 <div *ngFor="let car of cars" class="card flex justify-content-center">
   <div class="car-info">

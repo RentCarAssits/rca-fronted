@@ -1,0 +1,9 @@
+.p-tabview .p-tabview-panels{
+  background: #ffffff;
+  padding: 1.25rem;
+  border: 0 none;
+  color: #1e293b;
+  border-bottom-right-radius: 6px;
+  border-bottom-left-radius: 6px;
+}
+

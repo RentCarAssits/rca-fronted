@@ -1,9 +1,10 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {DynamicDialogConfig, DynamicDialogRef} from "primeng/dynamicdialog";
 import {CloudinaryService} from "../../../../shared/services/cloudinary/cloudinary.service";
-import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {CarService} from "../../../services/car/car.service";
 import {catchError, Observable, retry} from "rxjs";
+import {DatePipe} from "@angular/common";
 
 interface VehicleState {
   name: number;
@@ -23,47 +24,58 @@ export class EditFormCarComponent implements OnInit {
   imageToShow!: string;
   selectedFile!: File;
   categories: string[] = [];
-
   vehicleState!: any[]
+  currency!: any []
+  timeUnit!: any []
 
   constructor(private ref: DynamicDialogRef,
               private config: DynamicDialogConfig,
               private cloudinaryService: CloudinaryService,
               private dialogRef: DynamicDialogRef,
               private formBuilder: FormBuilder,
-              private service: CarService
+              private service: CarService,
+              private datePipe: DatePipe
   ) {
 
   }
 
   ngOnInit(): void {
-    this.vehicleState = [
-      {name: '0', code: 'MANTENIMIENTO'},
-      {name: '1', code: 'DISPONIBLE'},
-      {name: '2', code: 'ALQUILADO'},
-      {name: '3', code: 'NO DISPONIBLE'},
+    this.currency = [
+      {name: 'USD', code: '$ Dollar'},
+      {name: 'SOLES', code: 'S/ Sol'},
+      {name: 'EUR', code: 'Є Euro'},
     ];
+
+    this.vehicleState = [
+      {name: 1, code: 'AVAILABLE'},
+      {name: 0, code: 'MAINTENANCE'},
+      {name: 2, code: 'RENTED'},
+      {name: 3, code: 'UNAVAILABLE'},
+    ];
+
+    this.timeUnit = [
+      {name: 'H', code: 'HOUR'},
+      {name: 'D', code: 'DAY'},
+      {name: 'W', code: 'WEEK'},
+    ]
 
     this.car = this.config.data.car;
     this.categories = this.car.categories;
-    console.log('this.categories: ', this.categories);
+    //console.log('this.car: ', this.car);
 
     this.carForm = this.formBuilder.group({
-      name: [this.car.name],
-      brand: [this.car.brand],
-      model: [this.car.model],
-      integrity: [this.car.integrity],
-      state: [this.car.state],
-      year: [this.car.year],
-      price: [this.car.price],
-      unit: [this.car.unit],
+      name: [this.car.name, Validators.required],
+      brand: [this.car.brand, Validators.required],
+      model: [this.car.model, Validators.required],
+      integrity: [this.car.integrity, Validators.required],
+      state: [{value: Number(this.car.state), disabled: true}, Validators.required],
+      year: [new Date(this.car.year), Validators.required],
+      price: [this.car.price, Validators.required],
       categories: new FormControl<string[] | null>(this.categories),
-      image: [this.car.image],
-      stars: [this.car.stars]
+      image: [this.car.image, Validators.required],
+      currency: [this.car.currency, Validators.required],
+      timeUnit: [this.car.timeUnit, Validators.required]
     });
-
-
-    console.log('this.car.state : ', this.car.state)
   }
 
   onFileChange(event: any) {
@@ -82,15 +94,15 @@ export class EditFormCarComponent implements OnInit {
 
   onSubmit() {
     let {image, year, state, ...rest} = this.carForm.value;
-    console.log(state);
 
     const data = {
       image: image,
-      state: state,
+      stars: this.car.stars,
+      state: Number(this.carForm.getRawValue().state),
       year: new Date(year).toISOString().slice(0, 10),
       ...rest
     };
-
+    console.log('data : ', data);
     if (this.selectedFile) {
       this.uploadImage(this.selectedFile)
         .subscribe(response => {
