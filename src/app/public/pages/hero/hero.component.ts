@@ -29,15 +29,8 @@ export class HeroComponent {
   }
 
   showLogin() {
-    let width = '60%';
-    const windowWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-    if (windowWidth < 768) {
-      width = '100%';
-    } else if (windowWidth < 1200) {
-      width = '80%';
-    }
     this.ref = this.dialogService.open(LoginFormComponent, {
-      width: width,
+      //width: '60%',
       contentStyle: {overflow: 'auto'},
       baseZIndex: 10000,
 
