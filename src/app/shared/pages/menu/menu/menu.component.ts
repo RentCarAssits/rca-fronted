@@ -28,12 +28,12 @@ export class MenuComponent implements OnInit {
         items: [
           {
             label: 'Featured Cars',
-            icon: 'pi pi-fw pi-star',
+            icon: 'pi pi-fw pi-car',
             routerLink: ['/renting/cars-catalog']
           },
           {
             label: 'Full Catalog',
-            icon: 'pi pi-fw pi-car',
+            icon: 'pi pi-fw pi-star',
             routerLink: ['/renting/we-are-working/full-catalog']
           },
           {
