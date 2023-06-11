@@ -23,8 +23,11 @@ export class JWTInterceptorService implements HttpInterceptor {
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
+    if (request.url.includes('cloudinary.com')) {
+      return next.handle(request);
+    }
+
     const token = this.authService.getToken();
-    console.log('token');
     if (token) {
       const requestWithToken = request.clone({
         headers: new HttpHeaders({
