@@ -24,10 +24,6 @@ export class CarInfoComponent {
   car: any;
   ref!: DynamicDialogRef;
   rentingItemForm!: FormGroup;
-  currencySymbols = {
-    'dolar': '$',
-    'sol': 'S/',
-  };
 
   constructor(private data: DataServiceService, private router: Router,
               private dialogService: DialogService,

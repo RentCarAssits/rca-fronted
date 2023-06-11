@@ -34,19 +34,23 @@ export class MenuComponent implements OnInit {
           {
             label: 'Full Catalog',
             icon: 'pi pi-fw pi-car',
+            routerLink: ['/renting/we-are-working/full-catalog']
           },
           {
             label: 'Subscriptions',
             icon: 'pi pi-fw pi-bolt',
+            routerLink: ['/renting/we-are-working/subscription']
           },
           {
             label: 'ChatBox',
             icon: 'pi pi-fw pi-comment',
+            routerLink: ['/renting/we-are-working/chatBox']
 
           },
           {
             label: 'Statistics',
             icon: 'pi pi-fw pi-chart-bar',
+            routerLink: ['/renting/we-are-working/statistics']
           },
         ]
       },
@@ -57,15 +61,17 @@ export class MenuComponent implements OnInit {
           {
             label: 'Profile',
             icon: 'pi pi-fw pi-user',
+            routerLink: ['/renting/we-are-working/profile']
           },
           {
             label: 'Settings',
             icon: 'pi pi-fw pi-cog',
+            routerLink: ['/renting/we-are-working/settings']
           },
           {
             label: 'Logout',
             icon: 'pi pi-fw pi-sign-in',
-            //method: this.logout()
+            command: () => this.logout()
           }
         ]
       },

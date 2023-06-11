@@ -11,8 +11,12 @@ const routes: Routes = [
   { path: 'cars-catalog', component: CarsPrincipalPage },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'car-info-request', component: CarInfoComponent },
-  { path: 'we-are-working', component: TemporalComponent },
-
+  { path: 'we-are-working/full-catalog', component: TemporalComponent },
+  { path: 'we-are-working/subscription', component: TemporalComponent },
+  { path: 'we-are-working/chatBox', component: TemporalComponent },
+  { path: 'we-are-working/statistics', component: TemporalComponent },
+  { path: 'we-are-working/profile', component: TemporalComponent },
+  { path: 'we-are-working/settings', component: TemporalComponent },
   // Otras rutas específicas del módulo "modulo1"...
 ];
 
