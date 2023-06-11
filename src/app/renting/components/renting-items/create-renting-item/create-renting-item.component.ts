@@ -34,8 +34,8 @@ export class CreateRentingItemComponent {
   {
     this.car = this.config.data.car;
     let {startDate, endDate} = this.rentingItemForm.value;
-    console.log(this.rentingItemForm);
-    console.log(this.car)
+    //console.log(this.rentingItemForm);
+    //console.log(this.car)
     const rentingItem: RentingOrderItem={
       id:0,
     startDate:this.rentingItemForm.value.startDate,
@@ -57,7 +57,7 @@ export class CreateRentingItemComponent {
 
     };
     this.service.create(body).subscribe(response => {
-          console.log(response);
+          //console.log(response);
           this.dialogRef.close();
         }, err => {
     console.error('Error:', err);

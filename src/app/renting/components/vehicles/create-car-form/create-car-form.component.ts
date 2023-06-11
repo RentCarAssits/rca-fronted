@@ -1,5 +1,5 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {DynamicDialogConfig, DynamicDialogRef} from "primeng/dynamicdialog";
 import {CloudinaryService} from "../../../../shared/services/cloudinary/cloudinary.service";
 import {CarService} from "../../../services/car/car.service";
@@ -26,6 +26,8 @@ export class CreateCarFormComponent implements OnInit {
   categories: string[] = [];
 
   vehicleState!: any[]
+  currency!: any []
+  timeUnit!: any []
 
   constructor(private ref: DynamicDialogRef,
               private config: DynamicDialogConfig,
@@ -40,27 +42,39 @@ export class CreateCarFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.vehicleState = [
-      {name: 0, code: 'MANTENIMIENTO'},
-      {name: 1, code: 'DISPONIBLE'},
-      {name: 2, code: 'ALQUILADO'},
-      {name: 3, code: 'NO DISPONIBLE'},
+      {name: 1, code: 'AVAILABLE'},
+      {name: 0, code: 'MAINTENANCE'},
+      {name: 2, code: 'RENTED'},
+      {name: 3, code: 'UNAVAILABLE'},
     ];
 
+    this.currency = [
+      {name: 'USD', code: '$ Dollar'},
+      {name: 'SOLES', code: 'S/ Sol'},
+      {name: 'EUR', code: 'Є Euro'},
+    ];
 
-    console.log('this.categories: ', this.categories);
+    this.timeUnit = [
+      {name: 'H', code: 'HOUR'},
+      {name: 'D', code: 'DAY'},
+      {name: 'W', code: 'WEEK'},
+    ]
+
+
+    //console.log('this.categories: ', this.categories);
 
     this.carForm = this.formBuilder.group({
-      name: [''],
-      brand: [''],
-      model: [''],
-      integrity: [''],
-      state: [0],
-      year: [''],
-      price: [''],
-      unit: [''],
-      categories: new FormControl<string[] | null>(this.categories),
+      name: ['', Validators.required],
+      brand: ['', Validators.required],
+      model: ['', Validators.required],
       image: [''],
-      stars: ['']
+      integrity: ['', Validators.required],
+      state: [{value: 1, disabled: true}, Validators.required],
+      year: ['', Validators.required],
+      categories: new FormControl<string[] | null>(this.categories),
+      price: [0, Validators.required],
+      currency: ['USD', Validators.required],
+      timeUnit: ['D', Validators.required]
     });
   }
 
@@ -84,11 +98,11 @@ export class CreateCarFormComponent implements OnInit {
     const data = {
       image: image,
       year: this.transformDate(year),
-      state: state,
+      state: 1,
       ...rest
     }
 
-
+    //console.log('data: ', data);
     if (this.selectedFile) {
       this.uploadImage(this.selectedFile)
         .subscribe(response => {

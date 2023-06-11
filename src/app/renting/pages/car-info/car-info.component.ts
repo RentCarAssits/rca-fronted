@@ -9,6 +9,10 @@ import {EditFormCarComponent} from "../../components/vehicles/edit-form-car/edit
 import {
   CreateRentingItemComponent
 } from "../../components/renting-items/create-renting-item/create-renting-item.component";
+import {FormBuilder, FormGroup} from "@angular/forms";
+import {DatePipe} from "@angular/common";
+import {RentingOrderItem} from "../../models/renting-order-item";
+import {RentingOrderItemsService} from "../../services/renting-items/renting-order-items.service";
 
 @Component({
   selector: 'app-car-info',
@@ -18,13 +22,30 @@ import {
 export class CarInfoComponent {
   car: any;
   ref!: DynamicDialogRef;
-  constructor(private data: DataServiceService, private router:Router,
-              private dialogService: DialogService) { }
+  rentingItemForm!: FormGroup;
+  currencySymbols = {
+    'dolar': '$',
+    'sol': 'S/',
+  };
+
+  constructor(private data: DataServiceService, private router: Router,
+              private dialogService: DialogService,
+              private formBuilder: FormBuilder,
+              private datePipe: DatePipe,
+              private service:RentingOrderItemsService,
+  ) {
+
+  }
 
   @ViewChild('itemDialog') itemDialog!: TemplateRef<any>;
+
   ngOnInit() {
+    this.rentingItemForm = this.formBuilder.group({
+      startDate: [''],
+      endDate: [''],
+    });
     this.data.currentVehicleId.subscribe(car => this.car = car);
-    if(!this.car.image){
+    if (!this.car.image) {
       this.router.navigate(['renting/dashboard']);
     }
     console.log('aqui :', this.car)
@@ -39,13 +60,32 @@ export class CarInfoComponent {
       width = '80%';
     }
 
-     this.dialogService.open(CreateRentingItemComponent, {
+    this.dialogService.open(CreateRentingItemComponent, {
       header: 'Create Car',
       width: width,
       contentStyle: {overflow: 'auto'},
       baseZIndex: 10000,
-      data: { car:this.car },
+      data: {car: this.car},
     });
+  }
+
+  onSubmit() {
+    let {startDate, endDate} = this.rentingItemForm.value;
+    console.log(this.rentingItemForm.value)
+    const request = {
+      rentingPrice:this.car.price,
+      currency:this.car.currency,
+      startDate:this.rentingItemForm.value.startDate,
+      endDate:this.rentingItemForm.value.endDate,
+      vehicleId:this.car.id,
+      rentingUnit:this.car.timeUnit,
+    };
+    this.service.create(request).subscribe(response => {
+      console.log(response);
+    }, err => {
+      console.error('Error:', err);
+    });
+
   }
 
 }

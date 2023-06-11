@@ -2,7 +2,7 @@
   <div class="card1">
     <div class="col-12">
       <form [formGroup]="carForm" (ngSubmit)="onSubmit()">
-        <h5>Editar vehiculo</h5>
+        <h5>Update Vehicle</h5>
         <div class="flex justify-content-center h-12rem">
           <input type="file" class="h-12rem" #fileInput (change)="onFileChange($event)" accept=".png, .jpg, .jpeg"
                  [style.display]="'none'"/>
@@ -13,48 +13,56 @@
               <i class="pi pi-plus" style="font-size: 2rem; color: white;"></i>
             </div>
           </div>
-        </div>
-        <h5>Información del Vehiculo</h5>
+        </div> <h5>Vehicle Information</h5>
         <div class="p-fluid p-formgrid grid">
           <div class="field col-12 md:col-6">
-            <label for="name">Nombre</label>
+            <label for="name">Name</label>
             <input pInputText id="name" type="text" formControlName="name"/>
           </div>
           <div class="field col-12 md:col-6">
-            <label for="brand">Marca</label>
+            <label for="brand">Brand</label>
             <input pInputText id="brand" type="text" formControlName="brand"/>
           </div>
           <div class="field col-12 md:col-6">
-            <label for="model">Modelo</label>
+            <label for="model">Model</label>
             <input pInputText id="model" type="text" formControlName="model"/>
           </div>
           <div class="field col-12 md:col-6">
             <label for="state">State</label>
-            <p-dropdown id="state" [options]="vehicleState" formControlName="state" optionLabel="code"
-                        optionValue="name">
+            <p-dropdown id="state" [options]="vehicleState" formControlName="state"  optionLabel="code" optionValue="name">
             </p-dropdown>
           </div>
 
-          <div class="field col-12 md:col-6">
-            <label for="price">Precio</label>
-            <input pInputText id="price" type="text" formControlName="price"/>
+          <div class="field col-12 md:col-4">
+            <label for="price">Rental price</label>
+            <input pInputText id="price" type="number" formControlName="price"/>
           </div>
-          <div class="field col-12 md:col-6">
-            <label for="unit">Tiempo</label>
-            <input pInputText id="unit" type="text" formControlName="unit"/>
+          <div class="field col-12 md:col-4">
+            <label for="currency">Currency</label>
+            <p-dropdown id="currency" [options]="currency" formControlName="currency"  optionLabel="code" optionValue="name">
+            </p-dropdown>
+          </div>
+          <div class="field col-12 md:col-4">
+            <label for="timeUnit">TimeUnit</label>
+            <p-dropdown id="timeUnit" [options]="timeUnit" formControlName="timeUnit"  optionLabel="code" optionValue="name">
+            </p-dropdown>
           </div>
           <div class="field col-12">
-            <label for="integrity">Integridad del Vehiculo</label>
-            <textarea id="integrity" rows="2" cols="30" placeholder="Cómo se Encuentra el vehiculo ?" pInputTextarea
-                      formControlName="integrity"></textarea>
+            <label for="integrity">Vehicle integrity description:</label>
+            <textarea id="integrity" rows="2" cols="30" placeholder="Enter a description" pInputTextarea formControlName="integrity"></textarea>
+          </div>
+
+          <div class="field col-12">
+            <label for="year">Vehicle year</label>
+            <p-calendar id="year" formControlName="year" dateFormat="dd/mm/yy"></p-calendar>
           </div>
           <div class="field col-12 md:col-12">
-            <label for="categories">Categorías</label>
+            <label for="categories">Categories</label>
             <p-chips id="categories" formControlName="categories"></p-chips>
           </div>
         </div>
         <div class="flex justify-content-end">
-          <p-button type="submit">Guardar</p-button>
+          <p-button type="submit">Save</p-button>
         </div>
       </form>
     </div>

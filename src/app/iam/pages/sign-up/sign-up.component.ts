@@ -47,7 +47,6 @@ export class SignUpComponent {
 
 
   onSubmit() {
-console.log(this.signupForm)
 const profile: Profile = {
       fullName: `${this.signupForm.value.firstname} ${this.signupForm.value.lastname}`,
       address: this.signupForm.value.address,
@@ -68,7 +67,6 @@ const profile: Profile = {
       this.authService.setCurrentUser(response);
       this.refRegisterDialog.registerCompleted();
     });
-
   }
 
   validarMayuscula(control:AbstractControl) {
