@@ -5,6 +5,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {CarService} from "../../../services/car/car.service";
 import {catchError, Observable, retry} from "rxjs";
 import {DatePipe} from "@angular/common";
+import {MessageService} from "primeng/api";
 
 interface VehicleState {
   name: number;
@@ -34,7 +35,8 @@ export class EditFormCarComponent implements OnInit {
               private dialogRef: DynamicDialogRef,
               private formBuilder: FormBuilder,
               private service: CarService,
-              private datePipe: DatePipe
+              private datePipe: DatePipe,
+              private message: MessageService
   ) {
 
   }
@@ -93,6 +95,9 @@ export class EditFormCarComponent implements OnInit {
 
 
   onSubmit() {
+    if (!this.carForm.valid) {
+      return;
+    }
     let {image, year, state, ...rest} = this.carForm.value;
 
     const data = {
@@ -122,16 +127,30 @@ export class EditFormCarComponent implements OnInit {
 
   saveData(data: any) {
     this.service.update(this.car.id, data).subscribe(response => {
-      console.log(response);
-      this.dialogRef.close();
+      this.showSuccess();
+      setTimeout(() => {
+        this.dialogRef.close();
+      }, 1000);
     }, err => {
-      console.error('Error:', err);
+      this.showError();
+      setTimeout(() => {
+        this.dialogRef.close();
+      }, 1000);
+
     });
   }
 
   getVehicleState(stateNumber: number): VehicleState | null {
     const state = this.vehicleState.find(s => s.name === stateNumber);
     return state ? state : null;
+  }
+
+  showSuccess() {
+    this.message.add({severity: 'success', summary: 'Success', detail: 'Operation completed successfully'});
+  }
+
+  showError() {
+    this.message.add({severity: 'error', summary: 'Error', detail: 'An error occurred. Please try again.'});
   }
 
 }

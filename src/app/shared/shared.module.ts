@@ -33,14 +33,14 @@ import {ResourceService} from "./services/base/resource.service";
     RouterOutlet,
     PrimeNgModule,
     RouterLink,
-    RouterLinkActive
+    RouterLinkActive,
   ],
   providers:[
     LayoutService,
     MenuService,
     ResourceService,
     HttpClientModule,
-    CloudinaryService
+    CloudinaryService,
   ]
 })
 export class SharedModule { }

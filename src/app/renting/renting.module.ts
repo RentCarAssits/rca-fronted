@@ -19,6 +19,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 import { CreateCarFormComponent } from './components/vehicles/create-car-form/create-car-form.component';
 import { CarInfoComponent } from './pages/car-info/car-info.component';
 import { CreateRentingItemComponent } from './components/renting-items/create-renting-item/create-renting-item.component';
+import { TemporalComponent } from './components/temporal/temporal/temporal.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { CreateRentingItemComponent } from './components/renting-items/create-re
     EditFormCarComponent,
     CreateCarFormComponent,
     CarInfoComponent,
-    CreateRentingItemComponent
+    CreateRentingItemComponent,
+    TemporalComponent
   ],
   exports: [
     CarsPrincipalPage

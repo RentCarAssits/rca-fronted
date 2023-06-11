@@ -7,7 +7,8 @@ import {Router} from "@angular/router";
 import {DialogService, DynamicDialogRef} from "primeng/dynamicdialog";
 import {LoginFormComponent} from "../sign-in/login-form.component";
 import {RefDialogServiceService} from "../../services/ref-dialog-service.service";
-import { ToastModule } from 'primeng/toast';
+import {ToastModule} from 'primeng/toast';
+import {MessageService} from "primeng/api";
 
 @Component({
   selector: 'app-sign-up',
@@ -19,23 +20,23 @@ export class SignUpComponent {
   dialogRef!: DynamicDialogRef;
 
 
-
   constructor(private formBuilder: FormBuilder,
               private authService: AuthService,
               private router: Router,
-              private refRegisterDialog : RefDialogServiceService,
+              private message: MessageService,
+              private refRegisterDialog: RefDialogServiceService,
   ) {
 
     this.signupForm = formBuilder.group({
-      userName: ['',[Validators.required]],
-      userType: ['renter',[Validators.required]],
-      email: ['', [Validators.required,Validators.email]],
+      userName: ['', [Validators.required]],
+      userType: ['renter', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, this.validarMayuscula]],
-      firstname: ['',[Validators.required] ],
-      lastname: ['',[Validators.required] ],
-      address: ['',[Validators.required] ],
-      dni: ['',[Validators.required] ],
-      phone: ['',[Validators.required]]
+      firstname: ['', [Validators.required]],
+      lastname: ['', [Validators.required]],
+      address: ['', [Validators.required]],
+      dni: ['', [Validators.required]],
+      phone: ['', [Validators.required]]
     });
   }
 
@@ -47,7 +48,7 @@ export class SignUpComponent {
 
 
   onSubmit() {
-const profile: Profile = {
+    const profile: Profile = {
       fullName: `${this.signupForm.value.firstname} ${this.signupForm.value.lastname}`,
       address: this.signupForm.value.address,
       phone: this.signupForm.value.phone,
@@ -62,19 +63,35 @@ const profile: Profile = {
     }
 
     this.router.navigate(['/public/landing']).then();
-    this.authService.signUp(registerUser).subscribe(response => {
-      this.authService.setToken(response.token);
-      this.authService.setCurrentUser(response);
-      this.refRegisterDialog.registerCompleted();
+    this.authService.signUp(registerUser).subscribe({
+      next: (response) => {
+        this.authService.setToken(response.token);
+        this.authService.setCurrentUser(response);
+        this.refRegisterDialog.registerCompleted();
+      },
+      error: (err) => {
+        this.showError()
+      },
+      complete: () => {
+        this.showSuccess()
+      }
     });
   }
 
-  validarMayuscula(control:AbstractControl) {
+  validarMayuscula(control: AbstractControl) {
     const tieneMayuscula = /[A-Z]/.test(control.value);
     if (!tieneMayuscula) {
-      return { faltaMayuscula: true };
-    }else
-    return null;
+      return {faltaMayuscula: true};
+    } else
+      return null;
+  }
+
+  showSuccess() {
+    this.message.add({severity: 'success', summary: 'Success', detail: 'Login successfully'});
+  }
+
+  showError() {
+    this.message.add({severity: 'error', summary: 'Error', detail: 'An error occurred. Please try again.'});
   }
 
 

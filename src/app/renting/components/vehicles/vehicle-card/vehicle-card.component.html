@@ -1,10 +1,11 @@
 <div class="card">
   <div class="flex justify-content-between align-items-center mb-5">
-    <h5>Mis vehiculos</h5>
+    <h5 class="text-800 font-semibold">My vehicles</h5>
     <div>
-     <!-- <button pButton type="button" icon="pi pi-ellipsis-v" class="p-button-rounded p-button-text p-button-plain" (click)="menu.toggle($event)"></button>
-      <p-menu #menu [popup]="true" [model]="items"></p-menu>-->
-      <p-button (click)="showCreateDialog()" icon="pi pi-plus" styleClass="p-button-rounded p-button-text p-button-raised"></p-button>
+      <!-- <button pButton type="button" icon="pi pi-ellipsis-v" class="p-button-rounded p-button-text p-button-plain" (click)="menu.toggle($event)"></button>
+       <p-menu #menu [popup]="true" [model]="items"></p-menu>-->
+      <p-button (click)="showCreateDialog()" icon="pi pi-plus"
+                styleClass="p-button-rounded p-button-text p-button-raised"></p-button>
 
     </div>
   </div>
@@ -14,8 +15,7 @@
         <th>Vehiculo</th>
         <th pSortableColumn="name" class="font-semibold">Model
         </th>
-        <th pSortableColumn="price">$/día
-
+        <th pSortableColumn="price">Price
         </th>
         <th pSortableColumn="stars">Stars
         </th>
@@ -25,11 +25,11 @@
     <ng-template pTemplate="body" let-car>
       <tr>
         <td style="width: 15%; min-width: 5rem;">
-          <img  src="{{ car.image }}"  class="shadow-4" alt="{{car.name}}"
-               width="50">
+          <p-image src="{{ car.image }}"  alt="{{car.name}}" [preview]="true"
+                   width="50"></p-image>
         </td>
         <td style="width: 35%; min-width: 7rem;" class="font-normal">{{car.name}}</td>
-        <td style="width: 35%; min-width: 7rem;" class="font-normal">{{'20' | currency:'USD'}}</td>
+        <td style="width: 35%; min-width: 7rem;" class="font-normal">{{car.price}} {{car.currency}} </td>
         <td style="width: 35%; min-width: 7rem;" class="font-normal">{{car.stars}}
           <i class="mt-0 mb-3 pi pi-star-fill" style="color: rgb(255,177,89)"></i>
         </td>

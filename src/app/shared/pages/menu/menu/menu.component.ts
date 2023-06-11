@@ -26,13 +26,29 @@ export class MenuComponent implements OnInit {
       {
         label: 'Section 1',
         items: [
-          {label: 'Cars', icon: 'pi pi-fw pi-car', routerLink: ['/renting/cars-catalog']},
-          {label: 'All cars', icon: 'pi pi-fw pi-car'},
-          {label: 'Suscripciones', icon: 'pi pi-fw pi-bolt',
+          {
+            label: 'Featured Cars',
+            icon: 'pi pi-fw pi-star',
+            routerLink: ['/renting/cars-catalog']
           },
-          {label: 'ChatBox', icon: 'pi pi-fw pi-comment', },
-          {label: 'Estadisticas', icon: 'pi pi-fw pi-chart-bar', },
-          ]
+          {
+            label: 'Full Catalog',
+            icon: 'pi pi-fw pi-car',
+          },
+          {
+            label: 'Subscriptions',
+            icon: 'pi pi-fw pi-bolt',
+          },
+          {
+            label: 'ChatBox',
+            icon: 'pi pi-fw pi-comment',
+
+          },
+          {
+            label: 'Statistics',
+            icon: 'pi pi-fw pi-chart-bar',
+          },
+        ]
       },
       {
         label: 'Profile',
@@ -41,7 +57,6 @@ export class MenuComponent implements OnInit {
           {
             label: 'Profile',
             icon: 'pi pi-fw pi-user',
-          //  routerLink: ['public/landing']
           },
           {
             label: 'Settings',
@@ -50,21 +65,24 @@ export class MenuComponent implements OnInit {
           {
             label: 'Logout',
             icon: 'pi pi-fw pi-sign-in',
+            //method: this.logout()
           }
         ]
       },
       {
         label: 'General',
         items: [
-          {label: 'Landing', icon: 'pi pi-fw pi-globe', routerLink: ['/public/landing']},
-         // {label: 'Estadisticas', icon: 'pi pi-fw pi-chart-bar', routerLink: ['/uikit/charts']},
+          {
+            label: 'Landing',
+            icon: 'pi pi-fw pi-globe',
+            routerLink: ['/public/landing']},
         ]
       },
     ];
   }
 
   private logout() {
-      this.authService.signOut();
-      this.router.navigate(['/public/landing']);
+    this.authService.signOut();
+    this.router.navigate(['/public/landing']);
   }
 }

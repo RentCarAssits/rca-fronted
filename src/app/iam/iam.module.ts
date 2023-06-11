@@ -9,6 +9,8 @@ import {AuthService} from "./services/auth.service";
 import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from "@angular/common/http";
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
 import {JWTInterceptorService} from "./interceptor/jwtinterceptor.service";
+import {ToastModule} from "primeng/toast";
+import {SharedModule} from "../shared/shared.module";
 
 @NgModule({
   declarations: [
@@ -27,7 +29,7 @@ import {JWTInterceptorService} from "./interceptor/jwtinterceptor.service";
     AuthService,
     HttpClient,
     HttpClientModule,
-    // MessageService
+    // MessageCustomService
   ],
   exports: [
     LoginFormComponent

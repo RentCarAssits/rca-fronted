@@ -3,6 +3,7 @@ import {LayoutService} from "../../../shared/services/layout/layout.service";
 import {AuthService} from "../../services/auth.service";
 import {User} from "../../models/user";
 import {Router} from "@angular/router";
+import {MessageService} from "primeng/api";
 
 @Component({
   selector: 'app-sign-in',
@@ -16,7 +17,9 @@ export class LoginFormComponent {
 
   constructor(public layoutService: LayoutService,
               private authService: AuthService,
-              private router: Router
+              private router: Router,
+              private message: MessageService,
+
   ) {
   }
 
@@ -24,11 +27,26 @@ export class LoginFormComponent {
     this.authService.signIn({
       email: this.email,
       password: this.password
-    }).subscribe(response => {
-      this.authService.setToken(response.token);
-      this.authService.setCurrentUser(response);
-     // console.log(`accessToken: ${this.authService.getToken()}`);
-      this.router.navigate(['']).then();
+    }).subscribe({
+      next: (response) => {
+        this.authService.setToken(response.token);
+        this.authService.setCurrentUser(response);
+        // console.log(`accessToken: ${this.authService.getToken()}`);
+        this.router.navigate(['']).then();
+      },
+      error: (err) => {
+       this.showError()
+      },
+      complete: () => {
+        this.showSuccess()
+      }
     });
+  }
+
+  showSuccess() {
+    this.message.add({ severity: 'success', summary: 'Success', detail: 'Login successfully' });
+  }
+  showError() {
+    this.message.add({ severity: 'error', summary: 'Error', detail: 'An error occurred. Please try again.' });
   }
 }
