@@ -19,6 +19,7 @@ export class SignUpComponent {
   dialogRef!: DynamicDialogRef;
 
 
+
   constructor(private formBuilder: FormBuilder,
               private authService: AuthService,
               private router: Router,
@@ -26,15 +27,15 @@ export class SignUpComponent {
   ) {
 
     this.signupForm = formBuilder.group({
-      userName: ['',],
-      userType: ['renter',],
+      userName: ['',[Validators.required]],
+      userType: ['renter',[Validators.required]],
       email: ['', [Validators.required,Validators.email]],
       password: ['', [Validators.required, this.validarMayuscula]],
-      firstname: ['', ],
-      lastname: ['', ],
-      address: ['', ],
-      dni: ['', ],
-      phone: ['',]
+      firstname: ['',[Validators.required] ],
+      lastname: ['',[Validators.required] ],
+      address: ['',[Validators.required] ],
+      dni: ['',[Validators.required] ],
+      phone: ['',[Validators.required]]
     });
   }
 
@@ -46,7 +47,7 @@ export class SignUpComponent {
 
 
   onSubmit() {
-    const profile: Profile = {
+const profile: Profile = {
       fullName: `${this.signupForm.value.firstname} ${this.signupForm.value.lastname}`,
       address: this.signupForm.value.address,
       phone: this.signupForm.value.phone,
@@ -75,4 +76,6 @@ export class SignUpComponent {
     }else
     return null;
   }
+
+
 }
