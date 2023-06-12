@@ -26,13 +26,33 @@ export class MenuComponent implements OnInit {
       {
         label: 'Section 1',
         items: [
-          {label: 'Cars', icon: 'pi pi-fw pi-car', routerLink: ['/renting/cars-catalog']},
-          {label: 'All cars', icon: 'pi pi-fw pi-car'},
-          {label: 'Suscripciones', icon: 'pi pi-fw pi-bolt',
+          {
+            label: 'Featured Cars',
+            icon: 'pi pi-fw pi-car',
+            routerLink: ['/renting/cars-catalog']
           },
-          {label: 'ChatBox', icon: 'pi pi-fw pi-comment', },
-          {label: 'Estadisticas', icon: 'pi pi-fw pi-chart-bar', },
-          ]
+          {
+            label: 'Full Catalog',
+            icon: 'pi pi-fw pi-star',
+            routerLink: ['/renting/we-are-working/full-catalog']
+          },
+          {
+            label: 'Subscriptions',
+            icon: 'pi pi-fw pi-bolt',
+            routerLink: ['/renting/we-are-working/subscription']
+          },
+          {
+            label: 'ChatBox',
+            icon: 'pi pi-fw pi-comment',
+            routerLink: ['/renting/we-are-working/chatBox']
+
+          },
+          {
+            label: 'Statistics',
+            icon: 'pi pi-fw pi-chart-bar',
+            routerLink: ['/renting/we-are-working/statistics']
+          },
+        ]
       },
       {
         label: 'Profile',
@@ -41,30 +61,34 @@ export class MenuComponent implements OnInit {
           {
             label: 'Profile',
             icon: 'pi pi-fw pi-user',
-          //  routerLink: ['public/landing']
+            routerLink: ['/renting/we-are-working/profile']
           },
           {
             label: 'Settings',
             icon: 'pi pi-fw pi-cog',
+            routerLink: ['/renting/we-are-working/settings']
           },
           {
             label: 'Logout',
             icon: 'pi pi-fw pi-sign-in',
+            command: () => this.logout()
           }
         ]
       },
       {
         label: 'General',
         items: [
-          {label: 'Landing', icon: 'pi pi-fw pi-globe', routerLink: ['/public/landing']},
-         // {label: 'Estadisticas', icon: 'pi pi-fw pi-chart-bar', routerLink: ['/uikit/charts']},
+          {
+            label: 'Landing',
+            icon: 'pi pi-fw pi-globe',
+            routerLink: ['/public/landing']},
         ]
       },
     ];
   }
 
   private logout() {
-      this.authService.signOut();
-      this.router.navigate(['/public/landing']);
+    this.authService.signOut();
+    this.router.navigate(['/public/landing']);
   }
 }

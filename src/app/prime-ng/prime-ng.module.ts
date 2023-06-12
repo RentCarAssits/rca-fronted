@@ -34,6 +34,7 @@ import { GalleriaModule } from 'primeng/galleria';
 import { CarouselModule } from 'primeng/carousel';
 import { SkeletonModule } from 'primeng/skeleton';
 import { TabViewModule } from 'primeng/tabview';
+import { ToastModule } from 'primeng/toast';
 @NgModule({
   declarations: [],
   imports: [
@@ -73,7 +74,8 @@ import { TabViewModule } from 'primeng/tabview';
     GalleriaModule,
     CarouselModule,
     SkeletonModule,
-    TabViewModule
+    TabViewModule,
+    ToastModule
 
   ],
   exports: [
@@ -112,8 +114,8 @@ import { TabViewModule } from 'primeng/tabview';
     GalleriaModule,
     CarouselModule,
     SkeletonModule,
-    TabViewModule
-
+    TabViewModule,
+    ToastModule
 
   ],
   providers: [

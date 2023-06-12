@@ -73,3 +73,14 @@
   background: #ECCFFF;
   color: #694382;
 }
+
+
+.order-badge.see-offer {
+  background: #ffdf63;
+  color: #111111;
+}
+
+.order-badge.add-data{
+  background: #8aff8e;
+  color: #224b25;
+}

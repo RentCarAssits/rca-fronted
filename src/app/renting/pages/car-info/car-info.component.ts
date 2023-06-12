@@ -9,10 +9,11 @@ import {EditFormCarComponent} from "../../components/vehicles/edit-form-car/edit
 import {
   CreateRentingItemComponent
 } from "../../components/renting-items/create-renting-item/create-renting-item.component";
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {DatePipe} from "@angular/common";
 import {RentingOrderItem} from "../../models/renting-order-item";
 import {RentingOrderItemsService} from "../../services/renting-items/renting-order-items.service";
+import {MessageService} from "primeng/api";
 
 @Component({
   selector: 'app-car-info',
@@ -23,16 +24,13 @@ export class CarInfoComponent {
   car: any;
   ref!: DynamicDialogRef;
   rentingItemForm!: FormGroup;
-  currencySymbols = {
-    'dolar': '$',
-    'sol': 'S/',
-  };
 
   constructor(private data: DataServiceService, private router: Router,
               private dialogService: DialogService,
               private formBuilder: FormBuilder,
               private datePipe: DatePipe,
-              private service:RentingOrderItemsService,
+              private service: RentingOrderItemsService,
+              private message: MessageService
   ) {
 
   }
@@ -41,14 +39,13 @@ export class CarInfoComponent {
 
   ngOnInit() {
     this.rentingItemForm = this.formBuilder.group({
-      startDate: [''],
-      endDate: [''],
+      startDate: ['', Validators.required],
+      endDate: ['', Validators.required],
     });
     this.data.currentVehicleId.subscribe(car => this.car = car);
     if (!this.car.image) {
-      this.router.navigate(['renting/dashboard']);
+      this.router.navigate(['renting/cars-catalog']);
     }
-    console.log('aqui :', this.car)
   }
 
   showCreateDialog() {
@@ -70,22 +67,45 @@ export class CarInfoComponent {
   }
 
   onSubmit() {
+    if (!this.rentingItemForm.valid) return;
     let {startDate, endDate} = this.rentingItemForm.value;
-    console.log(this.rentingItemForm.value)
     const request = {
-      rentingPrice:this.car.price,
-      currency:this.car.currency,
-      startDate:this.rentingItemForm.value.startDate,
-      endDate:this.rentingItemForm.value.endDate,
-      vehicleId:this.car.id,
-      rentingUnit:this.car.timeUnit,
+      rentingPrice: this.car.price,
+      currency: this.car.currency,
+      startDate: this.rentingItemForm.value.startDate,
+      endDate: this.rentingItemForm.value.endDate,
+      vehicleId: this.car.id,
+      rentingUnit: this.car.timeUnit,
     };
-    this.service.create(request).subscribe(response => {
-      console.log(response);
-    }, err => {
-      console.error('Error:', err);
-    });
+    this.service.create(request).subscribe(
+      {
+        next: (response) => {
+          // console.log('create Renting Order Item ',response)
+        },
+        error: (err) => {
+          this.showError()
+          setTimeout(() => {
+            this.router.navigate(['renting/cars-catalog']);
+          }, 1500);
+        },
+        complete: () => {
+          this.showSuccess();
+          setTimeout(() => {
+            this.router.navigate(['renting/cars-catalog']);
+          }, 1500);
 
+        }
+      }
+    );
+
+  }
+
+  showSuccess() {
+    this.message.add({severity: 'success', summary: 'Success', detail: 'Operation completed successfully'});
+  }
+
+  showError() {
+    this.message.add({severity: 'error', summary: 'Error', detail: 'An error occurred. Please try again.'});
   }
 
 }

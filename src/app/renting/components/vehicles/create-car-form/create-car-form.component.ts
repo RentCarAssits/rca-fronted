@@ -5,6 +5,8 @@ import {CloudinaryService} from "../../../../shared/services/cloudinary/cloudina
 import {CarService} from "../../../services/car/car.service";
 import {Observable} from "rxjs";
 import {DatePipe} from "@angular/common";
+import {MessageService} from "primeng/api";
+import {Router} from "@angular/router";
 
 interface VehicleState {
   name: number;
@@ -29,13 +31,15 @@ export class CreateCarFormComponent implements OnInit {
   currency!: any []
   timeUnit!: any []
 
+
   constructor(private ref: DynamicDialogRef,
               private config: DynamicDialogConfig,
               private cloudinaryService: CloudinaryService,
               private dialogRef: DynamicDialogRef,
               private formBuilder: FormBuilder,
               private service: CarService,
-              private datePipe: DatePipe
+              private datePipe: DatePipe,
+              private message: MessageService
   ) {
 
   }
@@ -93,6 +97,8 @@ export class CreateCarFormComponent implements OnInit {
 
 
   onSubmit() {
+    if (!this.carForm.valid) return;
+
     let {image, year, state, ...rest} = this.carForm.value;
 
     const data = {
@@ -123,9 +129,16 @@ export class CreateCarFormComponent implements OnInit {
   saveData(data: any) {
     this.service.create(data).subscribe(response => {
       console.log(response);
-      this.dialogRef.close();
+      this.showSuccess();
+      setTimeout(() => {
+        this.dialogRef.close();
+      }, 1000)
     }, err => {
       console.error('Error:', err);
+      this.showError()
+      setTimeout(() => {
+        this.dialogRef.close();
+      }, 1000);
     });
   }
 
@@ -137,6 +150,14 @@ export class CreateCarFormComponent implements OnInit {
   transformDate(date: string): string {
     let dateObj = new Date(date);
     return <string>this.datePipe.transform(dateObj, 'yyyy-MM-dd');
+  }
+
+  showSuccess() {
+    this.message.add({severity: 'success', summary: 'Success', detail: 'Operation completed successfully'});
+  }
+
+  showError() {
+    this.message.add({severity: 'error', summary: 'Error', detail: 'An error occurred. Please try again.'});
   }
 
 }

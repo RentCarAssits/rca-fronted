@@ -24,7 +24,7 @@ export class DashboardComponent {
   chartOptions: any;
 
   subscription!: any;
-  totalVehicles!: number;
+  totalVehicles: number = 0;
 
   constructor( public layoutService: LayoutService, private carService: CarService) {
     this.subscription = this.layoutService.configUpdate$.subscribe(() => {
@@ -161,6 +161,7 @@ export class DashboardComponent {
     this.carService.getVehicleByOwner().subscribe(
       (response: any) => {
         this.totalVehicles = Number(response.result?.length);
+        if(!this.totalVehicles) this.totalVehicles = 0
         //console.log(this.totalVehicles);
       },
       (error) => {

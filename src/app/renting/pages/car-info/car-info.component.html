@@ -58,18 +58,19 @@
         <span class="text-600 font-semibold text-blue-900 block pi pi-car">
         </span>
       </div>
-      <label for="startDate" class="text-600 font-medium text-600 mb-2">Star day :</label>
+      <label for="startDate" class="text-600 font-medium text-600 mb-2">Start Date :</label>
       <p-calendar [showIcon]="true" id="startDate" formControlName="startDate"
                   dateFormat="dd/mm/yy"
                   [style]="{'width':'100%'}" [inputStyle]="{'width':'100%'}"
       ></p-calendar>
-      <label for="endDate" class="text-600 font-medium text-600 mb-2">End day :</label>
+      <label for="endDate" class="text-600 font-medium text-600 mb-2">End Date :</label>
       <p-calendar [showIcon]="true" id="endDate"
                   formControlName="endDate"
                   dateFormat="dd/mm/yy"
                   [style]="{'width':'100%'}" [inputStyle]="{'width':'100%'}"
       ></p-calendar>
       <div class="flex align-items-center justify-content-end">
+        <p-toast></p-toast>
         <p-button type="submit" icon="pi pi-check" class="flex w-full justify-content-end py-5" label="Request vehicle" styleClass="p-button-raised">
         </p-button>
       </div>
