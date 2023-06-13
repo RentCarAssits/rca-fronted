@@ -35,8 +35,8 @@ export class DashboardComponent {
 
   subscription!: any;
   totalVehicles: number = 0;
-
-  constructor( public layoutService: LayoutService, private carService: CarService, 
+  userRole:any;
+  constructor( public layoutService: LayoutService, private carService: CarService,
               private rentingOrderItemsServices:RentingOrderItemsService, private authService:AuthService) {
     this.subscription = this.layoutService.configUpdate$.subscribe(() => {
     });
@@ -135,9 +135,10 @@ export class DashboardComponent {
   getCurrenUserId(){
     let user = this.authService.getCurrentUser();
     this.currentuser = user?.id;
+    this.userRole=user?.roles;
     console.log("USER ID: ",user);
     console.log("USER ID: ",this.currentuser);
-    
+
   }
 
   getData(){

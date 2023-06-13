@@ -5,13 +5,12 @@
 .text-success {
   color: green;
 }
-
+.text-process {
+  color: orange;
+}
 .text-danger {
   color: red;
 }
-.text-process {
-   color: orange;
- }
 .small-button {
   width: 24px;
   height: 24px;

@@ -20,6 +20,7 @@ import { CreateCarFormComponent } from './components/vehicles/create-car-form/cr
 import { CarInfoComponent } from './pages/car-info/car-info.component';
 import { CreateRentingItemComponent } from './components/renting-items/create-renting-item/create-renting-item.component';
 import { TemporalComponent } from './components/temporal/temporal/temporal.component';
+import { RentingOrderHistoryComponent } from './components/renting-items/renting-order-history/renting-order-history.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { TemporalComponent } from './components/temporal/temporal/temporal.compo
     CreateCarFormComponent,
     CarInfoComponent,
     CreateRentingItemComponent,
-    TemporalComponent
+    TemporalComponent,
+    RentingOrderHistoryComponent
   ],
   exports: [
     CarsPrincipalPage

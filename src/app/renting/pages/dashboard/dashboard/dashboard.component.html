@@ -106,16 +106,30 @@
     </div>
 
     <div class="card">
-      <div class="flex align-items-center justify-content-between mb-4">
-        <h5 class="text-800 font-semibold">Renter Orders Items</h5>
-        <div>
-          <button pButton type="button" icon="pi pi-ellipsis-v" class="p-button-rounded p-button-text p-button-plain"
-                  (click)="menu.toggle($event)"></button>
-          <p-menu #menu [popup]="true" [model]="items"></p-menu>
+
+      <ng-container *ngIf="userRole=='owner'">
+        <div class="flex align-items-center justify-content-between mb-4">
+          <h5 class="text-800 font-semibold">Renter Orders Items</h5>
+          <div>
+            <button pButton type="button" icon="pi pi-ellipsis-v" class="p-button-rounded p-button-text p-button-plain"
+                    (click)="menu.toggle($event)"></button>
+            <p-menu #menu [popup]="true" [model]="items"></p-menu>
+          </div>
         </div>
-      </div>
-      <app-renting-order-items></app-renting-order-items>
-    </div>
+        <app-renting-order-items></app-renting-order-items>
+      </ng-container>
+
+      <ng-container *ngIf="userRole=='renter'">
+        <div class="flex align-items-center justify-content-between mb-4">
+          <h5 class="text-800 font-semibold">Renting Items History</h5>
+          <div>
+            <button pButton type="button" icon="pi pi-ellipsis-v" class="p-button-rounded p-button-text p-button-plain"
+                    (click)="menu.toggle($event)"></button>
+            <p-menu #menu [popup]="true" [model]="items"></p-menu>
+          </div>
+        </div>
+        <app-renting-order-history></app-renting-order-history>
+      </ng-container>
   </div>
 </div>
 
