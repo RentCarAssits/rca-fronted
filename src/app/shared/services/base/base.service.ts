@@ -3,12 +3,13 @@ import {catchError, Observable, retry, throwError} from "rxjs";
 
 export class BaseService {
   // Base Endpoint
-  dev = 'http://localhost:8080/api/v1'
+
   prod = 'https://rca.azurewebsites.net/api/v1'
+  dev = 'http://localhost:8080/api/v1'
 
   token = localStorage.getItem('accessToken')
   // Students Endpoint
-  basePath = this.prod || this.dev;
+  basePath = this.prod;
 
   httpOptions = {
     headers: new HttpHeaders({

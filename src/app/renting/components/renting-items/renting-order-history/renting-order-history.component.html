@@ -1,0 +1,26 @@
+<ng-container *ngIf="rentingOrderItems && rentingOrderItems.length > 0; else noRequests">
+  <ul class="p-0 mx-0 mt-0 mb-4 list-none">
+    <li class="flex align-items-center py-2 border-bottom-1 surface-border" *ngFor="let item of rentingOrderItems">
+      <div [ngClass]="getCircleClass(item.state)" class="w-3rem h-3rem flex align-items-center justify-content-center border-circle mr-3 flex-shrink-0">
+        <i [ngClass]="getIconClass(item.state)" class="pi text-xl" [ngStyle]="{ color: item.state === 'A' ? 'green' : item.state === 'D' ? 'red' : 'blue' }"></i>
+      </div>
+      <span class="text-900 line-height-3">{{ item.name }}
+        <span class="text-700"> Request  <span class="text-blue-500">{{ item.rentingPrice }} {{ item.currency }}</span></span>
+      </span>
+      <div class="ml-auto button-group">
+        <span *ngIf="item.state === 'A'" class="text-success uppercase">Accepted</span>
+        <span *ngIf="item.state === 'D'" class="text-danger uppercase">Denied</span>
+        <span *ngIf="item.state === 'O'" class="text-process uppercase">On Request</span>
+
+        <button icon="pi pi-eye" pButton pRipple class="p-button p-button-info rounded-circle small-button ml-2" (click)="showItemDialog(item)"></button>
+      </div>
+    </li>
+  </ul>
+</ng-container>
+
+<ng-template #noRequests>
+  <div class="h-20rem flex justify-content-center align-items-center flex-column">
+    <h5 class="order-badge add-data">No car reservation requests yet.</h5>
+    <p>As soon as you have a car reservation request, it will appear here.</p>
+  </div>
+</ng-template>
