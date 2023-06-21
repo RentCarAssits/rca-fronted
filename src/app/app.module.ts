@@ -13,6 +13,8 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {JWTInterceptorService} from "./iam/interceptor/jwtinterceptor.service";
 import { WorkshopModule } from './workshop/workshop.module';
 import { AppRoutingModule } from './app-routing.module';
+import { BillingModule } from './billing/billing.module';
+
 
 
 @NgModule({
@@ -30,7 +32,10 @@ import { AppRoutingModule } from './app-routing.module';
     PublicRoutingModule,
     IAMModule,
     RentingModule, //BC
-    WorkshopModule
+    WorkshopModule,
+    RentingModule,
+    BillingModule //BC
+
     /**Modules**/
   ],
   providers: [AuthService, { provide: HTTP_INTERCEPTORS, useClass: JWTInterceptorService, multi: true }],
