@@ -6,6 +6,6 @@ export interface RentingOrderItem {
   startDate: string;
   endDate: string;
   vehicleId: number;
-  state: 'O'|'A'|'D';
+  state: 'O'|'A'|'D'|'R';
   requesterId: number;
 }

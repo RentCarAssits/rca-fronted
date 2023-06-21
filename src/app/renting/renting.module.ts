@@ -15,6 +15,8 @@ import { CreateRentingItemComponent } from './components/renting-items/create-re
 import { TemporalComponent } from './components/temporal/temporal/temporal.component';
 import { RentingOrderHistoryComponent } from './components/renting-items/renting-order-history/renting-order-history.component';
 import { RentingItemsAceptedComponent } from './components/renter/renting-items-acepted/renting-items-acepted.component';
+import { AcceptedRentingItemsComponent } from './components/renting-items/accepted-renting-items/accepted-renting-items.component';
+import { CreateRentingOrderDialogComponent } from './components/renting-order/create-renting-order-dialog/create-renting-order-dialog.component';
 
 
 @NgModule({
@@ -31,7 +33,9 @@ import { RentingItemsAceptedComponent } from './components/renter/renting-items-
     CreateRentingItemComponent,
     TemporalComponent,
     RentingOrderHistoryComponent,
-    RentingItemsAceptedComponent
+    RentingItemsAceptedComponent,
+    AcceptedRentingItemsComponent,
+    CreateRentingOrderDialogComponent
   ],
   exports: [
     CarsPrincipalPage
