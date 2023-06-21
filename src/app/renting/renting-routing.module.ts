@@ -4,6 +4,8 @@ import {CarsPrincipalPage} from "./pages/cars-principal-page/cars-principal-page
 import {DashboardComponent} from "./pages/dashboard/dashboard/dashboard.component";
 import {CarInfoComponent} from "./pages/car-info/car-info.component";
 import {TemporalComponent} from "./components/temporal/temporal/temporal.component";
+import { SubscriptionsComponent } from '../subscriptions/subscriptions/subscriptions.component';
+
 
 
 const routes: Routes = [
@@ -18,6 +20,7 @@ const routes: Routes = [
   { path: 'we-are-working/profile', component: TemporalComponent },
   { path: 'we-are-working/settings', component: TemporalComponent },
   // Otras rutas específicas del módulo "modulo1"...
+  {path: 'Subscriptions/subscription-section', component: SubscriptionsComponent},
 ];
 
 @NgModule({

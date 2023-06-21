@@ -39,7 +39,8 @@ export class MenuComponent implements OnInit {
           {
             label: 'Subscriptions',
             icon: 'pi pi-fw pi-bolt',
-            routerLink: ['/renting/we-are-working/subscription']
+            //routerLink: ['/renting/Subscriptions/subscription-section']
+            routerLink: ['/renting/Subscriptions/subscription-section']
           },
           {
             label: 'ChatBox',
