@@ -15,7 +15,8 @@ import { FormsModule } from '@angular/forms';
   declarations: [
     AccoutPaymentComponent,
     InvoiceComponent,
-    MyPaymentComponent
+    MyPaymentComponent,
+    InvoiceComponent
   ],
   imports: [
     CommonModule,
@@ -24,7 +25,8 @@ import { FormsModule } from '@angular/forms';
     CheckboxModule,
     DropdownModule,
     OverlayPanelModule,
-    FormsModule
+    FormsModule,
+    OverlayPanelModule
   ]
 })
 export class BillingModule { }

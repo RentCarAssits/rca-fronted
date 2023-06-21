@@ -10,7 +10,8 @@ const routes: Routes=[
   { path: '', redirectTo: '', pathMatch: 'full' },
   {path: 'car-info-request/checkout', component: AccoutPaymentComponent},
   {path: 'car-info-request/invoice', component: InvoiceComponent},
-  {path: 'we-are-working/my-Payments', component: MyPaymentComponent}
+  {path: 'we-are-working/my-Payments', component: MyPaymentComponent},
+  {path: 'car-info-request/invoice', component: InvoiceComponent}
 ]
 @NgModule({
   declarations: [],
