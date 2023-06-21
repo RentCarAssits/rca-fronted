@@ -44,7 +44,7 @@ export class MenuComponent implements OnInit {
           {
             label: 'ChatBox',
             icon: 'pi pi-fw pi-comment',
-            routerLink: ['/renting/we-are-working/chatBox']
+            routerLink: ['/workshop/chat-box']
 
           },
           {

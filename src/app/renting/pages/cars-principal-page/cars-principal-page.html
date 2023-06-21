@@ -1,5 +1,4 @@
 <div class="grid p-fluid">
-  <!--MEJORES PUNTUADOS-->
   <div class="col-12">
     <div class="card">
       <div class="flex align-self-center justify-content-between ">
@@ -42,11 +41,12 @@
         <span class="block text-700 font-semibold mb-3">Most Recent</span>
       </div>
       <p-carousel [value]="thisYearVehicles" [numVisible]="4" [numScroll]="4" [circular]="false"
-                  [responsiveOptions]="responsiveOptions">
+                  [responsiveOptions]="responsiveOptions" class="carousel-container">
         <span class="flex justify-content-end w-full text-600 font-normal">See offer</span>
         <ng-template let-car pTemplate="item">
           <div (click)="requestVehicle(car)"
-               class="border-round m-2 text-center p-2 hover:bg-blue-50 transition-ease-in transition-delay-100 cursor-pointer"
+               class="border-round m-2 text-center p-2 hover:bg-blue-50 transition-ease-in
+               transition-delay-100 cursor-pointer h-400rem"
                style="border: 1px solid var(--surface-d)">
             <div class="flex justify-content-end align-items-center">
                <span class="order-badge see-offer flex gap-1">
@@ -71,6 +71,7 @@
             </div>
           </div>
         </ng-template>
+
       </p-carousel>
       <div class="flex justify-content-between mb-3">
         <span class="block text-700 font-semibold mb-3">Guaranteed</span>
@@ -107,4 +108,3 @@
     </div>
   </div>
 </div>
-

@@ -5,13 +5,14 @@ import { AppComponent } from './app.component';
 import {PrimeNgModule} from "./prime-ng/prime-ng.module";
 import {RentingModule} from "./renting/renting.module";
 import {PublicModule} from "./public/public.module";
-import {AppRoutingModule} from "./app-routing.module";
 import {SharedModule} from "./shared/shared.module";
 import {PublicRoutingModule} from "./public/public-routing.module";
 import {IAMModule} from "./iam/iam.module";
 import {AuthService} from "./iam/services/auth.service";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {JWTInterceptorService} from "./iam/interceptor/jwtinterceptor.service";
+import { WorkshopModule } from './workshop/workshop.module';
+import { AppRoutingModule } from './app-routing.module';
 
 
 @NgModule({
@@ -20,15 +21,16 @@ import {JWTInterceptorService} from "./iam/interceptor/jwtinterceptor.service";
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     HttpClientModule,
+    AppRoutingModule,
     /**Modules**/
     PrimeNgModule,
     PublicModule,
     SharedModule,
     PublicRoutingModule,
     IAMModule,
-    RentingModule //BC
+    RentingModule, //BC
+    WorkshopModule
     /**Modules**/
   ],
   providers: [AuthService, { provide: HTTP_INTERCEPTORS, useClass: JWTInterceptorService, multi: true }],

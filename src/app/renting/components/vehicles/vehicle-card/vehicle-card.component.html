@@ -13,13 +13,11 @@
            responsiveLayout="scroll">
     <ng-template pTemplate="header">
       <tr>
-        <th>Vehiculo</th>
-        <th pSortableColumn="name" class="font-semibold">Model
-        </th>
-        <th pSortableColumn="price">Price
-        </th>
-        <th pSortableColumn="stars">Stars
-        </th>
+        <th>Vehicles</th>
+        <th pSortableColumn="name">Name</th>
+        <th pSortableColumn="price">Price</th>
+        <th pSortableColumn="stars">Stars</th>
+        <th pSortableColumn="stars">Status</th>
         <th></th>
       </tr>
     </ng-template>
@@ -30,11 +28,14 @@
                    width="50"></p-image>
         </td>
         <td style="width: 35%; min-width: 7rem;" class="font-normal">{{car.name}}</td>
-        <td style="width: 35%; min-width: 7rem;" class="font-normal">{{car.price}} {{car.currency}} </td>
-        <td style="width: 35%; min-width: 7rem;" class="font-normal">{{car.stars}}
+        <td style="width: 30%; min-width: 7rem;" class="font-normal">{{car.price}} {{car.currency}} </td>
+        <td style="width: 15%; min-width: 3rem;" class="font-normal">{{car.stars}}
           <i class="mt-0 mb-3 pi pi-star-fill" style="color: rgb(255,177,89)"></i>
         </td>
-        <td style="width: 15%;">
+        <td style="width: 35%; min-width: 7rem;">
+         <span  [ngClass]="getCarStateClass(car.state)">{{getCarStateCode(car.state)}}</span>
+        </td>
+        <td style="width: 13%;">
           <button (click)="editVehicleById(car)" pButton pRipple type="button" icon="pi pi-file-edit"
                   class="p-button p-component p-button-text p-button-icon-only"></button>
         </td>

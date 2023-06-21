@@ -5,6 +5,7 @@ import {NotFoundComponent} from "./public/pages/not-found/not-found.component";
 import {LayoutComponent} from "./shared/pages/layout/layout.component";
 import {UserGuard} from "./iam/guard/user.guard";
 import {DashboardComponent} from "./renting/pages/dashboard/dashboard/dashboard.component";
+import { WorkshopModule } from './workshop/workshop.module';
 
 
 const routes: Routes = [
@@ -16,7 +17,8 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' }, // Redirigir a la ruta del dashboard
       { path: 'dashboard', component: DashboardComponent }, // Agrega aquí tu componente Dashboard
-      { path: 'renting',  canActivate: [UserGuard], loadChildren: () => import('./renting/renting.module').then(m => m.RentingModule) },
+      { path: 'renting', loadChildren: () => import('./renting/renting.module').then(m => m.RentingModule) },
+      { path: 'workshop', loadChildren: () => import('./workshop/workshop.module').then(m => m.WorkshopModule) }
     ]
   },
   /** IAM module: Login, register, ETC **/

@@ -1,0 +1,49 @@
+<div class="card">
+    <div class="flex justify-content-between align-items-center mb-1">
+      <h5 class="text-800 font-semibold">Requests accepted</h5>
+      <div>
+        <!-- <button pButton type="button" icon="pi pi-ellipsis-v" class="p-button-rounded p-button-text p-button-plain" (click)="menu.toggle($event)"></button>
+         <p-menu #menu [popup]="true" [model]="items"></p-menu>-->
+      </div>
+    </div>
+    <p-table *ngIf= -1 > 0  [value]="ownerCars" [paginator]="true" [rows]="5"
+             responsiveLayout="scroll">
+      <ng-template pTemplate="header" class="p-datatable-thead">
+        <tr>
+          <th>vehicle</th>
+          <th pSortableColumn="name">owner</th>
+          <th pSortableColumn="price">Price</th>
+          <th pSortableColumn="stars">something</th>
+          <th pSortableColumn="stars">Status</th>
+          <th></th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-car>
+        <tr>
+          <td style="width: 15%; min-width: 5rem;">
+            <p-image src="/src/assets/layout/images/rca.png" alt="xd" [preview]="true"
+                     width="50"></p-image>
+          </td>
+          <td style="width: 35%; min-width: 7rem;" class="font-normal"></td>
+          <td style="width: 30%; min-width: 7rem;" class="font-normal"></td>
+          <td style="width: 15%; min-width: 3rem;" class="font-normal">
+            <i class="mt-0 mb-3 pi pi-star-fill" style="color: rgb(255,177,89)"></i>
+          </td>
+          <td style="width: 35%; min-width: 7rem;">
+           <span ></span>
+          </td>
+          <td style="width: 13%;">
+            <button  pButton pRipple type="button" icon="pi pi-file-edit"
+                    class="p-button p-component p-button-text p-button-icon-only"></button>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+    <div *ngIf="0 === 0"
+         class="h-20rem flex justify-content-center align-items-center
+          flex-column">
+      <h5 class="order-badge add-data">No request accepted yet.</h5>
+      <p>As soon as you have request accepted by an Owner, it will appear here.</p>
+    </div>
+  </div>
+  
