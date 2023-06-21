@@ -110,7 +110,7 @@
     </ng-container>
     <ng-template #renterBlock>
       <ng-container *ngIf="userRole === 'renter'; else ownerBlock">
-        <app-renting-items-acepted></app-renting-items-acepted>
+        <app-accepted-renting-items></app-accepted-renting-items>
       </ng-container>
     </ng-template>
     <ng-template #ownerBlock>
@@ -160,5 +160,6 @@
         <app-renting-order-history></app-renting-order-history>
       </ng-container>
     </div>
+
   </div>
 </div>

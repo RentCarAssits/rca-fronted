@@ -13,6 +13,7 @@
         <button icon="pi pi-times" pButton pRipple *ngIf="item.state === 'O'" class="p-button p-button-danger rounded-circle small-button" (click)="denyRequest(item.id)"></button>
         <span *ngIf="item.state === 'A'" class="text-success uppercase">Accepted</span>
         <span *ngIf="item.state === 'D'" class="text-danger uppercase">Denied</span>
+        <span *ngIf="item.state === 'R'" class="text-success uppercase">Ordered</span>
       </div>
     </li>
   </ul>
@@ -21,8 +22,8 @@
 <ng-template #noRequests>
   <div class="h-20rem flex justify-content-center align-items-center
         flex-column">
-    <h5 class="order-badge add-data">No car reservation requests yet.</h5>
-    <p>As soon as you have a car reservation request, it will appear here.</p>
+    <h5 class="order-badge add-data">No renting request for the moment.</h5>
+    <p>As soon as you have a renting  request, it will appear here.</p>
   </div>
 </ng-template>
 
