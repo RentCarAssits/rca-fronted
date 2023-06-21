@@ -11,7 +11,8 @@ const routes: Routes=[
   {path: 'car-info-request/checkout', component: AccoutPaymentComponent},
   {path: 'car-info-request/invoice', component: InvoiceComponent},
   {path: 'we-are-working/my-Payments', component: MyPaymentComponent},
-  {path: 'car-info-request/invoice', component: InvoiceComponent}
+  {path: 'car-info-request/invoice', component: InvoiceComponent},
+  {path: 'we-are-working/my-Payments', component: MyPaymentComponent}
 ]
 @NgModule({
   declarations: [],

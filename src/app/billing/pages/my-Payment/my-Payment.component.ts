@@ -61,4 +61,6 @@ export class MyPaymentComponent implements OnInit {
     );
     this.accountPayables.result = filteredResults;
   }
+
+
 }

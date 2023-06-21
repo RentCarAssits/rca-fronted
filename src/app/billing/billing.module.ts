@@ -16,7 +16,8 @@ import { FormsModule } from '@angular/forms';
     AccoutPaymentComponent,
     InvoiceComponent,
     MyPaymentComponent,
-    InvoiceComponent
+    InvoiceComponent,
+    MyPaymentComponent
   ],
   imports: [
     CommonModule,
