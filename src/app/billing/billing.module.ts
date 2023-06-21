@@ -7,12 +7,14 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { DropdownModule } from 'primeng/dropdown';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { InvoiceComponent } from './pages/invoice/invoice.component';
+import { MyPaymentComponent } from './pages/my-Payment/my-Payment.component';
 
 
 @NgModule({
   declarations: [
     AccoutPaymentComponent,
-    InvoiceComponent
+    InvoiceComponent,
+    MyPaymentComponent
   ],
   imports: [
     CommonModule,
