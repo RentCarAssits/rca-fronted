@@ -17,6 +17,7 @@ const routes: Routes = [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' }, // Redirigir a la ruta del dashboard
       { path: 'dashboard', component: DashboardComponent }, // Agrega aquí tu componente Dashboard
       { path: 'renting',  canActivate: [UserGuard], loadChildren: () => import('./renting/renting.module').then(m => m.RentingModule) },
+      { path: 'billing',  canActivate: [UserGuard], loadChildren: () => import('./billing/billing.module').then(m => m.BillingModule) },
     ]
   },
   /** IAM module: Login, register, ETC **/
@@ -26,6 +27,8 @@ const routes: Routes = [
   { path: 'public', loadChildren: () => import('./public/public.module').then(m => m.PublicModule) },
   { path: 'public/page-not-found', component: NotFoundComponent },
   { path: '**', redirectTo: 'public/page-not-found' },
+
+  /*BILLING MANAGEMENT*/
 ];
 
 @NgModule({
