@@ -83,6 +83,35 @@ export class VehicleCardComponent implements OnInit {
     });
   }
 
+  getCarStateCode(state: string): string {
+    switch (state) {
+      case '0':
+        return 'MAINTENANCE';
+      case '1':
+        return 'AVAILABLE';
+      case '2':
+        return 'RENTED';
+      case '3':
+        return 'UNAVAILABLE';
+      default:
+        return '';
+    }
+  }
+
+  getCarStateClass(state: string): string {
+    switch (state) {
+      case '0':
+        return "customer-badge status-renewal";
+      case '1':
+        return "customer-badge status-new";
+      case '2':
+        return "customer-badge status-negotiation";
+      case '3':
+        return 'product-badge status-outofstock';
+      default:
+        return '';
+    }
+  }
 
   editVehicleById(car: any) {
     console.log(car)
@@ -92,6 +121,5 @@ export class VehicleCardComponent implements OnInit {
 
   showCreateDialog() {
     this.showCreateVehicleDialog()
-    console.log('llegando')
   }
 }

@@ -15,7 +15,7 @@ export class CarsPrincipalPage implements OnInit {
   dataSource: any[] = [];
   thisYearVehicles: any[] = []
   mostStarsVehicles: any [] = []
-
+  size:any = 10
   constructor(private http: HttpClient,
               private service: CarService,
               private dataService : DataServiceService,

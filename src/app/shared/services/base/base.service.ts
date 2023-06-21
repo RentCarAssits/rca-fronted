@@ -9,8 +9,8 @@ export class BaseService {
 
   token = localStorage.getItem('accessToken')
   // Students Endpoint
-  basePath = this.prod;
-
+  basePath = this.dev;
+ 
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -27,7 +27,7 @@ export class BaseService {
       console.log(`An error occurred: ${error.error}`);
     } else {
       // Unsuccessful Response Error Code returned from Backend
-      console.error(`Backend returned code ${error.status}, body was: ${error.error}`);
+      console.error(`Backend returned code ${error.status}, body was: ${error.error.message}`);
     }
     // Return observable with Error Message to Client
     return throwError(() =>

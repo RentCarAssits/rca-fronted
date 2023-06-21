@@ -138,7 +138,6 @@ export class DashboardComponent {
     this.userRole=user?.roles;
     console.log("USER ID: ",user);
     console.log("USER ID: ",this.currentuser);
-
   }
 
   getData(){
