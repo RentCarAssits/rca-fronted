@@ -27,7 +27,8 @@ import { FormsModule } from '@angular/forms';
     DropdownModule,
     OverlayPanelModule,
     FormsModule,
-    OverlayPanelModule
+    OverlayPanelModule,
+    FormsModule
   ]
 })
 export class BillingModule { }
