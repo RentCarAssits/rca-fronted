@@ -1,13 +1,8 @@
 <div class="card">
-  <div class="flex justify-content-between align-items-center mb-5">
-    <h5 class="text-800 font-semibold">My vehicles</h5>
-    <div>
-      <!-- <button pButton type="button" icon="pi pi-ellipsis-v" class="p-button-rounded p-button-text p-button-plain" (click)="menu.toggle($event)"></button>
-       <p-menu #menu [popup]="true" [model]="items"></p-menu>-->
+  <div class="flex justify-content-between align-items-center mb-3">
+    <h5 class="text-800 font-semibold my-0">My vehicles</h5>
       <p-button (click)="showCreateDialog()" icon="pi pi-plus"
                 styleClass="p-button-rounded p-button-text p-button-raised"></p-button>
-
-    </div>
   </div>
   <p-table *ngIf="ownerCars && ownerCars.length > 0" [value]="ownerCars" [paginator]="true" [rows]="5"
            responsiveLayout="scroll">

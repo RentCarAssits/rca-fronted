@@ -15,7 +15,7 @@ const routes: Routes = [
     canLoad: [ UserGuard ],
     canActivate: [ UserGuard ],
     children: [
-      { path: '', redirectTo: 'dashboard', pathMatch: 'full' }, // Redirigir a la ruta del dashboard
+      { path: '', redirectTo: 'renting/dashboard', pathMatch: 'full' }, // Redirigir a la ruta del dashboard
       { path: 'dashboard', component: DashboardComponent }, // Agrega aquí tu componente Dashboard
       { path: 'renting', loadChildren: () => import('./renting/renting.module').then(m => m.RentingModule) },
       { path: 'workshop', loadChildren: () => import('./workshop/workshop.module').then(m => m.WorkshopModule) }
