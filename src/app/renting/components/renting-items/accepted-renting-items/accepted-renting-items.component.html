@@ -19,14 +19,11 @@
         <td style="width: 35%; min-width: 7rem;" class="font-normal">{{formatDate(item.startDate)}}</td>
         <td style="width: 30%; min-width: 7rem;" class="font-normal">{{formatDate(item.endDate)}}</td>
         <td style="width: 35%; min-width: 7rem;">
-          <span  [ngClass]="getCarStateClass(item.state)">{{getCarStateCode(item.state)}}</span>
+          <span [ngClass]="getCarStateClass(item.state)">{{getCarStateCode(item.state)}}</span>
         </td>
         <td style="width: 13%;">
-          <p-button
-            class="text-xs"
-            (click)="createRentOrder(item)"
-            label="rent"
-           ></p-button>
+
+          <p-button  (click)="createRentOrder(item)" icon="pi pi-credit-card" styleClass="p-button-rounded p-button-text p-button-raised"></p-button>
         </td>
       </tr>
     </ng-template>
