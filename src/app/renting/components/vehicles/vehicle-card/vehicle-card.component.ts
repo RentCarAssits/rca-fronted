@@ -46,6 +46,7 @@ export class VehicleCardComponent implements OnInit {
 
     this.ref = this.dialogService.open(EditFormCarComponent, {
       data: {car: car},
+      header:'Update Vehicle',
       width: width,
       contentStyle: {overflow: 'auto'},
       baseZIndex: 10000,
@@ -65,6 +66,7 @@ export class VehicleCardComponent implements OnInit {
     }
     this.ref = this.dialogService.open(CreateCarFormComponent, {
       width: width,
+      header:'Register Vehicle',
       contentStyle: {overflow: 'auto'},
       baseZIndex: 10000,
     });

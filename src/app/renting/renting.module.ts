@@ -21,6 +21,13 @@ import { CarInfoComponent } from './pages/car-info/car-info.component';
 import { CreateRentingItemComponent } from './components/renting-items/create-renting-item/create-renting-item.component';
 import { TemporalComponent } from './components/temporal/temporal/temporal.component';
 import { RentingOrderHistoryComponent } from './components/renting-items/renting-order-history/renting-order-history.component';
+<<<<<<< HEAD
+=======
+import { AcceptedRentingItemsComponent } from './components/renting-items/accepted-renting-items/accepted-renting-items.component';
+import { CreateRentingOrderDialogComponent } from './components/renting-order/create-renting-order-dialog/create-renting-order-dialog.component';
+import { RentOrderOwnerComponent } from './components/owner/rent-order-owner/rent-order-owner.component';
+import { RentOrderRenterComponent } from './components/renter/rent-order-renter/rent-order-renter.component';
+>>>>>>> 44af81b82bbf1bfedd0308f2ad6b5cbb0b839074
 
 
 @NgModule({
@@ -36,7 +43,15 @@ import { RentingOrderHistoryComponent } from './components/renting-items/renting
     CarInfoComponent,
     CreateRentingItemComponent,
     TemporalComponent,
+<<<<<<< HEAD
     RentingOrderHistoryComponent
+=======
+    RentingOrderHistoryComponent,
+    AcceptedRentingItemsComponent,
+    CreateRentingOrderDialogComponent,
+    RentOrderOwnerComponent,
+    RentOrderRenterComponent
+>>>>>>> 44af81b82bbf1bfedd0308f2ad6b5cbb0b839074
   ],
   exports: [
     CarsPrincipalPage

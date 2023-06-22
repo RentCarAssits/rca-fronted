@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: '', redirectTo: '', pathMatch: 'full' },
   { path: 'cars-catalog', component: CarsPrincipalPage },
   { path: 'dashboard', component: DashboardComponent },
-  { path: 'car-info-request', component: CarInfoComponent },
+  { path: 'cars-catalog/car-info-request', component: CarInfoComponent },
   { path: 'we-are-working/full-catalog', component: TemporalComponent },
   { path: 'we-are-working/subscription', component: TemporalComponent },
   { path: 'we-are-working/chatBox', component: TemporalComponent },

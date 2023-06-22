@@ -56,6 +56,7 @@
     </div>
   </div>
   <div class="col-12 xl:col-6">
+<<<<<<< HEAD
     <div class="card">
       <h5 class="text-800 font-semibold">Rental History</h5>
       <div class=" h-20rem flex justify-content-center align-items-center
@@ -93,6 +94,30 @@
       </p-table> -->
     </div>
     <app-vehicle-card></app-vehicle-card>
+=======
+    <!--Rent Order History-->
+    <ng-container [ngSwitch]="userRole[0]">
+      <div *ngSwitchCase="'mechanic'" class="h-20rem flex justify-content-center align-items-center flex-column">
+        <!-- Contenido para el mecánico -->
+      </div>
+      <div *ngSwitchCase="'renter'">
+        <app-rent-order-renter></app-rent-order-renter>
+      </div>
+      <app-rent-order-owner *ngSwitchDefault></app-rent-order-owner>
+    </ng-container>
+    <!--RentingOrderItems-->
+    <ng-container *ngIf="userRole[0] === 'mechanic'; else renterBlock">
+      <p>MECANICO</p>
+    </ng-container>
+    <ng-template #renterBlock>
+      <ng-container *ngIf="userRole[0] === 'renter'; else ownerBlock">
+        <app-accepted-renting-items></app-accepted-renting-items>
+      </ng-container>
+    </ng-template>
+    <ng-template #ownerBlock>
+      <app-vehicle-card></app-vehicle-card>
+    </ng-template>
+>>>>>>> 44af81b82bbf1bfedd0308f2ad6b5cbb0b839074
   </div>
 
   <div class="col-12 xl:col-6">

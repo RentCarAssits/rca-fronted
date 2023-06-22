@@ -2,7 +2,6 @@
 @import "assets/layout/styles/layout/layout.css";
 
 /* PrimeNG */
-@import "../node_modules/primeng/resources/primeng.min.css";
 @import "../node_modules/primeflex/primeflex.css";
 @import "../node_modules/primeicons/primeicons.css";
 
@@ -23,3 +22,64 @@ body {
   font-family: var(--font-family);
   color: var(--text-color);
 }
+<<<<<<< HEAD
+=======
+
+@media screen and (max-width: 575px) {
+  .device-type::after {
+    content: 'xs';
+    display: inline;
+    background-color: #000;
+    color: #fff;
+    padding: 4px 4px;
+    margin-bottom: 4px;
+  }
+}
+
+@media screen and (min-width: 576px) and (max-width: 767px) {
+  .device-type::after {
+    content: 'sm';
+    display: inline;
+    background-color: #000;
+    color: #fff;
+    padding: 4px 4px;
+    margin-bottom: 4px;
+  }
+}
+
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  .device-type::after {
+    content: 'md';
+    display: inline;
+    background-color: #000;
+    color: #fff;
+    padding: 4px 4px;
+    margin-bottom: 4px;
+  }
+}
+
+
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+  .device-type::after {
+    content: 'lg';
+    display: inline;
+    background-color: #000;
+    color: #fff;
+    padding: 4px 4px;
+    margin-bottom: 4px;
+  }
+}
+
+
+@media screen and (min-width: 1200px) {
+  .device-type::after {
+    content: 'xl';
+    display: inline;
+    background-color: #000;
+    color: #fff;
+    padding: 4px 4px;
+    margin-bottom: 4px;
+  }
+}
+>>>>>>> 44af81b82bbf1bfedd0308f2ad6b5cbb0b839074
