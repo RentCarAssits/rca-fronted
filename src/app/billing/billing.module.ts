@@ -8,6 +8,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { InvoiceComponent } from './pages/invoice/invoice.component';
 import { MyPaymentComponent } from './pages/my-Payment/my-Payment.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { MyPaymentComponent } from './pages/my-Payment/my-Payment.component';
     InputNumberModule,
     CheckboxModule,
     DropdownModule,
-    OverlayPanelModule
+    OverlayPanelModule,
+    FormsModule
   ]
 })
 export class BillingModule { }
