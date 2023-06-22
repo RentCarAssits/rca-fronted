@@ -1,4 +1,4 @@
 export interface plansResponse{
-    planName: string,
-    benefits: string,
+    PlanName: string,
+    Benefits: string,
 }

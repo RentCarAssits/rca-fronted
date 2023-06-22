@@ -29,7 +29,7 @@ export class SubscriptionsComponent {
   getAllPlans(){
     this.planService.getAllPlans().subscribe(
       (response:any)=>{
-        this.plans = Object.values(response.result);
+        this.plans = response.result
         console.log(this.plans);
       },
       (error)=>{

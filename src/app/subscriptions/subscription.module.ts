@@ -1,6 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { SubscriptionsComponent } from "./subscriptions/subscriptions.component";
+import { PrimeNgModule } from "../prime-ng/prime-ng.module";
 
 
 @NgModule({
@@ -11,7 +12,9 @@ import { SubscriptionsComponent } from "./subscriptions/subscriptions.component"
     ],
     imports: [
           CommonModule,
+          PrimeNgModule
    ],
+   
  
   })
 
