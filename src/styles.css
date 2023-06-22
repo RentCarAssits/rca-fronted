@@ -23,7 +23,7 @@ body {
   font-family: var(--font-family);
   color: var(--text-color);
 }
-/*
+
 @media screen and (max-width: 575px) {
   .device-type::after {
     content: 'xs';
@@ -80,4 +80,4 @@ body {
     padding: 4px 8px;
     margin-bottom: 4px;
   }
-}*/
+}
