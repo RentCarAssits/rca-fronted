@@ -15,10 +15,11 @@ export class SubscriptionsComponent {
   plan!:any; 
   subscription!: any;
   plans!: plansResponse[];
+
   constructor(private planService:PlanService){
     this.plan = planService;
-
   }
+
   ngOnInit(){
     this.getAllPlans();
     this.initChart();
@@ -28,7 +29,7 @@ export class SubscriptionsComponent {
   getAllPlans(){
     this.planService.getAllPlans().subscribe(
       (response:any)=>{
-        this.plans = response.result;
+        this.plans = Object.values(response.result);
         console.log(this.plans);
       },
       (error)=>{
@@ -57,7 +58,7 @@ export class SubscriptionsComponent {
  
  
   getFunction(){
-    window.alert("SONO BISKE DOL");
+    window.alert("");
   }
 
 }
