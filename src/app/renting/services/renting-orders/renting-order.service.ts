@@ -13,4 +13,13 @@ export class RentingOrderService extends ResourceService<any> {
     this.basePath+='/rent-order';
   }
 
+  getFullInfoRentOrderByOwner(): Observable<any> {
+    return this.http.get<any>(`${this.basePath}/by/owner`, this.httpOptions)
+      .pipe(retry(2), catchError(this.handleError));
+  }
+  getFullInfoRentOrderByRenter(): Observable<any> {
+    return this.http.get<any>(`${this.basePath}/by/renter`, this.httpOptions)
+      .pipe(retry(2), catchError(this.handleError));
+  }
+
 }

@@ -22,7 +22,11 @@
           <span  [ngClass]="getCarStateClass(item.state)">{{getCarStateCode(item.state)}}</span>
         </td>
         <td style="width: 13%;">
-          <p-button (click)="createRentOrder(item)"  label="Create Order" icon="pi pi-check"></p-button>
+          <p-button
+            class="text-xs"
+            (click)="createRentOrder(item)"
+            label="rent"
+           ></p-button>
         </td>
       </tr>
     </ng-template>

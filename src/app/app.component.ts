@@ -1,21 +1,29 @@
-import { Component } from '@angular/core';
-import {Router} from "@angular/router";
+import {Component, OnInit} from '@angular/core';
+import {PrimeNGConfig} from "primeng/api";
+import {LayoutService} from "./shared/services/layout/layout.service";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent  implements OnInit {
   title = 'rca';
+  constructor(private primengConfig: PrimeNGConfig, private layoutService: LayoutService) { }
 
-  options = [
+  ngOnInit(): void {
+    this.primengConfig.ripple = true;
 
-    { path: '/public', title: 'Public'},
-    { path: '/about', title: 'About'}
-  ];
 
-  constructor(private router: Router) {
-
+    this.layoutService.config = {
+      ripple: false,
+      inputStyle: 'outlined',
+      menuMode: 'static',
+      colorScheme: 'light',
+      theme: 'lara-light-indigo',
+      scale: 12
+    };
   }
+
+
 }
