@@ -20,6 +20,8 @@ import { RentOrderOwnerComponent } from './components/owner/rent-order-owner/ren
 import { RentOrderRenterComponent } from './components/renter/rent-order-renter/rent-order-renter.component';
 
 
+
+
 @NgModule({
   declarations: [
     CarsPrincipalPage,
@@ -37,7 +39,8 @@ import { RentOrderRenterComponent } from './components/renter/rent-order-renter/
     AcceptedRentingItemsComponent,
     CreateRentingOrderDialogComponent,
     RentOrderOwnerComponent,
-    RentOrderRenterComponent
+    RentOrderRenterComponent,
+    RentingOrderHistoryComponent
   ],
   exports: [
     CarsPrincipalPage
