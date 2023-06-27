@@ -11,10 +11,10 @@ import {IAMModule} from "./iam/iam.module";
 import {AuthService} from "./iam/services/auth.service";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {JWTInterceptorService} from "./iam/interceptor/jwtinterceptor.service";
+import { SubscriptionModule } from './subscriptions/subscription.module';
 import { WorkshopModule } from './workshop/workshop.module';
 import { AppRoutingModule } from './app-routing.module';
 import { BillingModule } from './billing/billing.module';
-
 
 
 @NgModule({
@@ -32,10 +32,10 @@ import { BillingModule } from './billing/billing.module';
     PublicRoutingModule,
     IAMModule,
     RentingModule, //BC
+    SubscriptionModule, //Subscription BC
     WorkshopModule,
     RentingModule,
     BillingModule //BC
-
     /**Modules**/
   ],
   providers: [AuthService, { provide: HTTP_INTERCEPTORS, useClass: JWTInterceptorService, multi: true }],

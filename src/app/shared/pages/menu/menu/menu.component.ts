@@ -16,7 +16,7 @@ export class MenuComponent implements OnInit {
               private authService: AuthService) {
   }
 
-  ngOnInit() {
+   ngOnInit() {
     this.model = [
       {
         label: 'Home',
@@ -69,10 +69,11 @@ export class MenuComponent implements OnInit {
         icon: 'pi pi-fw pi-star',
         routerLink: [this.getRouteByRole()]
       },
-      {
-        label: 'Subscriptions',
-        icon: 'pi pi-fw pi-bolt',
-        routerLink: ['/renting/we-are-working/subscription']
+       {
+            label: 'Subscriptions',
+            icon: 'pi pi-fw pi-bolt',
+            //routerLink: ['/renting/Subscriptions/subscription-section']
+            routerLink: ['/renting/Subscriptions/subscription-section']
       },
       {
         label: 'ChatBox',
