@@ -17,18 +17,11 @@ export class SubscriptionsComponent {
   plan!:any; 
   subscription!: any;
   plans!: plansResponse[];
-  
   currentPlan!: currentPlanResponse;
   currentuser:any;
-
   // bollean by marx
-  currentPlanBool: boolean = true;
-
+  currentPlanBool: boolean = false;
   userRole:any;
-
-
-
-
   constructor(private planService:PlanService, private authService:AuthService){
     this.plan = planService;
   }
@@ -38,8 +31,10 @@ export class SubscriptionsComponent {
     this.getCurrentPlan()
     this.initChart();
   }
+
   ngOnDestroy(){ }
   initChart(){}
+
   getCurrenUserId(){
     let user = this.authService.getCurrentUser();
     this.currentuser = user?.id;
@@ -47,18 +42,23 @@ export class SubscriptionsComponent {
     console.log("USER ID: ",user);
     console.log("USER ID: ",this.currentuser);
   }
+
   getCurrentPlan(){
-    this.planService.getCurrentPlanByUser(3).subscribe(
+    this.planService.getCurrentPlanByUser(this.currentuser).subscribe(
       (Response:any)=>{
         this.currentPlanBool = true;
         this.currentPlan = Response.result;
-        console.log(this.currentPlan);
+        if(this.currentPlan == null){
+          this.currentPlanBool = false;
+        }
       },(error)=>{
         this.currentPlanBool = false;
         console.log("No se pudo mi rey");
+        window.alert(this.currentPlanBool);
       }
     )
   }
+
   getAllPlans(){
     this.planService.getAllPlans().subscribe(
       (response:any)=>{

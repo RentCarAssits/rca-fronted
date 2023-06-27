@@ -35,7 +35,6 @@ export class DashboardComponent {
 
   subscription!: any;
   totalVehicles: number = 0;
-<<<<<<< HEAD
   userRole:any;
   constructor( 
     public layoutService: LayoutService, 
@@ -43,26 +42,12 @@ export class DashboardComponent {
     private rentingOrderItemsServices:RentingOrderItemsService, 
     private authService:AuthService) 
     {this.subscription = this.layoutService.configUpdate$.subscribe(() => {});}
-=======
-  userRole: any;
-
-  constructor(public layoutService: LayoutService, private carService: CarService,
-              private rentingOrderItemsServices: RentingOrderItemsService, private authService: AuthService) {
-    this.subscription = this.layoutService.configUpdate$.subscribe(() => {
-    });
-  }
->>>>>>> 2c5238f5e097da3758f193a68725d42e1b4e20eb
 
   ngOnInit() {
     this.getTotalVehicles();
     this.getCurrenUserId();
     this.getData();
     this.initChart();
-
-<<<<<<< HEAD
-=======
-
->>>>>>> 2c5238f5e097da3758f193a68725d42e1b4e20eb
     this.items = [
       {label: 'Add New', icon: 'pi pi-fw pi-plus'},
       {label: 'Remove', icon: 'pi pi-fw pi-minus'}
@@ -74,10 +59,7 @@ export class DashboardComponent {
     const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
     const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 2c5238f5e097da3758f193a68725d42e1b4e20eb
     this.basicOptions = {
       plugins: {
         legend: {
@@ -155,11 +137,7 @@ export class DashboardComponent {
     this.userRole=user?.roles;
     console.log("USER ID: ",user);
     console.log("USER ID: ",this.currentuser);
-<<<<<<< HEAD
-=======
 
-
->>>>>>> 2c5238f5e097da3758f193a68725d42e1b4e20eb
   }
 
   getData() {
