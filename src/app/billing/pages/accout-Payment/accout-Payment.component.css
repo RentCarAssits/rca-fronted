@@ -1,6 +1,10 @@
-#paypal-button-container {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  z-index: 1000; /* esto asegura que el botón se superponga a otros elementos */
+.hidden {
+  display: none;
+}
+
+
+.panel-ancho-personalizado {
+  max-width: 400px; /* Ajusta el valor según tus necesidades */
+  margin-left: auto;
+  margin-right: auto;
 }

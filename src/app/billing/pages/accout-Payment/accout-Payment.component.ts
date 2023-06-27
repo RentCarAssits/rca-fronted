@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AccountPayableService } from '../../services/account-payable/account-payable.service';
 import { CarService } from 'src/app/renting/services/car/car.service';
-
+import { MessageService } from 'primeng/api';
+import { UrlTree } from '@angular/router';
+import { FormGroup,FormControl,Validators } from '@angular/forms';
 declare var paypal: any;
 
 @Component({
@@ -15,6 +17,7 @@ export class AccoutPaymentComponent implements OnInit {
   result: any;
   accountPayables: any;
   car: any;
+  shippingForm: FormGroup ;
   private loadPaypalScript(): Promise<any> {
     return new Promise((resolve, reject) => {
       const scriptElement = document.createElement('script');
@@ -27,8 +30,19 @@ export class AccoutPaymentComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private accountService: AccountPayableService,
-    private carService: CarService
-  ) {}
+    private carService: CarService,
+    private messageService:MessageService
+  ) {
+    this.shippingForm = new FormGroup({
+      'email': new FormControl(null, Validators.required),
+      'country': new FormControl(null, Validators.required),
+      'name': new FormControl(null, Validators.required),
+      'lastname': new FormControl(null, Validators.required),
+      'address': new FormControl(null, Validators.required),
+      'pc': new FormControl(null, Validators.required),
+      'city': new FormControl(null, Validators.required),
+    });
+  }
 
   async ngOnInit() {
     await this.getAccountById();
@@ -82,8 +96,19 @@ export class AccoutPaymentComponent implements OnInit {
         });
       },
       onApprove: (data: any, actions: any) => {
+        console.log('Orden aprobada, iniciando captura...');  // Mensaje de depuración adicional
         return actions.order.capture().then((details: any) => {
-          console.log('Pago aprobado:', details);
+          console.log('Captura completada, detalles:', details);  // Este es el mensaje original que no estás viendo
+          // Mostrar un mensaje de éxito al usuario
+          this.messageService.add({severity:'success', summary:'Pago realizado con éxito', detail:'Transacción completada por ' + details.payer.name.given_name + '!'});
+
+          // Redirigir al usuario a una página de agradecimiento después de un breve retraso
+         /* setTimeout(() => {
+            const url: UrlTree = this.router.createUrlTree(['renting', 'dashboard']);
+            this.router.navigateByUrl(url);
+          }, 2000);  // 2000 ms = 2 segundos*/
+        }).catch((error: any) => {
+          console.error('Error durante la captura:', error);  // Nuevo mensaje de depuración para capturar errores
         });
       },
       onCancel: (data: any) => {

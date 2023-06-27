@@ -10,6 +10,10 @@ import { InvoiceComponent } from './pages/invoice/invoice.component';
 import { MyPaymentComponent } from './pages/my-Payment/my-Payment.component';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
+import {ToastModule} from 'primeng/toast';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CardModule } from 'primeng/card';
+import { PanelModule } from 'primeng/panel';
 
 @NgModule({
   declarations: [
@@ -30,6 +34,10 @@ import { ButtonModule } from 'primeng/button';
     OverlayPanelModule,
     FormsModule,
     ButtonModule,
+    ToastModule,
+    ReactiveFormsModule,
+    CardModule,
+    PanelModule
   ]
 })
 export class BillingModule { }
