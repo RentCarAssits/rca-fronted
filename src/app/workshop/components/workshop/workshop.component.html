@@ -1,1 +1,35 @@
-<p>workshop works!</p>
+<div class="card mb-5" *ngIf="workshops.length !== 0">
+  <div class="flex justify-content-between align-items-center mb-2">
+    <h5 class="text-800 font-semibold">Rental History</h5>
+  </div>
+  <p-table  *ngIf="workshops && workshops.length > 0"  [value]="workshops"  [paginator]="true" [rows]="5"
+            responsiveLayout="scroll">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Id</th>
+        <th pSortableColumn="name">Name</th>
+        <th>Owner id</th>
+        <th>address</th>
+        <th>Actions</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-workshop class="text-xs">
+      <tr>
+        <td style="width: 5%; min-width: 2rem;" class="font-normal">{{workshop.id}}</td>
+        <td style="width: 15%; min-width: 7rem;" class="font-normal">{{workshop.name}}</td>
+        <td style="width: 15%; min-width: 3rem;" class="font-normal">{{workshop.ownerId}}</td>
+        <td style="width: 15%; min-width: 3rem;" class="font-normal">{{workshop.address}}</td>
+        <td style="width: 15%; min-width: 7rem;">
+          <!-- <span class="flex justify-content-center" [ngClass]="getCarStateClass(rent.state)">{{getCarStateCode(rent.state)}}</span> -->
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+  <div *ngIf="!workshops || workshops.length === 0"
+       class="h-20rem flex justify-content-center align-items-center
+        flex-column">
+    <h5 class="order-badge add-data">No cars listed yet.</h5>
+    <p>Get started by publishing your first car!</p>
+  </div>
+</div>
+<!--(click)=""-->
