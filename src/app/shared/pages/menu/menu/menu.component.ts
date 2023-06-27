@@ -10,12 +10,13 @@ import {Router} from "@angular/router";
 })
 export class MenuComponent implements OnInit {
   model: any[] = [];
+  roles: string[] | undefined = []
 
   constructor(public layoutService: LayoutService, private router: Router,
               private authService: AuthService) {
   }
 
-  ngOnInit() {
+   ngOnInit() {
     this.model = [
       {
         label: 'Home',
@@ -25,39 +26,7 @@ export class MenuComponent implements OnInit {
       },
       {
         label: 'Section 1',
-        items: [
-          {
-            label: 'Featured Cars',
-            icon: 'pi pi-fw pi-car',
-            routerLink: ['/renting/cars-catalog']
-          },
-          {
-            label: 'Full Catalog',
-            icon: 'pi pi-fw pi-star',
-            routerLink: ['/renting/we-are-working/full-catalog']
-          },
-          {
-            label: 'Subscriptions',
-            icon: 'pi pi-fw pi-bolt',
-            routerLink: ['/renting/we-are-working/subscription']
-          },
-          {
-            label: 'ChatBox',
-            icon: 'pi pi-fw pi-comment',
-            routerLink: ['/workshop/chat-box']
-
-          },
-          {
-            label: 'Statistics',
-            icon: 'pi pi-fw pi-chart-bar',
-            routerLink: ['/renting/we-are-working/statistics']
-          },
-          {
-            label: 'Payments',
-            icon: 'pi pi-fw pi-dollar',
-            routerLink: ['/billing/we-are-working/my-Payments']
-          },
-        ]
+        items: this.getSectionItems()
       },
       {
         label: 'Profile',
@@ -86,14 +55,99 @@ export class MenuComponent implements OnInit {
           {
             label: 'Landing',
             icon: 'pi pi-fw pi-globe',
-            routerLink: ['/public/landing']},
+            routerLink: ['/public/landing']
+          },
         ]
       },
     ];
   }
 
+  getSectionItems() {
+    const items = [
+      {
+        label: this.getNameByRole(),
+        icon: 'pi pi-fw pi-star',
+        routerLink: [this.getRouteByRole()]
+      },
+       {
+            label: 'Subscriptions',
+            icon: 'pi pi-fw pi-bolt',
+            //routerLink: ['/renting/Subscriptions/subscription-section']
+            routerLink: ['/renting/Subscriptions/subscription-section']
+      },
+      {
+        label: 'ChatBox',
+        icon: 'pi pi-fw pi-comment',
+        routerLink: ['/workshop/chat-box']
+
+      },
+      {
+        label: 'Statistics',
+        icon: 'pi pi-fw pi-chart-bar',
+        routerLink: ['/renting/we-are-working/statistics']
+      },
+      {
+        label: 'Payments',
+        icon: 'pi pi-fw pi-dollar',
+        routerLink: ['/billing/we-are-working/my-Payments']
+      },
+    ];
+    if (this.roles) {
+      console.log(this.roles);
+      if (this.roles[0] != 'mechanic') {
+        items.unshift({
+          label: 'Featured Cars',
+          icon: 'pi pi-fw pi-car',
+          routerLink: ['/renting/feature-vehicles']
+        });
+      }
+    } else {
+      items.unshift({
+        label: 'Featured Cars',
+        icon: 'pi pi-fw pi-car',
+        routerLink: ['/renting/feature-vehicles']
+      });
+    }
+
+    return items;
+  }
+
+
   private logout() {
     this.authService.signOut();
     this.router.navigate(['/public/landing']);
+  }
+
+
+  private getNameByRole(): string {
+    this.roles = this.authService.getCurrentUser()?.roles
+    if (this.roles) {
+      switch (this.roles[0]) {
+        case 'owner':
+        case 'renter':
+          return 'full catalog'
+        case 'mechanic':
+          return 'vehicles for maintenance'
+        default:
+          return 'full catalog'
+      }
+    }
+    return 'full catalog'
+  }
+
+  private getRouteByRole(): string {
+    this.roles = this.authService.getCurrentUser()?.roles
+    if (this.roles) {
+      switch (this.roles[0]) {
+        case 'owner':
+        case 'renter':
+          return '/renting/vehicles-catalog'
+        case 'mechanic':
+          return '/workshop/maintenance-vehicles'
+        default:
+          return '/renting/vehicles-catalog'
+      }
+    }
+    return '/renting/vehicles-catalog'
   }
 }
