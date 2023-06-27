@@ -44,7 +44,7 @@ export class CarInfoComponent {
     });
     this.data.currentVehicleId.subscribe(car => this.car = car);
     if (!this.car.image) {
-      this.router.navigate(['renting/cars-catalog']);
+      this.router.navigate(['renting/vehicles-catalog']);
     }
   }
 
@@ -87,13 +87,13 @@ export class CarInfoComponent {
         error: (err) => {
           this.showError()
           setTimeout(() => {
-            this.router.navigate(['renting/cars-catalog']);
+            this.router.navigate(['renting/vehicles-catalog']);
           }, 1500);
         },
         complete: () => {
           this.showSuccess();
           setTimeout(() => {
-            this.router.navigate(['renting/cars-catalog']);
+            this.router.navigate(['renting/vehicles-catalog']);
           }, 1500);
 
         }

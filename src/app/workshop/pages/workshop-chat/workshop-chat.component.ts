@@ -43,7 +43,7 @@ export class WorkshopChatComponent {
       });
       this.chatForm.reset();
       this.scrollToBottom();
-      this.messageService.sendMessage(sentMessage).subscribe((response: any) => {
+      this.messageService.create( { prompt: sentMessage }).subscribe((response: any) => {
         this.loading = false;
         this.messages.push({
           type: 'client',

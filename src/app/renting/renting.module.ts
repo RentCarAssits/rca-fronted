@@ -18,6 +18,8 @@ import { AcceptedRentingItemsComponent } from './components/renting-items/accept
 import { CreateRentingOrderDialogComponent } from './components/renting-order/create-renting-order-dialog/create-renting-order-dialog.component';
 import { RentOrderOwnerComponent } from './components/owner/rent-order-owner/rent-order-owner.component';
 import { RentOrderRenterComponent } from './components/renter/rent-order-renter/rent-order-renter.component';
+import { VehiclesCatalogComponent } from './pages/vehicles-catalog/vehicles-catalog.component';
+import { CardVehicleComponent } from './components/vehicles/card-vehicle/card-vehicle.component';
 
 
 
@@ -40,7 +42,9 @@ import { RentOrderRenterComponent } from './components/renter/rent-order-renter/
     CreateRentingOrderDialogComponent,
     RentOrderOwnerComponent,
     RentOrderRenterComponent,
-    RentingOrderHistoryComponent
+    RentingOrderHistoryComponent,
+    VehiclesCatalogComponent,
+    CardVehicleComponent
   ],
   exports: [
     CarsPrincipalPage
