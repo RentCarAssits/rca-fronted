@@ -19,6 +19,7 @@ const routes: Routes = [
       { path: 'dashboard', component: DashboardComponent }, // Agrega aquí tu componente Dashboard
       { path: 'renting',  canActivate: [UserGuard], loadChildren: () => import('./renting/renting.module').then(m => m.RentingModule) },
       { path:'subscription', component: SubscriptionsComponent},
+
     ]
   },
   /** IAM module: Login, register, ETC **/
