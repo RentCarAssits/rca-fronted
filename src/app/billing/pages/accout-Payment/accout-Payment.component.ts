@@ -96,19 +96,17 @@ export class AccoutPaymentComponent implements OnInit {
         });
       },
       onApprove: (data: any, actions: any) => {
-        console.log('Orden aprobada, iniciando captura...');  // Mensaje de depuración adicional
+        console.log('Orden aprobada, iniciando captura...');
         return actions.order.capture().then((details: any) => {
-          console.log('Captura completada, detalles:', details);  // Este es el mensaje original que no estás viendo
-          // Mostrar un mensaje de éxito al usuario
+          console.log('Captura completada, detalles:', details);
           this.messageService.add({severity:'success', summary:'Pago realizado con éxito', detail:'Transacción completada por ' + details.payer.name.given_name + '!'});
 
-          // Redirigir al usuario a una página de agradecimiento después de un breve retraso
-         /* setTimeout(() => {
+          setTimeout(() => {
             const url: UrlTree = this.router.createUrlTree(['renting', 'dashboard']);
             this.router.navigateByUrl(url);
-          }, 2000);  // 2000 ms = 2 segundos*/
+          }, 2000);  // 2000 ms = 2 segundos*
         }).catch((error: any) => {
-          console.error('Error durante la captura:', error);  // Nuevo mensaje de depuración para capturar errores
+          console.error('Error durante la captura:', error);
         });
       },
       onCancel: (data: any) => {
