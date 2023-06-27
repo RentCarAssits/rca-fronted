@@ -2,11 +2,13 @@ import {Component, TemplateRef, ViewChild} from '@angular/core';
 import {DialogService, DynamicDialogRef} from "primeng/dynamicdialog";
 import {HttpClient} from "@angular/common/http";
 import {CarService} from "../../../services/car/car.service";
-import {Router} from "@angular/router";
+import {Router, UrlTree} from "@angular/router";
 import {MessageService} from "primeng/api";
 import {RefDialogServiceService} from "../../../../iam/services/ref-dialog-service.service";
 import {RentingOrderItemsService} from "../../../services/renting-items/renting-order-items.service";
 import {AuthService} from "../../../../iam/services/auth.service";
+import { AccountPayableService } from 'src/app/billing/services/account-payable/account-payable.service';
+import { switchMap, map } from 'rxjs/operators';
 import {
   SelectedRentingOrderItemDialogComponent
 } from "../selected-renting-order-item-dialog/selected-renting-order-item-dialog.component";
@@ -25,12 +27,17 @@ export class AcceptedRentingItemsComponent {
   ref!: DynamicDialogRef;
   user = this.authService.getCurrentUser();
   selectedItem: any;
+  car:any;
+  imageLoaded=false;
+  buttonClicked = false;
   @ViewChild('itemDialog') itemDialog!: TemplateRef<any>;
   constructor(private http: HttpClient, private service: RentingOrderItemsService,
               public router: Router,
               public dialogService: DialogService,
               private dialogServiceService: RefDialogServiceService,
-              private  authService:AuthService) {
+              private  authService:AuthService,
+              private accountPayableService:AccountPayableService,
+              private carService:CarService) {
   }
   ngOnInit(): void {
     this.getAcceptedItems();
@@ -88,4 +95,42 @@ export class AcceptedRentingItemsComponent {
       data: {item},
     });
   }
+
+  createPaymentAndRedirecTo() {
+    this.carService.getById(this.acceptedItems[0]?.vehicleId).pipe(
+      map((data) => {
+        this.car = data.result;
+        console.log(this.car);
+        this.imageLoaded = true;
+        console.log(this.car)
+        const date = this.formatDate(this.acceptedItems[0]?.startDate);
+        const account = {
+          payerId: this.user?.id,
+          payeeId: this.car?.ownerId,
+          serviceId: this.acceptedItems[0]?.vehicleId,
+          state: this.acceptedItems[0]?.state,
+          expirationDay: date,
+          totalPrice: this.acceptedItems[0]?.rentingPrice,
+          currency: this.acceptedItems[0]?.currency,
+          tipoServicio: "RENTA"
+        };
+        return account;
+      }),
+      switchMap((account) => this.accountPayableService.create(account)),
+      map((resultado) => {
+        const paymentId = resultado.result.accountPayableId; // Obtén el ID del pago creado
+        if (paymentId) {
+          console.log("mama coco");
+          const url: UrlTree = this.router.createUrlTree(['billing', 'car-info-request', 'checkout', paymentId]);
+          this.router.navigateByUrl(url);
+        }
+      })
+    ).subscribe(
+      () => {},
+      (error) => {
+        // Maneja el error
+      }
+    );
+  }
 }
+
