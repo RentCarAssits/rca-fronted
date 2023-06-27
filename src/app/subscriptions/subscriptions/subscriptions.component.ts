@@ -17,9 +17,18 @@ export class SubscriptionsComponent {
   plan!:any; 
   subscription!: any;
   plans!: plansResponse[];
+  
   currentPlan!: currentPlanResponse;
   currentuser:any;
+
+  // bollean by marx
+  currentPlanBool: boolean = true;
+
   userRole:any;
+
+
+
+
   constructor(private planService:PlanService, private authService:AuthService){
     this.plan = planService;
   }
@@ -39,12 +48,14 @@ export class SubscriptionsComponent {
     console.log("USER ID: ",this.currentuser);
   }
   getCurrentPlan(){
-    this.planService.getCurrentPlanByUser(2).subscribe(
+    this.planService.getCurrentPlanByUser(3).subscribe(
       (Response:any)=>{
+        this.currentPlanBool = true;
         this.currentPlan = Response.result;
         console.log(this.currentPlan);
       },(error)=>{
-        console.log(error);
+        this.currentPlanBool = false;
+        console.log("No se pudo mi rey");
       }
     )
   }

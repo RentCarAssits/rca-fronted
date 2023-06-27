@@ -41,18 +41,13 @@ export class DashboardComponent {
     private carService: CarService,
     private rentingOrderItemsServices:RentingOrderItemsService, 
     private authService:AuthService) 
-    {this.subscription = this.layoutService.configUpdate$.subscribe(() => {});
-  }
+    {this.subscription = this.layoutService.configUpdate$.subscribe(() => {});}
 
   ngOnInit() {
     this.getTotalVehicles();
     this.getCurrenUserId();
     this.getData();
     this.initChart();
-
-
-
-
 
     this.items = [
       { label: 'Add New', icon: 'pi pi-fw pi-plus' },
@@ -64,8 +59,6 @@ export class DashboardComponent {
     const textColor = documentStyle.getPropertyValue('--text-color');
     const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
     const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
-
-
 
     this.basicOptions = {
       plugins: {
@@ -140,7 +133,6 @@ export class DashboardComponent {
     this.userRole=user?.roles;
     console.log("USER ID: ",user);
     console.log("USER ID: ",this.currentuser);
-
   }
 
   getData(){

@@ -1,4 +1,4 @@
-<div *ngIf="currentPlan.name == null">
+<div *ngIf="currentPlanBool == true">
   <div class="card" >
     <!--Pans-->
     <div class="px-4 py-8 md:px-6 lg:px-8">
@@ -47,11 +47,23 @@
 </div>
 
 
-<div *ngIf="currentPlan.name != null">
+<div *ngIf="currentPlanBool == false" class="text-center">
   <div class="card">
-    <h1 class="text-center">Current Subscription</h1>
-    <p>plan Actual: {{currentPlan.name}} fecha Inicio: {{currentPlan.startDate}}  fecha Fin: {{currentPlan.endDate}}</p>
-    
- 
+    <h1 class="mb-4">Current Subscription</h1>
+    <hr>
+    <div class="row">
+      <div class="col">
+        <p><strong>Plan Actual:</strong> {{currentPlan.name}}</p>
+      </div>
+      <div class="col">
+        <p><strong>Beneficios:</strong> {{currentPlan.Benefits}}</p>
+      </div>
+      <div class="col">
+        <p><strong>Fecha Inicio:</strong> {{currentPlan.startDate | date: 'yyyy-MM-dd'}}</p>
+      </div>
+      <div class="col">
+        <p><strong>Fecha Fin:</strong> {{ currentPlan.endDate | date: 'yyyy-MM-dd' }}</p>
+      </div>
+    </div>
   </div>
 </div>
