@@ -1,4 +1,4 @@
-<div class="card mb-5" *ngIf="workshops.length !== 0">
+<div class="card mb-5">
   <div class="flex justify-content-between align-items-center mb-2">
     <h5 class="text-800 font-semibold">Rental History</h5>
   </div>
@@ -28,8 +28,10 @@
   <div *ngIf="!workshops || workshops.length === 0"
        class="h-20rem flex justify-content-center align-items-center
         flex-column">
-    <h5 class="order-badge add-data">No cars listed yet.</h5>
-    <p>Get started by publishing your first car!</p>
+    <h5 class="order-badge add-data">No workshops yet.</h5>
+    <p>Get started by adding your first workshop!</p>
+    <button pButton pRipple label="Create Workshop" (click)="createWorkshop()"
+                  class="p-button-text p-button-rounded border-none font-light line-height-2 bg-blue-500 text-white"></button>
   </div>
 </div>
 <!--(click)=""-->
