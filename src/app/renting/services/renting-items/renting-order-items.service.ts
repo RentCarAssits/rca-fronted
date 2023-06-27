@@ -31,7 +31,10 @@ export class RentingOrderItemsService extends ResourceService<RentingOrderItem>{
     return this.http.get<any>(`${this.basePath}/get-by-renter-id/${userId}`, this.httpOptions)
       .pipe(retry(2), catchError(this.handleError));
   }
-
+  getAcceptedRentingOrderItemsByUserId(userId: any): Observable<any> {
+    return this.http.get<any>(`${this.basePath}/get-all-accepted-by-renter-id/${userId}`, this.httpOptions)
+      .pipe(retry(2), catchError(this.handleError));
+  }
   override getById(id: any): Observable<any> {
     return this.http.get<any>(`${this.basePath}/${id}`,this.httpOptions);
   }

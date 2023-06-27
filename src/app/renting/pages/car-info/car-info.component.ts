@@ -44,7 +44,7 @@ export class CarInfoComponent {
     });
     this.data.currentVehicleId.subscribe(car => this.car = car);
     if (!this.car.image) {
-      this.router.navigate(['renting/cars-catalog']);
+      this.router.navigate(['renting/vehicles-catalog']);
     }
   }
 
@@ -68,9 +68,11 @@ export class CarInfoComponent {
 
   onSubmit() {
     if (!this.rentingItemForm.valid) return;
+    let finalPrice=0;
+
     let {startDate, endDate} = this.rentingItemForm.value;
     const request = {
-      rentingPrice: this.car.price,
+      rentingPrice: this.getFinalPrice(this.rentingItemForm.value.startDate,this.rentingItemForm.value.endDate).toString(),
       currency: this.car.currency,
       startDate: this.rentingItemForm.value.startDate,
       endDate: this.rentingItemForm.value.endDate,
@@ -85,13 +87,13 @@ export class CarInfoComponent {
         error: (err) => {
           this.showError()
           setTimeout(() => {
-            this.router.navigate(['renting/cars-catalog']);
+            this.router.navigate(['renting/vehicles-catalog']);
           }, 1500);
         },
         complete: () => {
           this.showSuccess();
           setTimeout(() => {
-            this.router.navigate(['renting/cars-catalog']);
+            this.router.navigate(['renting/vehicles-catalog']);
           }, 1500);
 
         }
@@ -108,4 +110,24 @@ export class CarInfoComponent {
     this.message.add({severity: 'error', summary: 'Error', detail: 'An error occurred. Please try again.'});
   }
 
+
+  getFinalPrice(startDate:any, endDate:any):number{
+    const fechaInicio: Date = new Date(startDate);
+    const fechaFin: Date = new Date(endDate);
+    // Calcular la diferencia en milisegundos entre las dos fechas
+    const diferencia: number = fechaFin.getTime() - fechaInicio.getTime();
+    switch (this.car?.timeUnit){
+      case 'H':
+        return 1;
+      case 'D':
+        // Calcular la diferencia en días y semanas
+        const dias: number = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+        return this.car.price*dias;
+      case 'W':
+        const semanas: number = Math.floor(diferencia / (1000 * 60 * 60 * 24 * 7));
+        return this.car.price*semanas;
+      default:
+        return 1;
+    }
+  }
 }

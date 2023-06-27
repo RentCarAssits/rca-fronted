@@ -4,16 +4,16 @@
       <div class="flex">
         <div class="flex flex-column w-2 justify-content-between" style="row-gap:1rem ; ">
           <img
-            class="w-full cursor-pointer border-2 border-transparent transition-colors transition-duration-150 border-round ng-star-inserted border-primary"
+            class="w-full cursor-pointer border-2 border-transparent transition-colors transition-duration-150 border-round ng-star-inserted border-black-alpha-40"
             src="{{car.image}}" alt="car-img">
           <img
-            class="w-full cursor-pointer border-2 border-transparent transition-colors transition-duration-150 border-round ng-star-inserted border-primary"
+            class="w-full cursor-pointer border-2 border-transparent transition-colors transition-duration-150 border-round ng-star-inserted border-black-alpha-40"
             src="{{car.image}}" alt="car-img">
           <img
-            class="w-full cursor-pointer border-2 border-transparent transition-colors transition-duration-150 border-round ng-star-inserted border-primary"
+            class="w-full cursor-pointer border-2 border-transparent transition-colors transition-duration-150 border-round ng-star-inserted border-black-alpha-40"
             src="{{car.image}}" alt="car-img">
           <img
-            class="w-full cursor-pointer border-2 border-transparent transition-colors transition-duration-150 border-round ng-star-inserted border-primary"
+            class="w-full cursor-pointer border-2 border-transparent transition-colors transition-duration-150 border-round ng-star-inserted border-black-alpha-40"
             src="{{car.image}}" alt="car-img">
         </div>
         <div class="pl-3 w-10 flx">
@@ -28,8 +28,9 @@
       <div class="flex align-items-center justify-content-between mb-2">
         <div class="text-600 font-medium text-600 mb-1"> Rental Price :</div>
         <span class="text-600 font-semibold text-blue-600 block">
-          <label *ngIf="car.currency == 'dólares'">$</label>
-          <label *ngIf="car.currency == 'soles'">S/</label>{{car.price}} per
+          <label *ngIf="car.currency == 'USD'">$</label>
+          <label *ngIf="car.currency == 'SOLES'">S/</label>{{car.price}} per
+          <label *ngIf="car.currency == 'EURO'">E</label>
           <label *ngIf="car.timeUnit == 'D'">day</label>
           <label *ngIf="car.timeUnit == 'W'">week</label>
           <label *ngIf="car.timeUnit == 'M'">month</label>

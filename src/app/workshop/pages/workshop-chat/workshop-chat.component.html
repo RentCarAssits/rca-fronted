@@ -1,0 +1,96 @@
+<div class="flex-1 card p-0">
+  <div class="flex flex-column h-full">
+    <div class="flex align-items-center border-bottom-1 surface-border p-3 lg:p-6">
+      <div class="relative flex align-items-center mr-3">
+        <img src="assets/layout/images/rca.png" alt="workshop-gpt" class="max-h-3rem">
+        <span class="w-1rem h-1rem border-circle border-2 surface-border absolute bottom-0 right-0 bg-green-400"></span>
+        <span class="w-1rem h-1rem border-circle border-2 surface-border absolute bottom-0 right-0 bg-green-400"></span>
+      </div>
+      <div class="mr-2">
+        <span class="text-900 font-semibold block">Rca. AI Chatbot</span>
+        <span class="text-700">Your Workshop Assistance</span>
+      </div>
+      <div class="flex align-items-center ml-auto">
+        <p-button
+          icon="pi pi-ellipsis-v"
+          styleClass="p-button-rounded p-button-secondary p-button-outlined"></p-button>
+      </div>
+    </div>
+    <div class="p-3 md:px-4 lg:px-6 lg:py-4 mt-2 overflow-y-auto" style="max-height: 48vh; min-height:48vh">
+      <div class="messages" #scrollMe>
+        <ng-template #botMessage let-message="message">
+          <div class="grid grid-nogutter mb-4 ng-star-inserted">
+            <div class="mr-3 mt-3">
+              <img alt="user.name"
+                   class="w-3rem h-3rem border-circle shadow-4"
+                   src="assets/layout/images/rca.png">
+            </div>
+            <div class="col mt-3">
+              <p class="text-900 font-semibold mb-3">Rca-bot</p>
+              <span
+                class="text-700 inline-block font-medium border-1 surface-border p-3 white-space-normal border-round"
+                style="word-break: break-word; max-width: 80%;">
+                     {{ message.message }}
+              </span>
+              <p class="text-700 mt-3 text-xs">
+                {{ message.time | date:'shortTime' }}
+                <i class="pi pi-check ml-2 text-green-400 text-xs"></i>
+              </p>
+            </div>
+          </div>
+        </ng-template>
+        <ng-template #userMessage let-message="message">
+          <div class="grid grid-nogutter mb-4 ng-star-inserted">
+            <div class="col mt-3 text-right">
+              <span
+                class="inline-block text-left font-medium border-1 surface-border bg-primary-100 text-primary-900 p-3 white-space-normal border-round"
+                style="word-break: break-word; max-width: 80%;">
+                 {{ message.message }}
+              </span>
+              <p class="text-700 mt-3 text-xs">
+                {{ message.time | date:'shortTime' }}
+                <i class="pi pi-check ml-2 text-green-400 text-xs"></i>
+              </p>
+            </div>
+          </div>
+        </ng-template>
+
+        <ng-container *ngFor="let message of messages">
+          <ng-container [ngTemplateOutlet]="message.type === 'client' ? botMessage : userMessage"
+                        [ngTemplateOutletContext]="{ message: message }">
+          </ng-container>
+        </ng-container>
+        <div
+          *ngIf="loading"
+          class="message"
+          style="width: 100%; display: block"
+        >
+          <div [class]="'client'">...</div>
+        </div>
+      </div>
+    </div>
+    <form [formGroup]="chatForm"
+          class="p-3 md:p-4 lg:p-6 flex flex-column sm:flex-row align-items-center mt-auto border-top-1 surface-border gap-3">
+      <input
+        id="message"
+        formControlName="message"
+        type="text"
+        placeholder="Type a message"
+        class="p-inputtext p-component p-element flex-1 w-full sm:w-auto border-round ng-untouched ng-pristine ng-valid">
+      <div class="flex w-full sm:w-auto gap-3 justify-content-end">
+        <p-button
+          label="Send"
+          icon="pi pi-send"
+          class="w-full flex justify-content-end"
+          styleClass="p-button-success w-full"
+          [disabled]="!chatForm.valid"
+          (click)="sendMessage()"
+        >
+        </p-button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+

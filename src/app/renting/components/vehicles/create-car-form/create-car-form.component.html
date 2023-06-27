@@ -2,7 +2,6 @@
   <div class="card1">
     <div class="col-12">
       <form [formGroup]="carForm" (ngSubmit)="onSubmit()">
-        <h5>Register Vehicle</h5>
         <div class="flex justify-content-center max-h-12rem">
           <input type="file" class="max-h-12rem" #fileInput (change)="onFileChange($event)" accept=".png, .jpg, .jpeg" [style.display]="'none'" />
           <div class="shadow-4">

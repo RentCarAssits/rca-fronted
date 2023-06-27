@@ -5,14 +5,15 @@ import {DashboardComponent} from "./pages/dashboard/dashboard/dashboard.componen
 import {CarInfoComponent} from "./pages/car-info/car-info.component";
 import {TemporalComponent} from "./components/temporal/temporal/temporal.component";
 import { SubscriptionsComponent } from '../subscriptions/subscriptions/subscriptions.component';
-
+import {VehiclesCatalogComponent} from "./pages/vehicles-catalog/vehicles-catalog.component";
 
 
 const routes: Routes = [
   { path: '', redirectTo: '', pathMatch: 'full' },
-  { path: 'cars-catalog', component: CarsPrincipalPage },
-  { path: 'dashboard', component: DashboardComponent },
+  { path: 'feature-vehicles', component: CarsPrincipalPage },
   { path: 'car-info-request', component: CarInfoComponent },
+  { path: 'dashboard', component: DashboardComponent },
+  { path: 'vehicles-catalog', component: VehiclesCatalogComponent },
   { path: 'we-are-working/full-catalog', component: TemporalComponent },
   { path: 'we-are-working/subscription', component: TemporalComponent },
   { path: 'we-are-working/chatBox', component: TemporalComponent },

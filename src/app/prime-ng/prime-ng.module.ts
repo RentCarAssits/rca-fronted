@@ -35,6 +35,10 @@ import { CarouselModule } from 'primeng/carousel';
 import { SkeletonModule } from 'primeng/skeleton';
 import { TabViewModule } from 'primeng/tabview';
 import { ToastModule } from 'primeng/toast';
+import {MenuModule} from "primeng/menu";
+import {TableModule} from "primeng/table";
+import {ChartModule} from "primeng/chart";
+import { MessageModule } from 'primeng/message';
 @NgModule({
   declarations: [],
   imports: [
@@ -75,7 +79,11 @@ import { ToastModule } from 'primeng/toast';
     CarouselModule,
     SkeletonModule,
     TabViewModule,
-    ToastModule
+    ToastModule,
+    MenuModule,
+    TableModule,
+    ChartModule,
+    MessageModule
 
   ],
   exports: [
@@ -115,8 +123,11 @@ import { ToastModule } from 'primeng/toast';
     CarouselModule,
     SkeletonModule,
     TabViewModule,
-    ToastModule
-
+    ToastModule,
+    MenuModule,
+    TableModule,
+    ChartModule,
+    MessageModule
   ],
   providers: [
     MessageService,

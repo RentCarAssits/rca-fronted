@@ -74,7 +74,6 @@ export class EditFormCarComponent implements OnInit {
       year: [new Date(this.car.year), Validators.required],
       price: [this.car.price, Validators.required],
       categories: new FormControl<string[] | null>(this.categories),
-      image: [this.car.image, Validators.required],
       currency: [this.car.currency, Validators.required],
       timeUnit: [this.car.timeUnit, Validators.required]
     });
