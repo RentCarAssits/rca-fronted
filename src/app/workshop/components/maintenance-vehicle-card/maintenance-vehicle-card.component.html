@@ -1,0 +1,12 @@
+<div class="p-2 min-h-35rem" >
+  <p-card
+    header="{{vehicle.name}}" subheader="{{vehicle.model}}" [style]="{ width: '340px'}">
+    <ng-template pTemplate="header">
+      <img alt="Card" src="{{vehicle.image}}" class="w-full h-fit"/>
+    </ng-template>
+    <div class="flex flex-row gap-1 justify-content-between">
+      <p class="white-space-nowrap overflow-hidden text-overflow-ellipsis">{{vehicle.integrity}}</p>
+      <p-button label="Request" styleClass="p-button-outlined p-button-secondary"></p-button>
+    </div>
+  </p-card>
+</div>

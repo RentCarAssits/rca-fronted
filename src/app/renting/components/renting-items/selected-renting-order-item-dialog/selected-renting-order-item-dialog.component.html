@@ -6,16 +6,18 @@
     <ul>
       <li>Renting Price: {{ rentingItem?.rentingPrice }} {{ rentingItem?.currency }}</li>
       <li>Renting Unit: {{ rentingItem?.rentingUnit === 'D' ? 'Days' : 'Week' }}</li>
-      <li>Start Date: {{ rentingItem?.startDate }}</li>
-      <li>End Date: {{ rentingItem?.endDate }}</li>
+      <li>Start Date: {{ formatDate(rentingItem?.startDate) }}</li>
+      <li>End Date: {{ formatDate(rentingItem?.endDate)}}</li>
       <li>Status: <span [ngClass]="{
           'text-orange': rentingItem?.state === 'O',
           'text-green': rentingItem?.state === 'A',
-          'text-red': rentingItem?.state === 'D'
+          'text-red': rentingItem?.state === 'D',
+          'text-blue': rentingItem?.state === 'R'
         }">
-          {{ rentingItem?.state === 'O' ? 'On Request' : rentingItem?.state === 'A' ? 'Accepted' : 'Denied' }}
+          {{ rentingItem?.state === 'O' ? 'On Request' : rentingItem?.state === 'A' ? 'Accepted' : rentingItem?.state === 'D' ? 'Denied' : 'Ordered' }}
         </span>
       </li>
+
     </ul>
   </div>
 </div>

@@ -62,6 +62,8 @@ export class RentingOrderItemsComponent implements OnInit {
       return 'bg-orange-100';
     } else if (state === 'A') {
       return 'bg-green-100';
+    }else if (state === 'R') {
+      return 'bg-green-100';
     }
     return '';
   }

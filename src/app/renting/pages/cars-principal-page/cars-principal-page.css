@@ -6,3 +6,6 @@ custom-chip{
   background-color: green;
   color: white;
 }
+::ng-deep .p-carousel .p-carousel-content {
+  min-height: 300px;
+}

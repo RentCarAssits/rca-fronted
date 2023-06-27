@@ -6,6 +6,8 @@ import {LayoutComponent} from "./shared/pages/layout/layout.component";
 import {UserGuard} from "./iam/guard/user.guard";
 import {DashboardComponent} from "./renting/pages/dashboard/dashboard/dashboard.component";
 import { SubscriptionsComponent } from './subscriptions/subscriptions/subscriptions.component';
+import { WorkshopModule } from './workshop/workshop.module';
+
 
 
 const routes: Routes = [
@@ -15,11 +17,16 @@ const routes: Routes = [
     canLoad: [ UserGuard ],
     canActivate: [ UserGuard ],
     children: [
-      { path: '', redirectTo: 'dashboard', pathMatch: 'full' }, // Redirigir a la ruta del dashboard
+      { path: '', redirectTo: 'renting/dashboard', pathMatch: 'full' }, // Redirigir a la ruta del dashboard
       { path: 'dashboard', component: DashboardComponent }, // Agrega aquí tu componente Dashboard
-      { path: 'renting',  canActivate: [UserGuard], loadChildren: () => import('./renting/renting.module').then(m => m.RentingModule) },
       { path:'subscription', component: SubscriptionsComponent},
+<<<<<<< HEAD
 
+=======
+      { path: 'renting', loadChildren: () => import('./renting/renting.module').then(m => m.RentingModule) },
+      { path: 'workshop', loadChildren: () => import('./workshop/workshop.module').then(m => m.WorkshopModule) },
+      { path: 'billing',  loadChildren: () => import('./billing/billing.module').then(m => m.BillingModule) },
+>>>>>>> 2c5238f5e097da3758f193a68725d42e1b4e20eb
     ]
   },
   /** IAM module: Login, register, ETC **/
@@ -29,6 +36,8 @@ const routes: Routes = [
   { path: 'public', loadChildren: () => import('./public/public.module').then(m => m.PublicModule) },
   { path: 'public/page-not-found', component: NotFoundComponent },
   { path: '**', redirectTo: 'public/page-not-found' },
+
+  /*BILLING MANAGEMENT*/
 ];
 
 @NgModule({

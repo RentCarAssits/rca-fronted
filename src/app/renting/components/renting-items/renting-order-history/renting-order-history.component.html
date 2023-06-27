@@ -11,6 +11,7 @@
         <span *ngIf="item.state === 'A'" class="text-success uppercase">Accepted</span>
         <span *ngIf="item.state === 'D'" class="text-danger uppercase">Denied</span>
         <span *ngIf="item.state === 'O'" class="text-process uppercase">On Request</span>
+        <span *ngIf="item.state === 'R'" class="text-success uppercase">Ordered</span>
 
         <button icon="pi pi-eye" pButton pRipple class="p-button p-button-info rounded-circle small-button ml-2" (click)="showItemDialog(item)"></button>
       </div>
