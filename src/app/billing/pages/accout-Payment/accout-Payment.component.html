@@ -1,3 +1,4 @@
+<script src="https://www.paypal.com/sdk/js?client-id=AURR1Bo6su6uaQLVRVwLRkxownm1PWnC1CaaLK9V3S2yz0-RiqLOqKS2LYDLzDezGqLvEutMQJMp2iHB"></script>
 <div class="grid grid-nogutter">
   <div class="col-12 px-4 mt-4 md:mt-6 md:px-6">
     <span class="text-900 block font-bold text-xl">Checkout</span>
@@ -15,38 +16,13 @@
       <div class="col-12 field mb-6">
         <span class="text-900 text-2xl block font-medium mb-5">Contact Information</span>
         <input id="email" placeholder="Email" type="text" class="p-inputtext w-full mb-4">
-        <p-checkbox name="checkbox-1" label="Email me with news and offers" inputid="id" class="p-element text-900 ng-untouched ng-pristine ng-valid">
-          <div class="p-checkbox p-component p-checkbox-checked">
-            <div class="p-hidden-accessible">
-              <input type="checkbox" value="undefined" id="id" name="checkbox-1" aria-checked="true">
-            </div>
-            <div class="p-checkbox-box p-highlight">
-              <span class="p-checkbox-icon pi pi-check"></span>
-            </div>
-          </div>
-          <label for="id" class="p-checkbox-label ng-star-inserted p-checkbox-label-active">Email me with news and offers</label>
-        </p-checkbox>
       </div>
       <div class="col-12 field mb-4">
         <span class="text-900 text-2xl block font-medium mb-5">Shipping</span>
-        <p-dropdown placeholder="Country / City" optionlabel="name" styleclass="w-full" class="p-element p-inputwrapper ng-valid ng-touched p-inputwrapper-filled">
-          <div class="w-full p-dropdown p-component p-dropdown-clearable">
-            <div class="p-hidden-accessible">
-              <input type="text" readonly="" aria-haspopup="listbox" pautofocus="" role="combobox" class="p-element" placeholder="Country / City" aria-expanded="false">
-            </div>
-            <span class="p-element p-dropdown-label p-inputtext ng-star-inserted" id="pr_id_1_label">USA / New York<!----><!----><!----></span>
-            <!----><!----><!----><i class="p-dropdown-clear-icon pi pi-times ng-star-inserted"></i>
-            <!----><div role="button" aria-label="dropdown trigger" aria-haspopup="listbox" class="p-dropdown-trigger" aria-expanded="false">
-              <span class="p-dropdown-trigger-icon pi pi-chevron-down"></span>
-            </div>
-            <p-overlay class="p-element ng-tns-c17-2 ng-star-inserted">
-              <div class="ng-tns-c17-2 p-overlay p-component ng-star-inserted" style="min-width: 685px; transform-origin: center top; top: 44px; left: 0px;">
-                <!---->
-              </div>
-              <!---->
-            </p-overlay>
-          </div>
-        </p-dropdown>
+
+      </div>
+      <div class="col-12 lg:col-6 field mb-4">
+        <input id="country" placeholder="country" type="text" class="p-inputtext w-full">
       </div>
       <div class="col-12 lg:col-6 field mb-4">
         <input id="name" placeholder="Name" type="text" class="p-inputtext w-full">
@@ -67,64 +43,34 @@
         <input id="city" placeholder="City" type="text" class="p-inputtext w-full">
       </div>
       <div class="col-12 lg:col-6 field mb-4">
-        <p-checkbox name="checkbox-1" label="Save for next purchase" inputid="id" class="p-element text-900 ng-untouched ng-pristine ng-valid">
-          <div class="p-checkbox p-component p-checkbox-checked">
-            <div class="p-hidden-accessible">
-              <input type="checkbox" value="undefined" id="id" name="checkbox-1" aria-checked="true">
-            </div>
-            <div class="p-checkbox-box p-highlight">
-              <span class="p-checkbox-icon pi pi-check"></span>
-            </div>
-          </div>
-          <label for="id" class="p-checkbox-label ng-star-inserted p-checkbox-label-active">Save for next purchase</label>
-        </p-checkbox>
       </div>
       <div class="col-12 flex flex-column lg:flex-row justify-content-center align-items-center lg:justify-content-end my-6">
         <button pbutton="" pripple="" label="Return to Cart" icon="pi pi-fw pi-arrow-left" class="p-element p-ripple p-button-secondary p-button-outlined mt-3 lg:mt-0 w-full lg:w-auto flex-order-2 lg:flex-order-1 lg:mr-4 p-button p-component">
           <span class="p-button-icon p-button-icon-left pi pi-fw pi-arrow-left" aria-hidden="true"></span>
-          <span class="p-button-label">Return to Cart</span>
+          <span class="p-button-label" routerLink="/billing/we-are-working/my-Payments">Return to Payments</span>
           <span class="p-ink"></span>
         </button>
         <button pbutton="" pripple="" label="Continue to Shipping" icon="pi pi-fw pi-check" class="p-element p-ripple p-button-primary w-full lg:w-auto flex-order-1 lg:flex-order-2 p-button p-component">
           <span class="p-button-icon p-button-icon-left pi pi-fw pi-check" aria-hidden="true"></span>
-          <span class="p-button-label">Continue to Shipping</span>
+          <div id="paypal-button-container"></div>
           <span class="p-ink"></span>
         </button>
       </div>
     </div>
   </div>
-  <div class="col-12 lg:col-6 px-4 py-4 md:px-6">
+  <div class="col-12 lg:col-6 px-4 py-4 md:px-6" >
     <div class="pb-3 surface-border">
-      <span class="text-900 font-medium text-xl">Your Cart</span>
+      <span class="text-900 font-medium text-xl">{{car?.name}}</span>
     </div>
     <div class="flex flex-column lg:flex-row flex-wrap lg:align-items-center py-2 mt-3 surface-border">
-      <img src="https://2.bp.blogspot.com/-nzy3C16sfr4/VU36ZvL6V9I/AAAAAAAAAJg/_t0-qfN97yw/s1600/ferary.jpg" alt="product" class="w-8rem h-8rem flex-shrink-0 mb-3">
+      <img src="{{car?.image}}" alt="product" class="w-8rem h-8rem flex-shrink-0 mb-3">
       <div class="flex-auto lg:ml-3">
         <div class="flex align-items-center justify-content-between mb-3">
-          <span class="text-900 font-bold">Product Name</span>
-          <span class="text-900 font-bold">$123.00</span>
+          <span class="text-900 font-bold">{{car?.model}} </span>
+          <span class="text-900 font-bold">{{ car?.integrity}}</span>
         </div>
-        <div class="text-600 text-sm mb-3">Black | Large</div>
+        <div class="text-600 text-sm mb-3">{{car?.brand}}</div>
         <div class="flex flex-auto justify-content-between align-items-center">
-          <p-inputNumber buttonlayout="horizontal" spinnermode="horizontal" inputstyleclass="w-2rem text-center py-2 px-1 border-transparent outline-none shadow-none" decrementbuttonclass="p-button-text text-600 hover:text-primary py-1 px-1" incrementbuttonclass="p-button-text text-600 hover:text-primary py-1 px-1" incrementbuttonicon="pi pi-plus" decrementbuttonicon="pi pi-minus" class="p-element p-inputwrapper border-1 surface-border border-round ng-untouched ng-pristine ng-valid p-inputwrapper-filled">
-            <span class="p-inputnumber p-component p-inputnumber-buttons-horizontal">
-              <input pinputtext="" inputmode="decimal" class="p-inputtext p-component p-element w-2rem text-center py-2 px-1 border-transparent outline-none shadow-none p-inputnumber-input p-filled" min="0">
-              <!---->
-              <!---->
-              <button type="button" pbutton="" tabindex="-1" class="p-element p-button-text text-600 hover:text-primary py-1 px-1 p-inputnumber-button p-inputnumber-button-up p-button p-component p-button-icon-only ng-star-inserted">
-                <span class="p-button-icon pi pi-plus" aria-hidden="true"></span>
-              </button>
-              <!---->
-              <button type="button" pbutton="" tabindex="-1" class="p-element p-button-text text-600 hover:text-primary py-1 px-1 p-inputnumber-button p-inputnumber-button-down p-button p-component p-button-icon-only ng-star-inserted">
-                <span class="p-button-icon pi pi-minus" aria-hidden="true"></span>
-              </button>
-              <!---->
-            </span>
-          </p-inputNumber>
-          <button pbutton="" pripple="" icon="pi pi-trash" class="p-element p-ripple p-button-text p-button-rounded p-button p-component p-button-icon-only">
-            <span class="p-button-icon pi pi-trash" aria-hidden="true"></span>
-            <span class="p-ink"></span>
-          </button>
         </div>
       </div>
     </div>
@@ -139,20 +85,8 @@
         </span>
       </div>
       <div class="flex justify-content-between align-items-center">
-        <span class="text-900">Subtotal</span>
-        <span class="text-900">$123.00</span>
-      </div>
-      <div class="flex justify-content-between align-items-center">
-        <span class="text-900">Shipping</span>
-        <span class="text-900">$10.00</span>
-      </div>
-      <div class="flex justify-content-between align-items-center">
-        <span class="text-900">Tax</span>
-        <span class="text-900">$20.00</span>
-      </div>
-      <div class="flex justify-content-between align-items-center">
         <span class="text-900">Total</span>
-        <span class="text-900">$153.00</span>
+        <span class="text-900"> {{accountPayables?.currency}} {{ accountPayables?.totalPrice }}</span>
       </div>
     </div>
   </div>

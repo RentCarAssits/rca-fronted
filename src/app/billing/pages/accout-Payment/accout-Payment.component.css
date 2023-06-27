@@ -1,0 +1,6 @@
+#paypal-button-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000; /* esto asegura que el botón se superponga a otros elementos */
+}
