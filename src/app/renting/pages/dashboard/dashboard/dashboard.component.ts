@@ -36,10 +36,12 @@ export class DashboardComponent {
   subscription!: any;
   totalVehicles: number = 0;
   userRole:any;
-  constructor( public layoutService: LayoutService, private carService: CarService,
-              private rentingOrderItemsServices:RentingOrderItemsService, private authService:AuthService) {
-    this.subscription = this.layoutService.configUpdate$.subscribe(() => {
-    });
+  constructor( 
+    public layoutService: LayoutService, 
+    private carService: CarService,
+    private rentingOrderItemsServices:RentingOrderItemsService, 
+    private authService:AuthService) 
+    {this.subscription = this.layoutService.configUpdate$.subscribe(() => {});
   }
 
   ngOnInit() {
@@ -129,7 +131,7 @@ export class DashboardComponent {
       (error) => {
         console.log(error);
       }
-    );
+    );    
   }
 
   getCurrenUserId(){
