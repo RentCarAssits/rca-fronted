@@ -54,7 +54,7 @@ export class SubscriptionsComponent {
       },(error)=>{
         this.currentPlanBool = false;
         console.log("No se pudo mi rey");
-        window.alert(this.currentPlanBool);
+        
       }
     )
   }
