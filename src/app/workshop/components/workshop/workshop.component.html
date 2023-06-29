@@ -8,8 +8,9 @@
       <tr>
         <th>Id</th>
         <th pSortableColumn="name">Name</th>
-        <th>Owner id</th>
-        <th>address</th>
+        <th>Country</th>
+        <th>District</th>
+        <th>Address Details</th>
         <th>Actions</th>
       </tr>
     </ng-template>
@@ -17,8 +18,9 @@
       <tr>
         <td style="width: 5%; min-width: 2rem;" class="font-normal">{{workshop.id}}</td>
         <td style="width: 15%; min-width: 7rem;" class="font-normal">{{workshop.name}}</td>
-        <td style="width: 15%; min-width: 3rem;" class="font-normal">{{workshop.ownerId}}</td>
-        <td style="width: 15%; min-width: 3rem;" class="font-normal">{{workshop.address}}</td>
+        <td style="width: 15%; min-width: 3rem;" class="font-normal">{{workshop.country}}</td>
+        <td style="width: 15%; min-width: 3rem;" class="font-normal">{{workshop.district}}</td>
+        <td style="width: 15%; min-width: 3rem;" class="font-normal">{{workshop.addressDetail}}</td>
         <td style="width: 15%; min-width: 7rem;">
           <!-- <span class="flex justify-content-center" [ngClass]="getCarStateClass(rent.state)">{{getCarStateCode(rent.state)}}</span> -->
         </td>
