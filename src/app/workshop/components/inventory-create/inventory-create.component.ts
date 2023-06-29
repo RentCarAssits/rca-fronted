@@ -71,7 +71,9 @@ export class InventoryCreateComponent implements OnInit {
     this.inventoryService.createInventory(data).subscribe(
       (response) => {
         console.log(response);
+        this.getInventories();
         this.showSuccess();
+
       },
       (error) => {
         console.error('Error', error);
