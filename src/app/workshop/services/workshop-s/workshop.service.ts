@@ -25,6 +25,6 @@ export class WorkshopService extends ResourceService<any> {
   }
 
   getAllWarehouseByWorkshopid(workshopId: any): Observable<any> {
-    return this.http.get<any>(`${this.basePath}/${workshopId}/warehouses`);
+    return this.http.get<any>(`${this.basePath}/${workshopId}/warehouses`, this.httpOptions).pipe(retry(2), catchError(this.handleError));
   }
 }

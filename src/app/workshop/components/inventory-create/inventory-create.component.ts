@@ -33,6 +33,20 @@ export class InventoryCreateComponent implements OnInit {
     this.inventoryForm = this.formBuilder.group({
       description: ['', Validators.required],
     });
+
+    //TODO: descomentar
+    // this.getInventories();
+  }
+
+  getInventories() {
+    this.service.getInventories(this.item).subscribe(
+      (response: any) => {
+        this.inventories = response.result;
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
   }
 
   onSubmit() {
