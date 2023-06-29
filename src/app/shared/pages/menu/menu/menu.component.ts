@@ -55,7 +55,17 @@ export class MenuComponent implements OnInit {
             icon: 'pi pi-fw pi-chart-bar',
             routerLink: ['/renting/we-are-working/statistics'],
           },
-        ],
+          {
+            label: 'Workshop',
+            icon: 'pi pi-fw pi-car',
+            routerLink: ['/workshop/workshop'],
+          },
+          {
+            label: 'Payments',
+            icon: 'pi pi-fw pi-dollar',
+            routerLink: ['/billing/we-are-working/my-Payments']
+          },
+        ]
       },
       {
         label: 'Profile',
