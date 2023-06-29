@@ -20,12 +20,13 @@ const routes: Routes = [
       { path: '', redirectTo: 'renting/dashboard', pathMatch: 'full' }, // Redirigir a la ruta del dashboard
       { path: 'dashboard', component: DashboardComponent }, // Agrega aquí tu componente Dashboard
       { path:'subscription', component: SubscriptionsComponent},
+
       { path: 'renting', loadChildren: () => import('./renting/renting.module').then(m => m.RentingModule) },
       { path: 'workshop', loadChildren: () => import('./workshop/workshop.module').then(m => m.WorkshopModule) },
       { path: 'billing',  loadChildren: () => import('./billing/billing.module').then(m => m.BillingModule) },
     ]
   },
-  /** IAM module: Login, register, ETC **/
+    /** IAM module: Login, register, ETC **/
   { path: 'auth', loadChildren: () => import('./iam/iam.module').then(m => m.IAMModule) },
 
   /** Public module: LandingPage, NotFound, ETC **/

@@ -35,21 +35,19 @@ export class DashboardComponent {
 
   subscription!: any;
   totalVehicles: number = 0;
-  userRole: any;
-
-  constructor(public layoutService: LayoutService, private carService: CarService,
-              private rentingOrderItemsServices: RentingOrderItemsService, private authService: AuthService) {
-    this.subscription = this.layoutService.configUpdate$.subscribe(() => {
-    });
-  }
+  userRole:any;
+  constructor( 
+    public layoutService: LayoutService, 
+    private carService: CarService,
+    private rentingOrderItemsServices:RentingOrderItemsService, 
+    private authService:AuthService) 
+    {this.subscription = this.layoutService.configUpdate$.subscribe(() => {});}
 
   ngOnInit() {
     this.getTotalVehicles();
     this.getCurrenUserId();
     this.getData();
     this.initChart();
-
-
     this.items = [
       {label: 'Add New', icon: 'pi pi-fw pi-plus'},
       {label: 'Remove', icon: 'pi pi-fw pi-minus'}
@@ -127,7 +125,7 @@ export class DashboardComponent {
       (error) => {
         console.log(error);
       }
-    );
+    );    
   }
 
   getCurrenUserId() {
@@ -139,7 +137,6 @@ export class DashboardComponent {
     this.userRole=user?.roles;
     console.log("USER ID: ",user);
     console.log("USER ID: ",this.currentuser);
-
 
   }
 

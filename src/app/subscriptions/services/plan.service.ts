@@ -15,4 +15,10 @@ export class PlanService extends BaseService{
         const url = 'http://localhost:8080/api/v1/Plans';
         return this.http.get(url);
     }
+
+    getCurrentPlanByUser(userId: number): Observable<any> {
+        const url = `http://localhost:8080/api/v1/Plans/By/${userId}`;
+        return this.http.get(url);
+    }
+      
 }

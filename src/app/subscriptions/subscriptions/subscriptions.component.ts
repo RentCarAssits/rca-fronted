@@ -5,6 +5,8 @@ import { plansResponse } from '../model/plans.model';
 import { error } from '@angular/compiler-cli/src/transformers/util';
 import { SubscriptionService } from '../services/subscription.service';
 import { RegisterSubscription } from '../model/registerSubscription';
+import { currentPlanResponse } from '../model/currentPlanUser';
+import { AuthService } from 'src/app/iam/services/auth.service';
 
 @Component({
   selector: 'app-subscriptions',
@@ -15,17 +17,48 @@ export class SubscriptionsComponent {
   plan!:any; 
   subscription!: any;
   plans!: plansResponse[];
-
-  constructor(private planService:PlanService){
+  currentPlan!: currentPlanResponse;
+  currentuser:any;
+  // bollean by marx
+  currentPlanBool: boolean = false;
+  userRole:any;
+  constructor(private planService:PlanService, private authService:AuthService){
     this.plan = planService;
   }
 
   ngOnInit(){
     this.getAllPlans();
+    this.getCurrentPlan()
     this.initChart();
   }
+
   ngOnDestroy(){ }
   initChart(){}
+
+  getCurrenUserId(){
+    let user = this.authService.getCurrentUser();
+    this.currentuser = user?.id;
+    this.userRole=user?.roles;
+    console.log("USER ID: ",user);
+    console.log("USER ID: ",this.currentuser);
+  }
+
+  getCurrentPlan(){
+    this.planService.getCurrentPlanByUser(this.currentuser).subscribe(
+      (Response:any)=>{
+        this.currentPlanBool = true;
+        this.currentPlan = Response.result;
+        if(this.currentPlan == null){
+          this.currentPlanBool = false;
+        }
+      },(error)=>{
+        this.currentPlanBool = false;
+        console.log("No se pudo mi rey");
+        
+      }
+    )
+  }
+
   getAllPlans(){
     this.planService.getAllPlans().subscribe(
       (response:any)=>{
@@ -38,24 +71,6 @@ export class SubscriptionsComponent {
     )
   }
 
-  /*postNewSubscription(){
-    const currentDate: Date = new Date();
-    const subscriptionData: RegisterSubscription = {
-      AccountId: 1,
-      PlanId: 1,
-      UnitPrice: 250,
-      Frequency: 'Mensual',
-      startDate: currentDate,
-      endDate: currentDate,
-    };
-
-    this.subscriptionService.createSubscription(subscriptionData).subscribe(Response=>{
-      window.alert("Success");
-    },error=>{
-      window.alert("ERROR");
-    });
-  }*/
- 
  
   getFunction(){
     window.alert("");
