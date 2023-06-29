@@ -3,6 +3,7 @@ import { FormGroup } from '@angular/forms';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { CreateRentingItemComponent } from 'src/app/renting/components/renting-items/create-renting-item/create-renting-item.component';
 import { CreateWorkshopItemComponent } from '../create-workshop-item/create-workshop-item.component';
+import { WorkshopService } from '../../services/workshop-s/workshop.service';
 
 @Component({
   selector: 'app-workshop',
@@ -15,13 +16,27 @@ export class WorkshopAComponent implements OnInit {
   //   { id: 1, name: 'hola', ownerId: 3, address: 'la marina' },
   //   { id: 2, name: 'hey', ownerId: 4, address: 'la marina' },
   // ];
-  car: any;
   workshops = [];
   ref!: DynamicDialogRef;
-  workshopItemForm !: FormGroup;
+  workshopItemForm!: FormGroup;
 
-  constructor(private dialogService:DialogService){}
-  ngOnInit(): void {}
+  constructor(
+    private dialogService: DialogService,
+    private service: WorkshopService
+  ) {}
+  ngOnInit(): void {
+    this.getAllWorkshops();
+  }
+
+  getAllWorkshops(){
+    //make it dynamic 
+    this.service.getAllWorkshops(1).subscribe((response: any) => {
+      console.log(this.workshops);
+      this.workshops = response.result;
+    }, (error) => {
+      console.error(error);
+    })
+  }
 
   createWorkshop() {
     let width = '60%';
@@ -39,7 +54,7 @@ export class WorkshopAComponent implements OnInit {
       header: 'Create WorkShop',
       width: width,
       contentStyle: { overflow: 'auto' },
-      baseZIndex: 10000
+      baseZIndex: 10000,
     });
   }
 }
