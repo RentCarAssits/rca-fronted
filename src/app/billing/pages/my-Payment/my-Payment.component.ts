@@ -6,6 +6,7 @@ import {throwError} from 'rxjs';
 import {RentingOrderService} from "../../../renting/services/renting-orders/renting-order.service";
 import {RentingOrderItem} from "../../../renting/models/renting-order-item";
 import {RentingOrderItemsService} from "../../../renting/services/renting-items/renting-order-items.service";
+import { UrlTree , Router} from '@angular/router';
 
 interface AccountPayable {
   id: number;
@@ -54,7 +55,8 @@ export class MyPaymentComponent implements OnInit {
 
   constructor(private accountPayableService: AccountPayableService,
               private carService: CarService,
-              private rentingOrderItemsService: RentingOrderItemsService
+              private rentingOrderItemsService: RentingOrderItemsService,
+              private router:Router
   ) {
   }
 
@@ -129,8 +131,7 @@ export class MyPaymentComponent implements OnInit {
   }
 
 
-  deleteAccountById() {
-    const id = this.accountPayables.result[0]?.id;
+  deleteAccountById(id: number) {
     this.accountPayableService.delete(id)
       .pipe(
         tap(() => {
@@ -143,5 +144,11 @@ export class MyPaymentComponent implements OnInit {
         })
       )
       .subscribe();
+  }
+
+  goToInvoice(id:number){
+    const paymentId=id
+    const url: UrlTree = this.router.createUrlTree(['billing', 'car-info-request', 'checkout', paymentId]);
+    this.router.navigateByUrl(url);
   }
 }

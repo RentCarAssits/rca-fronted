@@ -8,6 +8,8 @@ import {FormGroup, FormControl, Validators} from '@angular/forms';
 import {RentingOrderService} from "../../../renting/services/renting-orders/renting-order.service";
 import {RentingOrderItemsService} from "../../../renting/services/renting-items/renting-order-items.service";
 import {AuthService} from "../../../iam/services/auth.service";
+import { InvoiceService } from '../../services/invoice/invoice.service';
+import { DatePipe } from '@angular/common';
 
 declare var paypal: any;
 
@@ -42,7 +44,9 @@ export class AccoutPaymentComponent implements OnInit {
     private orderService: RentingOrderService,
     private rentingOrderItemsService: RentingOrderItemsService,
     private authService: AuthService,
-    private rentOrderService: RentingOrderService
+    private rentOrderService: RentingOrderService,
+    private invoiceService:InvoiceService,
+    private datePipe:DatePipe
   ) {
     this.shippingForm = new FormGroup({
       'email': new FormControl(null, Validators.required),
@@ -120,7 +124,9 @@ export class AccoutPaymentComponent implements OnInit {
       onApprove: (data: any, actions: any) => {
         console.log('Orden aprobada, iniciando captura...');
         return actions.order.capture().then((details: any) => {
-          console.log('Captura completada, detalles:', details);
+          const addressLine1 = details.purchase_units[0].shipping.address.address_line_1;
+          console.log('Captura completada, detalles:', addressLine1);
+
           this.createOrder(this.rentingItem.id)
           this.messageService.add({
             severity: 'success',
@@ -128,10 +134,11 @@ export class AccoutPaymentComponent implements OnInit {
             detail: 'Transacción completada por ' + details.payer.name.given_name + '!'
           });
 
+
           setTimeout(() => {
-            const url: UrlTree = this.router.createUrlTree(['renting', 'dashboard']);
-            this.router.navigateByUrl(url);
-          }, 2000);  // 2000 ms = 2 segundos*
+            this.updateRenting();
+           this.createInvoice(addressLine1);
+          }, 2000);  // 2000 ms = 2 segundos/
         }).catch((error: any) => {
           console.error('Error durante la captura:', error);
         });
@@ -155,5 +162,57 @@ export class AccoutPaymentComponent implements OnInit {
       console.error('Error:', err);
     });
 
+  }
+
+  createInvoice(addressLine1:any){
+    const user:any = this.authService.getCurrentUser()
+    const currentDate = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
+    const body = {
+      payerId:user.id,
+      date:currentDate,
+      payerAddress: [addressLine1],
+      serviceId: this.rentingItem?.id,
+      totalPrice: this.accountPayables?.totalPrice
+    };
+    this.invoiceService.create(body).subscribe(
+      createResponse => {
+        console.log(createResponse);
+        const invoiceId = createResponse.result.invoiceId;
+        const url: UrlTree = this.router.createUrlTree(['billing', 'car-info-request', 'invoice', invoiceId ]);
+        this.router.navigateByUrl(url);
+      },
+      createError => {
+        console.error('Error:', createError);
+      }
+    );
+  }
+
+  updateRenting(){
+    const id = this.route.snapshot.paramMap.get('paymentId');
+    const date = this.formatDate(this.accountPayables?.expirationDay);
+    const body= {
+      payerId: this.accountPayables?.payerId,
+      payeeId:this.accountPayables?.payeeId,
+      serviceId: this.accountPayables?.serviceId,
+      totalPrice:this.accountPayables?.totalPrice,
+      parcialPrice: this.accountPayables?.parcialPrice,
+      state: 'CONFIRMED',
+      expirationDay:date,
+      currency: this.accountPayables?.currency,
+      tipoServicio: this.accountPayables?.tipoServicio,
+    }
+    this.accountService.update(id,body).subscribe(
+      response => {
+        console.log("actualizado"+response)
+      }
+    )
+  }
+
+  formatDate(dateString: string): string {
+    const date = new Date(dateString);
+    const year = date.getFullYear();
+    const month = ('0' + (date.getMonth() + 1)).slice(-2); // Add leading zero if needed
+    const day = ('0' + date.getDate()).slice(-2); // Add leading zero if needed
+    return `${year}/${month}/${day}`;
   }
 }

@@ -23,6 +23,8 @@
     "braintree-web": "^3.95.0-beta-3ds.1",
     "chart.js": "^3.9.1",
     "dotenv": "^16.3.1",
+    "html2canvas": "^1.4.1",
+    "jspdf": "^2.5.1",
     "paypal-checkout-components": "^4.1.35",
     "primeflex": "^3.3.1",
     "primeicons": "^6.0.1",

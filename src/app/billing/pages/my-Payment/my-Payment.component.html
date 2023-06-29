@@ -51,7 +51,8 @@
             </span>
             <span class="text-red-500">PENDING</span>
           </div>
-          <button pButton icon="pi pi-trash" class="p-button-rounded" (click)="deleteAccountById()"></button>
+          <button pButton icon="pi pi-trash" class="p-button-rounded p-mr-2" (click)="deleteAccountById(item.id)"></button>
+          <button pButton icon="pi pi-file" class="p-button-rounded" (click)="goToInvoice(item.id)"></button>
         </div>
       </div>
     </div>

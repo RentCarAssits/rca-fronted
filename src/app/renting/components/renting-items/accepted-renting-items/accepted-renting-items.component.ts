@@ -125,7 +125,6 @@ export class AcceptedRentingItemsComponent {
       map((resultado) => {
         const paymentId = resultado.result.accountPayableId; // Obtén el ID del pago creado
         if (paymentId) {
-          console.log("mama coco");
           const url: UrlTree = this.router.createUrlTree(['billing', 'car-info-request', 'checkout', paymentId]);
           this.router.navigateByUrl(url);
         }
