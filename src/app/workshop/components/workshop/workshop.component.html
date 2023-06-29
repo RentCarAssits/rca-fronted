@@ -22,7 +22,7 @@
         <td style="width: 15%; min-width: 3rem;" class="font-normal">{{workshop.district}}</td>
         <td style="width: 15%; min-width: 3rem;" class="font-normal">{{workshop.addressDetail}}</td>
         <td style="width: 15%; min-width: 7rem;">
-          <p-button icon="pi pi-search" styleClass="p-button-rounded" [routerLink]="'/workshop/warehouse'"></p-button>
+          <p-button icon="pi pi-search" styleClass="p-button-rounded" [routerLink]="'/workshop/warehouse/'+workshop.id"></p-button>
         </td>
       </tr>
     </ng-template>

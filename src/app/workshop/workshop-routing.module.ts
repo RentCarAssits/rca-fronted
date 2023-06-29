@@ -8,7 +8,7 @@ const routes: Routes = [
   { path: '', redirectTo: '', pathMatch: 'full' },
   { path: 'chat-box', component: WorkshopChatComponent },
   { path: 'workshop', component: WorkshopAComponent },
-  { path: 'warehouse', component: WarehouseComponent },
+  { path: 'warehouse/:id', component: WarehouseComponent },
 ];
 
 @NgModule({
