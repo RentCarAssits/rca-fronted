@@ -17,7 +17,7 @@ export class InventoryCreateComponent implements OnInit {
     { name: 'inventario 1', country: 'Peru', district: 'lima' },
     { name: 'inventario 2', country: 'Peru', district: 'lima' },
   ];
-
+  // inventories = []
   constructor(
     private config: DynamicDialogConfig,
     private dialogRef: DynamicDialogRef,
