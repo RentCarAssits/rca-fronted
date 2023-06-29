@@ -2,16 +2,16 @@ import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { BaseService } from "src/app/shared/services/base/base.service";
 import { RegisterSubscription } from "../model/registerSubscription";
+import {ResourceService} from "../../shared/services/base/resource.service";
+import {Injectable} from "@angular/core";
 
-export class SubscriptionService extends BaseService{
+@Injectable({
+  providedIn: 'root'
+})
+export class SubscriptionService extends ResourceService<any>{
+
     constructor(http: HttpClient){
         super(http);
-        this.basePath += '/Subscription';
+        this.basePath += '/Subscriptions';
     }
-
-    createSubscription(SubscriptionData: RegisterSubscription): Observable<any> {
-        const url = this.basePath; // URL para el endpoint de creación de suscripción
-        return this.http.post(url, SubscriptionData);
-    }
-    
 }
