@@ -1,10 +1,10 @@
 <div class="card mb-5">
   <div class="flex justify-content-between align-items-center mb-2">
-    <h5 class="text-800 font-semibold">My Warehouses</h5>
+    <h5 class="text-800 font-semibold">My Inventory</h5>
   </div>
   <p-table
-    *ngIf="warehouses && warehouses.length > 0"
-    [value]="warehouses"
+    *ngIf="inventories && inventories.length > 0"
+    [value]="inventories"
     [paginator]="true"
     [rows]="7"
     responsiveLayout="scroll"
@@ -12,63 +12,82 @@
     <ng-template pTemplate="header">
       <tr>
         <th>Id</th>
-        <th pSortableColumn="name">Name</th>
+        <th pSortableColumn="name">description</th>
         <th>Country</th>
         <th>District</th>
-        <th>Address Details</th>
         <th>Actions</th>
       </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-warehouse class="text-xs">
+    <ng-template pTemplate="body" let-inventory class="text-xs">
       <tr>
         <td style="width: 5%; min-width: 2rem" class="font-normal">
-          {{ warehouse.id }}
+          {{ inventory.id }}
         </td>
         <td style="width: 15%; min-width: 7rem" class="font-normal">
-          {{ warehouse.name }}
+          {{ inventory.description }}
         </td>
         <td style="width: 15%; min-width: 3rem" class="font-normal">
-          {{ warehouse.country }}
+          {{ inventory.country }}
         </td>
         <td style="width: 15%; min-width: 3rem" class="font-normal">
-          {{ warehouse.district }}
-        </td>
-        <td style="width: 15%; min-width: 3rem" class="font-normal">
-          {{ warehouse.addressDetail }}
+          {{ inventory.district }}
         </td>
         <td style="width: 15%; min-width: 7rem">
-          <p-button
+          <!-- <p-button
             icon="pi pi-search"
             styleClass="p-button-rounded"
             (onClick)="createInventory(warehouse.id)"
-          ></p-button>
+          ></p-button> -->
         </td>
       </tr>
     </ng-template>
   </p-table>
   <div
     class="flex justify-content-center mt-5"
-    *ngIf="warehouses && warehouses.length > 0"
+    *ngIf="inventories && inventories.length > 0"
   >
-    <p-button
-      icon="pi pi-pencil"
-      (onClick)="createWarehouse()"
-      label="Create new Warehouse"
-    ></p-button>
+  <div class="col-12">
+  <div class="card1">
+    <div class="col-12">
+      <form [formGroup]="inventoryForm" (ngSubmit)="onSubmit()">
+  
+        <h5>Create Inventory</h5>
+        <div class="p-fluid p-formgrid grid">
+          <div class="field col-12 md:col-12">
+            <label for="Description">Description</label>
+            <input pInputText id="Description" type="text" formControlName="description"/>
+          </div>
+        </div>
+        <div class="flex justify-content-center">
+          <p-toast></p-toast>
+          <p-button type="submit">Save</p-button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+    
+    <!-- <p-button -->
+      <!-- icon="pi pi-pencil" -->
+      <!-- (onClick)="createWarehouse()" -->
+      <!-- label="Create new Warehouse" -->
+    <!-- ></p-button> -->
   </div>
   <div
-    *ngIf="!warehouses || warehouses.length === 0"
+    *ngIf="!inventories || inventories.length === 0"
     class="h-20rem flex justify-content-center align-items-center flex-column"
   >
     <h5 class="order-badge add-data">No Warehouses yet.</h5>
     <p>Get started by adding your first warehouse!</p>
-    <button
+    <!-- <button
       pButton
       pRipple
       label="Create Workshop"
       (click)="createWarehouse()"
       class="p-button-text p-button-rounded border-none font-light line-height-2 bg-blue-500 text-white"
-    ></button>
+    ></button> -->
   </div>
 </div>
 <!--(click)=""-->

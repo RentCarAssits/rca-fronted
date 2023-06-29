@@ -4,6 +4,7 @@ import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { FormGroup } from '@angular/forms';
 import { WarehouseCreationComponent } from '../warehouse-creation/warehouse-creation.component';
 import { WorkshopService } from '../../services/workshop-s/workshop.service';
+import { InventoryCreateComponent } from '../inventory-create/inventory-create.component';
 
 @Component({
   selector: 'app-warehouse',
@@ -15,26 +16,26 @@ export class WarehouseComponent implements OnInit {
   ref!: DynamicDialogRef;
   workshopItemForm!: FormGroup;
   //testing data
-  // warehouses = [
-  //   {
-  //     id: 1,
-  //     name: 'hola',
-  //     country: 3,
-  //     district: 'san miguel',
-  //     addressDetail: 'la marina',
-  //     workshopId: this.workshopId,
-  //   },
-  //   {
-  //     id: 2,
-  //     name: 'hola',
-  //     country: 3,
-  //     district: 'san miguel',
-  //     addressDetail: 'la marina',
-  //     workshopId: this.workshopId,
-  //   },
-  // ];
+  warehouses = [
+    {
+      id: 1,
+      name: 'hola',
+      country: 3,
+      district: 'san miguel',
+      addressDetail: 'la marina',
+      workshopId: this.workshopId,
+    },
+    {
+      id: 2,
+      name: 'hola',
+      country: 3,
+      district: 'san miguel',
+      addressDetail: 'la marina',
+      workshopId: this.workshopId,
+    },
+  ];
 
-  warehouses!:any[];
+  // warehouses!:any[];
 
   constructor(
     private route: ActivatedRoute,
@@ -48,7 +49,7 @@ export class WarehouseComponent implements OnInit {
     });
 
     //get all by warehouse Id
-    this.getAllWarehouses();
+    // this.getAllWarehouses();
   }
 
   getAllWarehouses() {
@@ -57,6 +58,28 @@ export class WarehouseComponent implements OnInit {
     }, (error) =>{
       console.error(error);
     })
+  }
+  
+  createInventory(warehouseId: any) {
+    let width = '60%';
+    const windowWidth =
+      window.innerWidth ||
+      document.documentElement.clientWidth ||
+      document.body.clientWidth;
+    if (windowWidth < 768) {
+      width = '100%';
+    } else if (windowWidth < 1200) {
+      width = '80%';
+    }
+  
+    this.dialogService.open(InventoryCreateComponent, {
+      header: 'Create Inventory',
+      width: width,
+      contentStyle: { overflow: 'auto' },
+      baseZIndex: 10000,
+      data: {warehouseId}
+    });
+
   }
 
   createWarehouse() {

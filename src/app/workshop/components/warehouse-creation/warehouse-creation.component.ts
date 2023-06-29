@@ -4,6 +4,7 @@ import { MessageService } from 'primeng/api';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { WarehouseService } from '../../services/warehouse/warehouse.service';
 import { WorkshopService } from '../../services/workshop-s/workshop.service';
+import { InventoryService } from '../../services/inventory/inventory.service';
 
 @Component({
   selector: 'app-warehouse-creation',
@@ -16,7 +17,8 @@ export class WarehouseCreationComponent implements OnInit {
     private dialogRef: DynamicDialogRef,
     private formBuilder: FormBuilder,
     private service: WarehouseService,
-    private message: MessageService
+    private message: MessageService,
+    private inventoryService: InventoryService,
   ) {}
 
   ngOnInit(): void {
@@ -29,7 +31,7 @@ export class WarehouseCreationComponent implements OnInit {
     });
   }
 
-  onSubmit() {
+  onSubmit() { 
     if (!this.warehouseForm.valid) return;
 
     let { ...rest } = this.warehouseForm.value;
