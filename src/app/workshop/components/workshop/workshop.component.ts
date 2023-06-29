@@ -11,11 +11,11 @@ import { WorkshopService } from '../../services/workshop-s/workshop.service';
   styleUrls: ['./workshop.component.css'],
 })
 export class WorkshopAComponent implements OnInit {
-  // workshops!: any[]
-  workshops = [
-    { id: 1, name: 'hola', ownerId: 3, address: 'la marina' },
-    { id: 2, name: 'hey', ownerId: 4, address: 'la marina' },
-  ];
+  workshops!: any[]
+  // workshops = [
+  //   { id: 1, name: 'hola', ownerId: 3, address: 'la marina' },
+  //   { id: 2, name: 'hey', ownerId: 4, address: 'la marina' },
+  // ];
   // workshops = [];
   ref!: DynamicDialogRef;
   workshopItemForm!: FormGroup;
