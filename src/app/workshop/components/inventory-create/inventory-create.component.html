@@ -33,11 +33,11 @@
           {{ inventory.district }}
         </td>
         <td style="width: 15%; min-width: 7rem">
-          <!-- <p-button
+          <p-button
             icon="pi pi-search"
             styleClass="p-button-rounded"
-            (onClick)="createInventory(warehouse.id)"
-          ></p-button> -->
+            [routerLink]="'workshop/warehouse/' + item + '/inventory/'+ inventory.id"
+          ></p-button>
         </td>
       </tr>
     </ng-template>

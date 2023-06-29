@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: 'chat-box', component: WorkshopChatComponent },
   { path: 'workshop', component: WorkshopAComponent },
   { path: ':id/warehouse', component: WarehouseComponent },
-  { path: 'warehouse/:id/inventory', component: InventoryComponent },
+  { path: 'warehouse/:wid/inventory/:id', component: InventoryComponent },
 ];
 
 @NgModule({
