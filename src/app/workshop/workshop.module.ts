@@ -6,9 +6,10 @@ import { PrimeNgModule } from '../prime-ng/prime-ng.module';
 import {ReactiveFormsModule} from "@angular/forms";
 import { WorkshopAComponent } from './components/workshop/workshop.component';
 import { CreateWorkshopItemComponent } from './components/create-workshop-item/create-workshop-item.component';
+import { WarehouseComponent } from './components/warehouse/warehouse.component';
 
 @NgModule({
-  declarations: [WorkshopChatComponent, WorkshopAComponent, CreateWorkshopItemComponent],
+  declarations: [WorkshopChatComponent, WorkshopAComponent, CreateWorkshopItemComponent, WarehouseComponent],
   exports: [WorkshopChatComponent],
     imports: [CommonModule, WorkshopRoutingModule, PrimeNgModule, ReactiveFormsModule],
 })

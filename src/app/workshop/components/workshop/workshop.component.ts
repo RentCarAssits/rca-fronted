@@ -12,11 +12,11 @@ import { WorkshopService } from '../../services/workshop-s/workshop.service';
 })
 export class WorkshopAComponent implements OnInit {
   // workshops!: any[]
-  // workshops = [
-  //   { id: 1, name: 'hola', ownerId: 3, address: 'la marina' },
-  //   { id: 2, name: 'hey', ownerId: 4, address: 'la marina' },
-  // ];
-  workshops = [];
+  workshops = [
+    { id: 1, name: 'hola', ownerId: 3, address: 'la marina' },
+    { id: 2, name: 'hey', ownerId: 4, address: 'la marina' },
+  ];
+  // workshops = [];
   ref!: DynamicDialogRef;
   workshopItemForm!: FormGroup;
 
@@ -25,7 +25,8 @@ export class WorkshopAComponent implements OnInit {
     private service: WorkshopService
   ) {}
   ngOnInit(): void {
-    this.getAllWorkshops();
+    //TODO: Descomentar
+    // this.getAllWorkshops();
   }
 
   getAllWorkshops(){
@@ -37,6 +38,7 @@ export class WorkshopAComponent implements OnInit {
       console.error(error);
     })
   }
+
 
   createWorkshop() {
     let width = '60%';
