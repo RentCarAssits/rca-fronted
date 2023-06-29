@@ -7,12 +7,11 @@ import { MyPaymentComponent } from './pages/my-Payment/my-Payment.component';
 
 
 const routes: Routes=[
-  { path: '', redirectTo: '', pathMatch: 'full' },
-  {path: 'car-info-request/checkout', component: AccoutPaymentComponent},
-  {path: 'car-info-request/invoice', component: InvoiceComponent},
+  {path: '', redirectTo: '', pathMatch: 'full' },
+  {path: 'car-info-request/checkout/:paymentId', component: AccoutPaymentComponent },
+  {path: 'car-info-request/invoice/:invoiceId', component: InvoiceComponent},
   {path: 'we-are-working/my-Payments', component: MyPaymentComponent},
-  {path: 'car-info-request/invoice', component: InvoiceComponent},
-  {path: 'we-are-working/my-Payments', component: MyPaymentComponent}
+
 ]
 @NgModule({
   declarations: [],

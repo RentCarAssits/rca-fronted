@@ -1,0 +1,86 @@
+<div  class="surface-ground px-4 py-8 md:px-6 lg:px-8">
+  <!--Pans-->
+  <div class="px-4 py-8 md:px-6 lg:px-8">
+    <div class="text-900 font-bold text-6xl mb-4 text-center">Planes y precios</div>
+    <div class="text-700 text-xl mb-6 text-center line-height-3">Encuentra la suscripción perfecta para tus
+      necesidades de alquiler de automóviles
+    </div>
+
+
+    <div class="grid">
+      <div class="col-12 lg:col-6" *ngFor="let plan of plans; let i = index">
+        <div [ngSwitch]="plan.PlanName">
+          <div *ngSwitchCase="'Premium'">
+            <div class="p-3 h-full">
+              <div class="shadow-2 p-3 h-full flex flex-column surface-card" style="border-radius: 6px">
+                <div class="text-900 font-medium text-xl mb-2">{{plan.PlanName}}</div>
+                <hr class="my-3 mx-0 border-top-1 border-none surface-border"/>
+                <div class="flex align-items-center">
+                  <span class="font-bold text-2xl text-900">${{plan.Price}}</span>
+                  <span class="ml-2 font-medium text-600">monthly</span>
+                </div>
+                <hr class="my-3 mx-0 border-top-1 border-none surface-border"/>
+                <ul class="list-none p-0 m-0 flex-grow-1">
+                  <li class="flex align-items-center mb-3">
+                    <i class="pi pi-check-circle text-green-500 mr-2"></i>
+                    <span>All the features of the Basic Subscription.</span>
+                  </li>
+                  <li class="flex align-items-center mb-3">
+                    <i class="pi pi-check-circle text-green-500 mr-2"></i>
+                    <span>Additional levels of support and maintenance.</span>
+                  </li>
+                  <li class="flex align-items-center mb-3">
+                    <i class="pi pi-check-circle text-green-500 mr-2"></i>
+                    <span>Priority customer service.</span>
+                  </li>
+                  <li class="flex align-items-center mb-3">
+                    <i class="pi pi-check-circle text-green-500 mr-2"></i>
+                    <span>Exclusive discounts on rental rates.</span>
+                  </li>
+                </ul>
+                <hr class="mb-3 mx-0 border-top-1 border-none surface-border mt-auto"/>
+                <button (click)="createPlan(plan, i)" pButton pRipple label="Buy Now" class="p-3 w-full mt-auto"></button>
+              </div>
+            </div>
+          </div>
+          <div *ngSwitchCase="'VIP'">
+            <div class="p-3 h-full">
+              <div class="shadow-2 p-3 h-full flex flex-column surface-card" style="border-radius: 6px">
+                <div class="text-900 font-medium text-xl mb-2">{{plan.PlanName}}</div>
+                <hr class="my-3 mx-0 border-top-1 border-none surface-border"/>
+                <div class="flex align-items-center">
+                  <span class="font-bold text-2xl text-900">${{plan.Price}}</span>
+                  <span class="ml-2 font-medium text-600">monthly</span>
+                </div>
+                <hr class="my-3 mx-0 border-top-1 border-none surface-border"/>
+                <ul class="list-none p-0 m-0 flex-grow-1">
+                  <li class="flex align-items-center mb-3">
+                    <i class="pi pi-check-circle text-green-500 mr-2"></i>
+                    <span>All the features of the Premium Subscription.</span>
+                  </li>
+                  <li class="flex align-items-center mb-3">
+                    <i class="pi pi-check-circle text-green-500 mr-2"></i>
+                    <span>Specialized assistance in case of accidents or crashes.</span>
+                  </li>
+                  <li class="flex align-items-center mb-3">
+                    <i class="pi pi-check-circle text-green-500 mr-2"></i>
+                    <span>Emergency towing service.</span>
+                  </li>
+                  <li class="flex align-items-center mb-3">
+                    <i class="pi pi-check-circle text-green-500 mr-2"></i>
+                    <span>Replacement vehicle in case of prolonged repairs.</span>
+                  </li>
+                </ul>
+                <p-toast></p-toast>
+                <hr class="mb-3 mx-0 border-top-1 border-none surface-border mt-auto"/>
+                <button  (click)="createPlan(plan, i)" pButton pRipple label="Buy Now" class="p-3 w-full mt-auto"></button>
+              </div>
+            </div>
+          </div>
+          <div *ngSwitchDefault  class="hidden">Default case selected</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--Pans-->
+</div>

@@ -1,3 +1,5 @@
+<script src="https://js.braintreegateway.com/web/3.81.0/js/client.min.js"></script>
+<script src="https://js.braintreegateway.com/web/3.81.0/js/hosted-fields.min.js"></script>
 <div class="card">
   <div class="flex justify-content-between align-items-center mb-5">
     <h5 class="text-800 font-semibold">Accepted Renting Items</h5>
@@ -22,8 +24,9 @@
           <span [ngClass]="getCarStateClass(item.state)">{{getCarStateCode(item.state)}}</span>
         </td>
         <td style="width: 13%;">
-
-          <p-button  (click)="createRentOrder(item)" icon="pi pi-credit-card" styleClass="p-button-rounded p-button-text p-button-raised"></p-button>
+          <div>
+          <p-button (click)="createRentOrder(item); buttonClicked = true" icon="pi pi-credit-card" styleClass="p-button-rounded p-button-text p-button-raised"></p-button>
+        </div><!-----<p-button  (click)="createRentOrder(item)" icon="pi pi-credit-card" styleClass="p-button-rounded p-button-text p-button-raised"></p-button> -->
         </td>
       </tr>
     </ng-template>

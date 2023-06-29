@@ -19,7 +19,7 @@ import { BillingModule } from './billing/billing.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,

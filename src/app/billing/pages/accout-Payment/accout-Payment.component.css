@@ -1,0 +1,10 @@
+.hidden {
+  display: none;
+}
+
+
+.panel-ancho-personalizado {
+  max-width: 400px; /* Ajusta el valor según tus necesidades */
+  margin-left: auto;
+  margin-right: auto;
+}

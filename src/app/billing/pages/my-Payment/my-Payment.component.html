@@ -10,7 +10,7 @@
     </span>
   </div>
 <div>
-  <div  *ngFor="let item of accountPayables?.result" class="surface-card grid grid-nogutter border-round shadow-2 mb-6 ng-star-inserted">
+  <div  *ngFor="let item of accountPayables?.result; let i = index" class="surface-card grid grid-nogutter border-round shadow-2 mb-6 ng-star-inserted">
     <div class="col-12 flex p-2 surface-100 border-round-top">
       <div class="p-2 flex-auto text-center md:text-left">
         <span class="text-700 block">Payment Number</span>
@@ -22,42 +22,17 @@
       </div>
       <div class="p-2 flex-auto text-center md:text-left">
         <span class="text-700 block">Total Amount</span>
-        <span class="text-900 font-medium block mt-2">${{item.totalPrice}}</span>
-  <!--
-      <span class="text-900 text-2xl mb-2">My Orders</span>
-      <span class="text-700 text-lg">Dignissim diam quis enim lobortis.</span>
+        <span class="text-900 font-medium block mt-2"> {{item.currency}} {{item.totalPrice}}</span>
+        </div>
     </div>
-    <span class="p-input-icon-right mt-5 mb-2 md:mt-0 md:mb-0 w-full lg:w-25rem">
-      <i class="pi pi-search text-gray-400"></i>
-      <input type="text" placeholder="Search" class="p-inputtext w-full lg:w-25rem surface-50" (input)="filterPayments($event)">
-    </span>
-  </div>
-<div>
-  <div  *ngFor="let item of accountPayables?.result" class="surface-card grid grid-nogutter border-round shadow-2 mb-6 ng-star-inserted">
-    <div class="col-12 flex p-2 surface-100 border-round-top">
-      <div class="p-2 flex-auto text-center md:text-left">
-        <span class="text-700 block">Payment Number</span>
-        <span class="text-900 font-medium block mt-2">{{item.id}}</span>
-      </div>
-      <div class="p-2 flex-auto text-center md:text-left">
-        <span class="text-700 block">Order Date</span>
-        <span class="text-900 font-medium block mt-2">{{item.expirationDay}} </span>
-      </div>
-      <div class="p-2 flex-auto text-center md:text-left">
-        <span class="text-700 block">Total Amount</span>
-        <span class="text-900 font-medium block mt-2">$123.00</span>
-      -->
-        <span class="text-900 font-medium block mt-2">${{item.totalPrice}}</span>
-      </div>
-    </div>
-    <div class="col-12">
+    <div class="col-12" >
       <div class="p-2 my-4 flex flex-column lg:flex-row justify-content-between align-items-center ng-star-inserted">
         <div class="flex flex-column lg:flex-row justify-content-center align-items-center px-2">
-          <img alt="product" class="w-8rem h-8rem mr-3 flex-shrink-0" src="assets/demo/images/ecommerce/order-history/orderhistory-1.png">
+          <img alt="product" class="w-8rem h-8rem mr-3 flex-shrink-0" src="{{cars[i]?.image}}">
           <div class="flex flex-column my-auto text-center md:text-left">
-            <span class="text-900 font-medium mb-3 mt-3 lg:mt-0">Product Name Placeholder A Little Bit Long One</span>
-            <span class="text-700 text-sm mb-3">White | Small</span>
-            <a pRipple tabindex="0" class="text-primary text-underline font-semibold">View Details</a>
+            <span class="text-900 font-medium mb-3 mt-3 lg:mt-0"> Model: {{cars[i]?.model}} </span>
+            <span class="text-700 text-sm mb-3"> Brand : {{cars[i]?.brand}}</span>
+            <a pRipple tabindex="0" class="text-primary text-underline font-semibold"> {{cars[i]?.name}} </a>
           </div>
         </div>
         <div class="flex flex-column lg:flex-row justify-content-center align-items-center px-2" *ngIf="  item.state === 0">
@@ -69,14 +44,15 @@
             <span class="text-green-500">CONFIRMED</span>
           </div>
         </div>
-        <div class="flex flex-column lg:flex-row justify-content-center align-items-center px-2">
-          <div class="mr-0 lg:mr-3 mt-4 lg:mt-0 p-2 flex align-items-center" style="background-color:rgba(255, 0, 0, 0.253); border-radius: 2.5rem;">
+        <div class="flex flex-column lg:flex-row justify-content-center align-items-center px-2" *ngIf="item.state === 'PENDING'">
+          <div class="mr-0 lg:mr-3 mt-4 lg:mt-0 p-2 flex align-items-center" style="background-color: rgba(255, 0, 0, 0.253); border-radius: 2.5rem;">
             <span class="bg-red-500 text-white flex align-items-center justify-content-center border-circle mr-2" style="min-width: 2rem; min-height: 2rem;">
               <i class="pi pi-times negative-check"></i>
             </span>
             <span class="text-red-500">PENDING</span>
-            <span class="text-green-500">Cancelado</span>
           </div>
+          <button pButton icon="pi pi-trash" class="p-button-rounded p-mr-2" (click)="deleteAccountById(item.id)"></button>
+          <button pButton icon="pi pi-file" class="p-button-rounded" (click)="goToInvoice(item.id)"></button>
         </div>
       </div>
     </div>

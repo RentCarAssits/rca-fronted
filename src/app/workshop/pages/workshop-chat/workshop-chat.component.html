@@ -1,3 +1,18 @@
+<p-dialog
+  header="Subscription Invalid"
+  [(visible)]="displayDialog"
+  [modal]="true"
+  [style]="{width: '30vw'}"
+  [baseZIndex]="10000"
+  (onHide)="onDialogHide()">
+  <div>
+    <p class="text-black-alpha-90 text-gray-800">Congratulations, you've discovered a premium feature! </p>
+    <p>Please upgrade your plan to use this functionality.</p>
+  </div>
+</p-dialog>
+
+
+
 <div class="flex-1 card p-0">
   <div class="flex flex-column h-full">
     <div class="flex align-items-center border-bottom-1 surface-border p-3 lg:p-6">
