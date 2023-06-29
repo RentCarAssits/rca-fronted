@@ -28,8 +28,9 @@
       <div class="flex align-items-center justify-content-between mb-2">
         <div class="text-600 font-medium text-600 mb-1"> Rental Price :</div>
         <span class="text-600 font-semibold text-blue-600 block">
-          <label *ngIf="car.currency == 'dólares'">$</label>
-          <label *ngIf="car.currency == 'soles'">S/</label>{{car.price}} per
+          <label *ngIf="car.currency == 'USD'">$</label>
+          <label *ngIf="car.currency == 'SOLES'">S/</label>{{car.price}} per
+          <label *ngIf="car.currency == 'EURO'">E</label>
           <label *ngIf="car.timeUnit == 'D'">day</label>
           <label *ngIf="car.timeUnit == 'W'">week</label>
           <label *ngIf="car.timeUnit == 'M'">month</label>
