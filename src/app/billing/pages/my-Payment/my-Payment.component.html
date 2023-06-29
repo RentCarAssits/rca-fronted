@@ -10,7 +10,7 @@
     </span>
   </div>
 <div>
-  <div  *ngFor="let item of accountPayables?.result" class="surface-card grid grid-nogutter border-round shadow-2 mb-6 ng-star-inserted">
+  <div  *ngFor="let item of accountPayables?.result; let i = index" class="surface-card grid grid-nogutter border-round shadow-2 mb-6 ng-star-inserted">
     <div class="col-12 flex p-2 surface-100 border-round-top">
       <div class="p-2 flex-auto text-center md:text-left">
         <span class="text-700 block">Payment Number</span>
@@ -25,14 +25,14 @@
         <span class="text-900 font-medium block mt-2"> {{item.currency}} {{item.totalPrice}}</span>
         </div>
     </div>
-    <div class="col-12">
+    <div class="col-12" >
       <div class="p-2 my-4 flex flex-column lg:flex-row justify-content-between align-items-center ng-star-inserted">
         <div class="flex flex-column lg:flex-row justify-content-center align-items-center px-2">
-          <img alt="product" class="w-8rem h-8rem mr-3 flex-shrink-0" src="{{car?.image}}">
+          <img alt="product" class="w-8rem h-8rem mr-3 flex-shrink-0" src="{{cars[i]?.image}}">
           <div class="flex flex-column my-auto text-center md:text-left">
-            <span class="text-900 font-medium mb-3 mt-3 lg:mt-0"> Model: {{car?.model}} </span>
-            <span class="text-700 text-sm mb-3"> Brand : {{car?.brand}}</span>
-            <a pRipple tabindex="0" class="text-primary text-underline font-semibold"> {{car?.name}} </a>
+            <span class="text-900 font-medium mb-3 mt-3 lg:mt-0"> Model: {{cars[i]?.model}} </span>
+            <span class="text-700 text-sm mb-3"> Brand : {{cars[i]?.brand}}</span>
+            <a pRipple tabindex="0" class="text-primary text-underline font-semibold"> {{cars[i]?.name}} </a>
           </div>
         </div>
         <div class="flex flex-column lg:flex-row justify-content-center align-items-center px-2" >

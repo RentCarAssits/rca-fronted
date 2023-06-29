@@ -1,29 +1,45 @@
-<div class="details-container">
-  <div class="image-container">
-    <img [src]="car?.image" alt="Image" (load)="imageLoaded = true">
+<div class="grid">
+  <div class="col-5  border-round border-100 flex justify-content-center">
+    <img class="w-15rem h-full" [src]="car?.image" alt="Image" (load)="imageLoaded = true">
     <div *ngIf="!imageLoaded" class="loading-icon">
       <i class="pi pi-spin pi-spinner"></i>
     </div>
   </div>
-  <div class="details-content">
-    <ul>
-      <li>Renting Price: {{ rentingItem?.rentingPrice }} {{ rentingItem?.currency }}</li>
-      <li>Renting Unit: {{ rentingItem?.rentingUnit === 'D' ? 'Days' : 'Week' }}</li>
-      <li>Start Date: {{ formatDate(rentingItem?.startDate) }}</li>
-      <li>End Date: {{ formatDate(rentingItem?.endDate)}}</li>
-      <li>Status: <span [ngClass]="{
+  <div class="col-7" >
+    <div class="flex justify-content-between">
+      <p class="text-xl font-semibold ">Renting Price:</p>
+      <p class="text-black-alpha-90 font-semibold font-italic"> {{ rentingItem?.rentingPrice }} {{ rentingItem?.currency }}</p>
+    </div>
+    <div class="flex justify-content-between">
+      <p class="text-xl font-semibold ">Renting Unit:</p>
+      <p class="text-black-alpha-90 font-semibold font-italic">  {{ rentingItem?.rentingUnit === 'D' ? 'Days' : 'Week' }}</p>
+    </div>
+    <div class="flex justify-content-between">
+      <p class="text-xl font-semibold ">Start Date:</p>
+      <p class="text-black-alpha-90 font-semibold "> {{ formatDate(rentingItem?.startDate) }}</p>
+    </div>
+    <div class="flex justify-content-between">
+      <p class="text-xl font-semibold ">End Date:</p>
+      <p class="text-black-alpha-90 font-semibold font-italic"> {{ formatDate(rentingItem?.endDate)}}</p>
+    </div>
+    <div class="flex justify-content-between">
+      <p class="text-xl font-semibold ">Status:</p>
+      <p class="text-black-alpha-90 font-semibold font-italic">
+      <span [ngClass]="{
           'text-orange': rentingItem?.state === 'O',
           'text-green': rentingItem?.state === 'A',
           'text-red': rentingItem?.state === 'D',
           'text-blue': rentingItem?.state === 'R'
         }">
           {{ rentingItem?.state === 'O' ? 'On Request' : rentingItem?.state === 'A' ? 'Accepted' : rentingItem?.state === 'D' ? 'Denied' : 'Ordered' }}
-        </span>
-      </li>
-    </ul>
+      </span>
+      </p>
+    </div>
+
   </div>
-  <div class="dialog-footer">
+  <div class="col-12 flex justify-content-end gap-3">
     <button pButton pRipple type="button" label="Cancel" class="p-button-secondary" (click)="cancelOrder()"></button>
-    <button pButton pRipple type="button" label="Create" class="p-button-primary" (click)="createOrder(rentingItem?.id)"></button>
+    <button pButton pRipple type="button" label="Create" class="p-button-primary"
+            (click)="createPaymentAndRedirecTo(rentingItem)"></button>
   </div>
 </div>

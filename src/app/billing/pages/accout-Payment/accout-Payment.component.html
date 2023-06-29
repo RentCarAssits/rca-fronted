@@ -41,7 +41,7 @@
       <div class="flex-auto lg:ml-3">
         <div class="flex align-items-center justify-content-between mb-3">
           <span class="text-900 font-bold">{{car?.model}} </span>
-          <span class="text-900 font-bold">{{ car?.integrity}}</span>
+          <span class="text-900 font-bold">{{ car?.year | date:'yyyy' }}</span>
         </div>
         <div class="text-600 text-sm mb-3">{{car?.brand}}</div>
         <div class="flex flex-auto justify-content-between align-items-center">

@@ -1,10 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { AccountPayableService } from '../../services/account-payable/account-payable.service';
-import { CarService } from 'src/app/renting/services/car/car.service';
-import { MessageService } from 'primeng/api';
-import { UrlTree } from '@angular/router';
-import { FormGroup,FormControl,Validators } from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {Router, ActivatedRoute} from '@angular/router';
+import {AccountPayableService} from '../../services/account-payable/account-payable.service';
+import {CarService} from 'src/app/renting/services/car/car.service';
+import {MessageService} from 'primeng/api';
+import {UrlTree} from '@angular/router';
+import {FormGroup, FormControl, Validators} from '@angular/forms';
+import {RentingOrderService} from "../../../renting/services/renting-orders/renting-order.service";
+import {RentingOrderItemsService} from "../../../renting/services/renting-items/renting-order-items.service";
+import {AuthService} from "../../../iam/services/auth.service";
+
 declare var paypal: any;
 
 @Component({
@@ -14,10 +18,12 @@ declare var paypal: any;
 })
 export class AccoutPaymentComponent implements OnInit {
   paymentData: any;
+  rentingItem: any;
   result: any;
   accountPayables: any;
   car: any;
-  shippingForm: FormGroup ;
+  shippingForm: FormGroup;
+
   private loadPaypalScript(): Promise<any> {
     return new Promise((resolve, reject) => {
       const scriptElement = document.createElement('script');
@@ -26,12 +32,17 @@ export class AccoutPaymentComponent implements OnInit {
       document.body.appendChild(scriptElement);
     });
   }
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private accountService: AccountPayableService,
     private carService: CarService,
-    private messageService:MessageService
+    private messageService: MessageService,
+    private orderService: RentingOrderService,
+    private rentingOrderItemsService: RentingOrderItemsService,
+    private authService: AuthService,
+    private rentOrderService: RentingOrderService
   ) {
     this.shippingForm = new FormGroup({
       'email': new FormControl(null, Validators.required),
@@ -46,6 +57,8 @@ export class AccoutPaymentComponent implements OnInit {
 
   async ngOnInit() {
     await this.getAccountById();
+    await this.getRentingItemById();
+    this.createOrder(1)
     await this.getCarById();
     this.loadPaypalScript().then(() => {
       this.initPayPalButton();
@@ -67,13 +80,22 @@ export class AccoutPaymentComponent implements OnInit {
     }
   }
 
-  async getCarById() {
+  async getRentingItemById() {
     try {
       const id = this.accountPayables?.serviceId;
-      const response = await this.carService.getById(id).toPromise();
-      const data = response.result;
-      this.car = data;
-      console.log(this.car);
+      const response = await this.rentingOrderItemsService.getById(id).toPromise()
+      this.rentingItem = response.result
+
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  async getCarById() {
+    try {
+      const response = await this.carService.getById(this.rentingItem?.vehicleId).toPromise();
+      this.car = response.result;
+      console.log('asfas', this.car);
     } catch (error) {
       console.error(error);
       // Handle the error here
@@ -99,7 +121,12 @@ export class AccoutPaymentComponent implements OnInit {
         console.log('Orden aprobada, iniciando captura...');
         return actions.order.capture().then((details: any) => {
           console.log('Captura completada, detalles:', details);
-          this.messageService.add({severity:'success', summary:'Pago realizado con éxito', detail:'Transacción completada por ' + details.payer.name.given_name + '!'});
+          this.createOrder(this.rentingItem.id)
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Pago realizado con éxito',
+            detail: 'Transacción completada por ' + details.payer.name.given_name + '!'
+          });
 
           setTimeout(() => {
             const url: UrlTree = this.router.createUrlTree(['renting', 'dashboard']);
@@ -116,5 +143,17 @@ export class AccoutPaymentComponent implements OnInit {
         console.error('Error de PayPal:', err);
       }
     }).render('#paypal-button-container');
+  }
+
+  createOrder(id:any) {
+    const user:any = this.authService.getCurrentUser()
+    const body = {state: 0, renterId: user.account?.id, itemIds: [id]};
+    this.rentOrderService.create(body).subscribe(response => {
+      console.log(response);
+
+    }, err => {
+      console.error('Error:', err);
+    });
+
   }
 }

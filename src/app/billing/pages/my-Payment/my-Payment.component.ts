@@ -1,20 +1,21 @@
-import { Component, OnInit } from '@angular/core';
-import { AccountPayableService } from '../../services/account-payable/account-payable.service';
-import { CarService } from 'src/app/renting/services/car/car.service';
-import { catchError, switchMap, tap } from 'rxjs/operators';
-import { throwError } from 'rxjs';
+import {Component, OnInit} from '@angular/core';
+import {AccountPayableService} from '../../services/account-payable/account-payable.service';
+import {CarService} from 'src/app/renting/services/car/car.service';
+import {catchError, ignoreElements, switchMap, tap} from 'rxjs/operators';
+import {throwError} from 'rxjs';
+import {RentingOrderService} from "../../../renting/services/renting-orders/renting-order.service";
+import {RentingOrderItem} from "../../../renting/models/renting-order-item";
+import {RentingOrderItemsService} from "../../../renting/services/renting-items/renting-order-items.service";
 
 interface AccountPayable {
-  // Define la estructura de los datos de cuenta por pagar
-  // Asegúrate de ajustar los tipos de datos según tu caso
   id: number;
   payerId: number;
   payeeId: number;
   totalPrice: number;
   parcialPrice: number;
   expirationDay: string;
-  currency:string;
-  serviceId:number
+  currency: string;
+  serviceId: number
   state: string;
 }
 
@@ -22,14 +23,15 @@ interface AccountPayablesResponse {
   result: AccountPayable[];
   errors: any[];
 }
-interface CarsData{
-  id:number;
-  brand:string;
-  integrity:string;
-  model:string;
-  name:string;
-  image:string;
-  ownerId:Number;
+
+interface CarsData {
+  id: number;
+  brand: string;
+  integrity: string;
+  model: string;
+  name: string;
+  image: string;
+  ownerId: Number;
 }
 
 interface CarsResponse {
@@ -37,21 +39,28 @@ interface CarsResponse {
   errors: any[];
 }
 
+
 @Component({
   selector: 'app-my-Payment',
   templateUrl: './my-Payment.component.html',
   styleUrls: ['./my-Payment.component.css']
 })
 export class MyPaymentComponent implements OnInit {
-  accountPayables: AccountPayablesResponse = { result: [], errors: [] };
+  accountPayables: AccountPayablesResponse = {result: [], errors: []};
   car: any;
   carLoaded: boolean = false;
-  constructor(private accountPayableService: AccountPayableService, private carService:CarService) {}
+  cars: any[] = []
+  rentingItems: any[] = []
+
+  constructor(private accountPayableService: AccountPayableService,
+              private carService: CarService,
+              private rentingOrderItemsService: RentingOrderItemsService
+  ) {
+  }
 
   async ngOnInit() {
     try {
       await this.getAccountPayablesForUserId();
-      this.getCarById();
     } catch (error) {
       // Manejar el error si es necesario
     }
@@ -72,16 +81,40 @@ export class MyPaymentComponent implements OnInit {
       }
 
       this.accountPayableService.getAllAccountPayables().subscribe(
-        (response: AccountPayablesResponse) => {
-          const data = response.result; // Obtén el array de datos de la respuesta
+        async (response: AccountPayablesResponse) => {  // Mark the callback function as async
+          const data = response.result;
+
           this.accountPayables.result = data.filter(
             (item) => item.payerId === userId
           );
-          resolve(); // Resuelve la Promesa una vez que se haya filtrado el resultado correctamente
+
+          const itemsId = this.accountPayables.result.map(a => a.serviceId);
+
+          for (const i of itemsId) {  // Process each item sequentially
+            try {
+              const response = await this.rentingOrderItemsService.getById(i).toPromise();
+              this.rentingItems.push(response.result);
+            } catch (err) {
+              console.log(err);
+            }
+          }
+
+          for (const item of this.rentingItems) {
+            try {
+              const response = await this.carService.getById(item.vehicleId).toPromise();
+              this.cars.push(response.result);
+
+            } catch (err) {
+              console.log(err);
+            }
+          }
+
+          console.log(this.cars);  // All cars have been fetched at this point
+          resolve();
         },
         (error) => {
           console.error(error);
-          reject(error); // Rechaza la Promesa si se produce un error en la llamada al servicio
+          reject(error);
         }
       );
     });
@@ -95,35 +128,20 @@ export class MyPaymentComponent implements OnInit {
     this.accountPayables.result = filteredResults;
   }
 
-getCarById() {
-    const id = this.accountPayables.result[0]?.serviceId;
-    this.carService.getById(id).subscribe(
-      (response) => {
-        const data = response.result;
-        this.car=data;
-        console.log()
-      },
-      (error) => {
-        console.error(error);
-        // Handle the error here
-      }
-    );
 
-}
-
-deleteAccountById(){
-  const id = this.accountPayables.result[0]?.id;
-  this.accountPayableService.delete(id)
-  .pipe(
-    tap(() => {
-      window.location.reload();
-      console.log('Elemento eliminado');
-    }),
-    catchError((error) => {
-      console.error('Error al eliminar el elemento:', error);
-      return throwError(error);
-    })
-  )
-  .subscribe();
-}
+  deleteAccountById() {
+    const id = this.accountPayables.result[0]?.id;
+    this.accountPayableService.delete(id)
+      .pipe(
+        tap(() => {
+          window.location.reload();
+          console.log('Elemento eliminado');
+        }),
+        catchError((error) => {
+          console.error('Error al eliminar el elemento:', error);
+          return throwError(error);
+        })
+      )
+      .subscribe();
+  }
 }
