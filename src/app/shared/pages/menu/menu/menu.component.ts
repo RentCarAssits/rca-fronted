@@ -20,8 +20,12 @@ export class MenuComponent implements OnInit {
       {
         label: 'Home',
         items: [
-          {label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/renting/dashboard']}
-        ]
+          {
+            label: 'Dashboard',
+            icon: 'pi pi-fw pi-home',
+            routerLink: ['/renting/dashboard'],
+          },
+        ],
       },
       {
         label: 'Section 1',
@@ -29,30 +33,34 @@ export class MenuComponent implements OnInit {
           {
             label: 'Featured Cars',
             icon: 'pi pi-fw pi-car',
-            routerLink: ['/renting/cars-catalog']
+            routerLink: ['/renting/cars-catalog'],
           },
           {
             label: 'Full Catalog',
             icon: 'pi pi-fw pi-star',
-            routerLink: ['/renting/we-are-working/full-catalog']
+            routerLink: ['/renting/we-are-working/full-catalog'],
           },
           {
             label: 'Subscriptions',
             icon: 'pi pi-fw pi-bolt',
-            routerLink: ['/renting/we-are-working/subscription']
+            routerLink: ['/renting/we-are-working/subscription'],
           },
           {
             label: 'ChatBox',
             icon: 'pi pi-fw pi-comment',
-            routerLink: ['/workshop/chat-box']
-
+            routerLink: ['/workshop/chat-box'],
           },
           {
             label: 'Statistics',
             icon: 'pi pi-fw pi-chart-bar',
-            routerLink: ['/renting/we-are-working/statistics']
+            routerLink: ['/renting/we-are-working/statistics'],
           },
-        ]
+          {
+            label: 'Workshop',
+            icon: 'pi pi-fw pi-car',
+            routerLink: ['/workshop/workshop'],
+          },
+        ],
       },
       {
         label: 'Profile',
@@ -61,19 +69,19 @@ export class MenuComponent implements OnInit {
           {
             label: 'Profile',
             icon: 'pi pi-fw pi-user',
-            routerLink: ['/renting/we-are-working/profile']
+            routerLink: ['/renting/we-are-working/profile'],
           },
           {
             label: 'Settings',
             icon: 'pi pi-fw pi-cog',
-            routerLink: ['/renting/we-are-working/settings']
+            routerLink: ['/renting/we-are-working/settings'],
           },
           {
             label: 'Logout',
             icon: 'pi pi-fw pi-sign-in',
-            command: () => this.logout()
-          }
-        ]
+            command: () => this.logout(),
+          },
+        ],
       },
       {
         label: 'General',
@@ -81,8 +89,9 @@ export class MenuComponent implements OnInit {
           {
             label: 'Landing',
             icon: 'pi pi-fw pi-globe',
-            routerLink: ['/public/landing']},
-        ]
+            routerLink: ['/public/landing'],
+          },
+        ],
       },
     ];
   }
