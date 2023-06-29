@@ -1,0 +1,41 @@
+.imgT {
+    width: 18rem;
+    height: 20rem;
+  }
+  
+  .image-container {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .image-container:hover .image-overlay {
+    opacity: 1;
+  }
+  
+  .image-name {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    font-size: 16px;
+  }
+  
+  .image-container img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ajusta la imagen para que ocupe todo el espacio del contenedor */
+  }
+  
