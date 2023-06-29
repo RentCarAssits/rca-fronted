@@ -4,6 +4,7 @@ import {PlanService} from "../../services/plan.service";
 import {AuthService} from "../../../iam/services/auth.service";
 import {Router} from "@angular/router";
 import {SubscriptionService} from "../../services/subscription.service";
+import {MessageService} from "primeng/api";
 
 @Component({
   selector: 'app-plans',
@@ -20,7 +21,8 @@ export class PlansComponent implements OnInit {
   constructor(private planService: PlanService,
               private authService: AuthService,
               private router: Router,
-              private subscriptionService: SubscriptionService
+              private subscriptionService: SubscriptionService,
+              private message: MessageService,
   ) {
   }
 
@@ -33,6 +35,7 @@ export class PlansComponent implements OnInit {
     this.planService.getAllPlans().subscribe(
       (response: any) => {
         this.plans = response.result
+        this.plans = this.plans.filter(plan => plan.PlanName != 'Basic')
         console.log(this.plans);
       },
       (error) => {
@@ -42,48 +45,59 @@ export class PlansComponent implements OnInit {
   }
 
 
-  createPlan(plan: any, planId: number) {
-    if (this.hasAnPlan) {
-      const user: any = this.authService.getCurrentUser()
-      const payload = {
-        AccountId: user.account.id,
-        PlanId: (planId + 1),
-        UnitPrice: plan.Price,
-        Frequency: 'MENSUAL',
-        startDate: new Intl.DateTimeFormat('en-CA', {
-          year: 'numeric',
-          month: '2-digit',
-          day: '2-digit'
-        }).format(new Date()),
-        endDate: new Intl.DateTimeFormat('en-CA', {
-          year: 'numeric',
-          month: '2-digit',
-          day: '2-digit'
-        }).format(new Date()),
-        discount: 0
-      }
-
-      this.subscriptionService.create(payload).subscribe({
-        next: (response) => {
-        },
-        error: (err) => {
-          console.log(err.message)
-        },
-        complete: () => {
-        }
-      })
+  async createPlan(plan: any, planId: number) {
+    const user: any = this.authService.getCurrentUser()
+    const payload = {
+      AccountId: user.account.id,
+      PlanId: (planId + 2),
+      UnitPrice: plan.Price,
+      Frequency: 'MENSUAL',
+      startDate: new Intl.DateTimeFormat('en-CA', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit'
+      }).format(new Date()),
+      endDate: new Intl.DateTimeFormat('en-CA', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit'
+      }).format(new Date()),
+      discount: 0
     }
+
+    this.subscriptionService.create(payload).subscribe({
+      next: (response) => {
+        this.showSuccess();
+      },
+      error: (err) => {
+        console.log(err.message)
+      },
+      complete: () => {
+        setTimeout(() => {
+          this.router.navigate(['/renting/Subscriptions/subscription-section'])
+        }, 1000)
+
+      }
+    })
+
   }
 
   getCurrentPlan() {
     const user: any = this.authService.getCurrentUser()
     this.planService.getCurrentPlanByUser(user.id).subscribe(
-      (Response: any) => {
-        console.log(Response);
-        this.hasAnPlan = true
+      (response: any) => {
+        if (response.result?.name ) this.router.navigate(['/renting/Subscriptions/subscription-section'])
       }, (error) => {
-        this.hasAnPlan = false
+        console.log(error);
       }
     )
+  }
+
+  showSuccess() {
+    this.message.add({severity: 'success', summary: 'Success', detail: 'Operation completed successfully'});
+  }
+
+  showError() {
+    this.message.add({severity: 'success', summary: 'Success', detail: 'Operation not completed tryAgain'});
   }
 }

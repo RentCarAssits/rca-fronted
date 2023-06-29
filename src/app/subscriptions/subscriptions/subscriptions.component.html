@@ -1,45 +1,45 @@
 <div *ngIf="currentPlanBool == false">
-  <div class="card">
+  <div class="surface-ground px-4 py-8 md:px-6 lg:px-8">
     <!--Pans-->
     <div class="px-4 py-8 md:px-6 lg:px-8">
       <div class="text-900 font-bold text-6xl mb-4 text-center">Your Current Plan</div>
       <div class="text-700 text-xl mb-6 text-center line-height-3">Encuentra la suscripción perfecta para tus
         necesidades de alquiler de automóviles
       </div>
-
       <div class="grid">
         <div class="col-12 lg:col-12 flex justify-content-center">
-              <div class="p-3 h-full flex w-full justify-content-center">
-                <div class="shadow-2 p-3 h-full flex flex-column surface-card" style="border-radius: 6px">
-                  <div class="text-900 font-medium text-xl mb-2">{{plan[0]?.PlanName || 'Basic'}}</div>
-                  <div class="text-600">{{plan[0]?.Benefits}}</div>
-                  <hr class="my-3 mx-0 border-top-1 border-none surface-border"/>
-                  <div class="flex align-items-center">
-                    <span class="font-bold text-2xl text-900 w-full flex justify-content-center">{{plan[0]?.Price || 'Free'}}</span>
-                  </div>
-                  <hr class="my-3 mx-0 border-top-1 border-none surface-border"/>
-                  <ul class="list-none p-0 m-0 flex-grow-1">
-                    <li class="flex align-items-center mb-3">
-                      <i class="pi pi-check-circle text-green-500 mr-2"></i>
-                      <span>Acceso a la plataforma de alquiler de automóviles.</span>
-                    </li>
-                    <li class="flex align-items-center mb-3">
-                      <i class="pi pi-check-circle text-green-500 mr-2"></i>
-                      <span>Búsqueda y reserva de vehículos disponibles</span>
-                    </li>
-                    <li class="flex align-items-center mb-3">
-                      <i class="pi pi-check-circle text-green-500 mr-2"></i>
-                      <span>Asistencia técnica básica en caso de problemas.</span>
-                    </li>
-                    <li class="flex align-items-center mb-3">
-                      <i class="pi pi-check-circle text-green-500 mr-2"></i>
-                      <span>Pago seguro y protección de datos.</span>
-                    </li>
-                  </ul>
-                  <hr class="mb-3 mx-0 border-top-1 border-none surface-border mt-auto"/>
-                  <button pButton pRipple label="Upgrade Now" (click)="getPlan()" class="p-3 w-full mt-auto"></button>
-                </div>
+          <div class="p-3 h-full flex w-full justify-content-center">
+            <div class="shadow-2 p-3 h-full flex flex-column surface-card" style="border-radius: 6px">
+              <div class="text-900 font-medium text-xl mb-2">{{plan[0]?.PlanName || 'Basic'}}</div>
+              <div class="text-600">{{plan[0]?.Benefits}}</div>
+              <hr class="my-3 mx-0 border-top-1 border-none surface-border"/>
+              <div class="flex align-items-center">
+                <span class="font-bold text-2xl text-900">${{plan[0]?.Price || 0}}</span>
+                <span class="ml-2 font-medium text-600">monthly</span>
               </div>
+              <hr class="my-3 mx-0 border-top-1 border-none surface-border"/>
+              <ul class="list-none p-0 m-0 flex-grow-1">
+                <li class="flex align-items-center mb-3">
+                  <i class="pi pi-check-circle text-green-500 mr-2"></i>
+                  <span>Acceso a la plataforma de alquiler de automóviles.</span>
+                </li>
+                <li class="flex align-items-center mb-3">
+                  <i class="pi pi-check-circle text-green-500 mr-2"></i>
+                  <span>Búsqueda y reserva de vehículos disponibles</span>
+                </li>
+                <li class="flex align-items-center mb-3">
+                  <i class="pi pi-check-circle text-green-500 mr-2"></i>
+                  <span>Asistencia técnica básica en caso de problemas.</span>
+                </li>
+                <li class="flex align-items-center mb-3">
+                  <i class="pi pi-check-circle text-green-500 mr-2"></i>
+                  <span>Pago seguro y protección de datos.</span>
+                </li>
+              </ul>
+              <hr class="mb-3 mx-0 border-top-1 border-none surface-border mt-auto"/>
+              <button pButton pRipple label="Upgrade Now" (click)="getPlan()" class="p-3 w-full mt-auto"></button>
+            </div>
+          </div>
 
         </div>
       </div>
@@ -49,13 +49,95 @@
 </div>
 
 
-
-
-<div *ngIf="currentPlanBool == true" class="text-center">
-  <div class="card">
-    <h1 class="mb-4">Current Subscription</h1>
+<div *ngIf="currentPlanBool == true">
+  <div class="surface-ground px-4 py-8 md:px-6 lg:px-8">
+    <h1 class="mb-4 w-full flex justify-content-center">Your Current Plan</h1>
     <hr>
-    <div class="row">
+    <div class="grid">
+      <div class="col-12 lg:col-12 flex justify-content-center">
+        <div class="p-3 h-full flex w-full justify-content-center">
+          <div class="shadow-2 p-3 h-full flex flex-column surface-card" style="border-radius: 6px">
+            <div class="text-900 font-medium text-xl mb-2">{{currentPlan.name}}</div>
+            <div class="text-600"> {{currentPlan.Benefits}}</div>
+            <hr class="my-3 mx-0 border-top-1 border-none surface-border"/>
+            <div class="flex align-items-center">
+              <span class="font-bold text-2xl text-900">{{currentPlan.unitPrice }}</span>
+              <button pButton disabled pRipple label="Your current Plan" (click)="getPlan()"
+                      class="p-3 w-full mt-auto"></button>
+            </div>
+            <hr class="my-3 mx-0 border-top-1 border-none surface-border"/>
+            <div [ngSwitch]="currentPlan.name">
+              <div *ngSwitchCase="'Premium'">
+                <ul class="list-none p-0 m-0 flex-grow-1">
+                  <li class="flex align-items-center mb-3">
+                    <i class="pi pi-check-circle text-green-500 mr-2"></i>
+                    <span>All the features of the Basic Subscription.</span>
+                  </li>
+                  <li class="flex align-items-center mb-3">
+                    <i class="pi pi-check-circle text-green-500 mr-2"></i>
+                    <span>Additional levels of support and maintenance.</span>
+                  </li>
+                  <li class="flex align-items-center mb-3">
+                    <i class="pi pi-check-circle text-green-500 mr-2"></i>
+                    <span>Priority customer service.</span>
+                  </li>
+                  <li class="flex align-items-center mb-3">
+                    <i class="pi pi-check-circle text-green-500 mr-2"></i>
+                    <span>Exclusive discounts on rental rates.</span>
+                  </li>
+                </ul>
+              </div>
+              <div *ngSwitchCase="'VIP'">
+                <ul class="list-none p-0 m-0 flex-grow-1">
+                  <li class="flex align-items-center mb-3">
+                    <i class="pi pi-check-circle text-green-500 mr-2"></i>
+                    <span>All the features of the Premium Subscription.</span>
+                  </li>
+                  <li class="flex align-items-center mb-3">
+                    <i class="pi pi-check-circle text-green-500 mr-2"></i>
+                    <span>Specialized assistance in case of accidents or crashes.</span>
+                  </li>
+                  <li class="flex align-items-center mb-3">
+                    <i class="pi pi-check-circle text-green-500 mr-2"></i>
+                    <span>Emergency towing service.</span>
+                  </li>
+                  <li class="flex align-items-center mb-3">
+                    <i class="pi pi-check-circle text-green-500 mr-2"></i>
+                    <span>Replacement vehicle in case of prolonged repairs.</span>
+                  </li>
+                </ul>
+              </div>
+              <div *ngSwitchDefault>
+                <ul class="list-none p-0 m-0 flex-grow-1">
+                  <li class="flex align-items-center mb-3">
+                    <i class="pi pi-check-circle text-green-500 mr-2"></i>
+                    <span>Access to the car rental platform.</span>
+                  </li>
+                  <li class="flex align-items-center mb-3">
+                    <i class="pi pi-check-circle text-green-500 mr-2"></i>
+                    <span>Search and reservation of available vehicles</span>
+                  </li>
+                  <li class="flex align-items-center mb-3">
+                    <i class="pi pi-check-circle text-green-500 mr-2"></i>
+                    <span>Basic technical assistance in case of problems.</span>
+                  </li>
+                  <li class="flex align-items-center mb-3">
+                    <i class="pi pi-check-circle text-green-500 mr-2"></i>
+                    <span>Secure payment and data protection.</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+
+            <hr class="mb-3 mx-0 border-top-1 border-none surface-border mt-auto p-3"/>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!--<div class="row">
       <div class="col">
         <img src="../../../../assets/layout/images/rca.png" alt="RCA Logo">
         <p><strong>Plan Actual:</strong> {{currentPlan.name}}</p>
@@ -70,5 +152,6 @@
         <p><strong>Fecha Fin:</strong> {{currentPlan.endDate | date: 'yyyy-MM-dd'}}</p>
       </div>
     </div>
+  </div>-->
   </div>
 </div>

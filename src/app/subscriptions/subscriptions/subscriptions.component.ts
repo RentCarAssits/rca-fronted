@@ -20,7 +20,6 @@ export class SubscriptionsComponent {
   plans!: plansResponse[];
   currentPlan!: currentPlanResponse;
   currentuser: any;
-  // bollean by marx
   currentPlanBool: boolean = false;
   userRole: any;
 
@@ -49,11 +48,13 @@ export class SubscriptionsComponent {
   }
 
   getCurrentPlan() {
-    const user : any = this.authService.getCurrentUser()
+    const user: any = this.authService.getCurrentUser()
     this.planService.getCurrentPlanByUser(user.account.id).subscribe(
       (Response: any) => {
         this.currentPlanBool = true;
         this.currentPlan = Response.result;
+        console.log(this.currentPlan);
+
         if (this.currentPlan == null) {
           this.currentPlanBool = false;
         }

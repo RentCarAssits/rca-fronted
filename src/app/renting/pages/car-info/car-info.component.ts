@@ -14,6 +14,8 @@ import {DatePipe} from "@angular/common";
 import {RentingOrderItem} from "../../models/renting-order-item";
 import {RentingOrderItemsService} from "../../services/renting-items/renting-order-items.service";
 import {MessageService} from "primeng/api";
+import {AuthService} from "../../../iam/services/auth.service";
+import {TwilioService} from "../../services/twilio.service";
 
 @Component({
   selector: 'app-car-info',
@@ -30,7 +32,9 @@ export class CarInfoComponent {
               private formBuilder: FormBuilder,
               private datePipe: DatePipe,
               private service: RentingOrderItemsService,
-              private message: MessageService
+              private message: MessageService,
+              private authService: AuthService,
+              private twilioService: TwilioService
   ) {
 
   }
@@ -68,11 +72,11 @@ export class CarInfoComponent {
 
   onSubmit() {
     if (!this.rentingItemForm.valid) return;
-    let finalPrice=0;
+    let finalPrice = 0;
 
     let {startDate, endDate} = this.rentingItemForm.value;
     const request = {
-      rentingPrice: this.getFinalPrice(this.rentingItemForm.value.startDate,this.rentingItemForm.value.endDate).toString(),
+      rentingPrice: this.getFinalPrice(this.rentingItemForm.value.startDate, this.rentingItemForm.value.endDate).toString(),
       currency: this.car.currency,
       startDate: this.rentingItemForm.value.startDate,
       endDate: this.rentingItemForm.value.endDate,
@@ -91,6 +95,19 @@ export class CarInfoComponent {
           }, 1500);
         },
         complete: () => {
+          const user: any = this.authService.getCurrentUser()
+          const payload = {
+            phone: `+51${user.profile.phone}`,
+            request: request
+          }
+          this.twilioService.create(payload).subscribe({
+            next: () => {
+              console.log('exito')
+            },
+            error: (err) => {
+              console.log('error: ', err)
+            }
+          })
           this.showSuccess();
           setTimeout(() => {
             this.router.navigate(['renting/vehicles-catalog']);
@@ -111,21 +128,21 @@ export class CarInfoComponent {
   }
 
 
-  getFinalPrice(startDate:any, endDate:any):number{
+  getFinalPrice(startDate: any, endDate: any): number {
     const fechaInicio: Date = new Date(startDate);
     const fechaFin: Date = new Date(endDate);
     // Calcular la diferencia en milisegundos entre las dos fechas
     const diferencia: number = fechaFin.getTime() - fechaInicio.getTime();
-    switch (this.car?.timeUnit){
+    switch (this.car?.timeUnit) {
       case 'H':
         return 1;
       case 'D':
         // Calcular la diferencia en días y semanas
         const dias: number = Math.floor(diferencia / (1000 * 60 * 60 * 24));
-        return this.car.price*dias;
+        return this.car.price * dias;
       case 'W':
         const semanas: number = Math.floor(diferencia / (1000 * 60 * 60 * 24 * 7));
-        return this.car.price*semanas;
+        return this.car.price * semanas;
       default:
         return 1;
     }
