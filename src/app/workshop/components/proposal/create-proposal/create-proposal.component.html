@@ -1,1 +1,39 @@
-<p>create-proposal works!</p>
+<div class="col-12">
+  <div class="card1">
+    <div class="col-12">
+      <form [formGroup]="proposalForm" (ngSubmit)="onSubmit()">
+  
+        <h5>Proposal Information</h5>
+        <div class="p-fluid p-formgrid grid">
+          <div class="field col-12 md:col-6">
+            <label for="human">Human Resourcces</label>
+            <input pInputText id="human" type="number" formControlName="humanResources"/>
+          </div>
+          <div class="field col-12 md:col-6">
+            <label for="amount">Amount</label>
+            <input pInputText id="amount" type="number" formControlName="amount"/>
+          </div>
+          <div class="field col-12 md:col-6">
+            <label for="currency">Currency</label>
+            <input pInputText id="currency" type="text" formControlName="currency"/>
+          </div>
+
+          <div class="field col-12 md:col-6">
+            <label for="start">Date Start</label>
+            <input pInputText id="start" type="date" formControlName="start"/>
+          </div>
+
+          <div class="field col-12 md:col-6">
+            <label for="end">Date end</label>
+            <input pInputText id="end" type="date" formControlName="end"/>
+          </div>
+        </div>
+        <div class="flex justify-content-center">
+          <p-toast></p-toast>
+          <p-button type="submit">Save</p-button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
