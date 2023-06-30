@@ -30,7 +30,7 @@ export class WorkshopAComponent implements OnInit {
   }
 
   getAllWorkshops(){
-    //make it dynamic 
+    //make it dynamic
     this.service.getAllWorkshops(1).subscribe((response: any) => {
       console.log(this.workshops);
       this.workshops = response.result;

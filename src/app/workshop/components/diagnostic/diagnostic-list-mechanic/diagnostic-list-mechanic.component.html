@@ -1,0 +1,45 @@
+<div class="card mb-5">
+  <div class="flex justify-content-between align-items-center mb-2">
+    <h5 class="text-800 font-semibold">Diagnostic</h5>
+  </div>
+  <p-table  *ngIf="diagnostics && diagnostics.length > 0"  [value]="diagnostics"  [paginator]="true" [rows]="5"
+            responsiveLayout="scroll">
+    <ng-template pTemplate="header">
+      <tr>
+
+        <th>Diagnostic Description</th>
+        <th pSortableColumn="name">vehicle Name</th>
+        <th>year</th>
+        <th>vehicle Integrity</th>
+        <th>Proposal</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-diagnostic class="text-xs">
+      <tr>
+
+        <td style="width: 15%; min-width: 7rem;" class="font-normal">{{diagnostic.diagnosticDescription}}</td>
+        <td style="width: 15%; min-width: 3rem;" class="font-normal">{{diagnostic.vehicleName}}</td>
+        <td style="width: 15%; min-width: 3rem;" class="font-normal">{{diagnostic.year}}</td>
+        <td style="width: 15%; min-width: 3rem;" class="font-normal">{{diagnostic.vehicleIntegrity}}</td>
+        <td style="width: 15%; min-width: 7rem;">
+          <p-button icon="pi pi-search" styleClass="p-button-rounded" (onClick)="createProposal(diagnostic.id)"></p-button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+  <div *ngIf="!diagnostics || diagnostics.length === 0"
+       class="h-20rem flex justify-content-center align-items-center
+        flex-column">
+    <h5 class="order-badge add-data">No diagnostic yet.</h5>
+    <p>Get started by adding your first diagnostic!</p>
+
+  </div>
+</div>
+
+<ng-template #noRequests>
+  <div class="h-20rem flex justify-content-center align-items-center flex-column">
+    <h5 class="order-badge add-data">No  diagnostic yet.</h5>
+    <p>As soon as you have a diagnostic, it will appear here.</p>
+  </div>
+</ng-template>

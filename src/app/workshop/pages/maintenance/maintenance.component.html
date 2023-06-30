@@ -1,0 +1,49 @@
+<div class="grid">
+
+  <div class="col-12 xl:col-6">
+    <!--Rent Order History-->
+    <ng-container [ngSwitch]="userRole[0]">
+      <div *ngSwitchCase="'mechanic'" >
+        <!-- Contenido para el mecánico -->
+        <app-service-request-list-mechanic></app-service-request-list-mechanic>
+      </div>
+      <div *ngSwitchCase="'renter'">
+        <app-service-request-list></app-service-request-list>
+      </div>
+      <div *ngSwitchCase="'owner'">
+        <app-service-request-list></app-service-request-list>
+      </div>
+
+    </ng-container>
+    <!--RentingOrderItems-->
+    <ng-container *ngIf="userRole[0] === 'mechanic'; else renterBlock">
+      <p>MECANICO</p>
+    </ng-container>
+    <ng-template #renterBlock>
+      <ng-container *ngIf="userRole[0] === 'renter'; else ownerBlock">
+
+      </ng-container>
+    </ng-template>
+    <ng-template #ownerBlock>
+
+    </ng-template>
+  </div>
+
+  <div class="col-12 xl:col-6">
+    <div class="card">
+      <ng-container *ngIf="userRole == 'owner'">
+        <app-diagnostic-list></app-diagnostic-list>
+      </ng-container>
+
+      <ng-container *ngIf="userRole == 'renter'">
+        <app-diagnostic-list></app-diagnostic-list>
+      </ng-container>
+
+      <ng-container *ngIf="userRole == 'mechanic'">
+        <app-diagnostic-list-mechanic></app-diagnostic-list-mechanic>
+
+      </ng-container>
+    </div>
+
+  </div>
+</div>

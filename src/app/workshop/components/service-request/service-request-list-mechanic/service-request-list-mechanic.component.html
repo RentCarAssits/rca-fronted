@@ -1,0 +1,46 @@
+<div class="card mb-5">
+  <div class="flex justify-content-between align-items-center mb-2">
+    <h5 class="text-800 font-semibold">Service Request</h5>
+  </div>
+  <p-table  *ngIf="serviceRequests && serviceRequests.length > 0"  [value]="serviceRequests"  [paginator]="true" [rows]="5"
+            responsiveLayout="scroll">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>ID</th>
+        <th>description Problems</th>
+        <th pSortableColumn="name">vehicle Name</th>
+        <th>year</th>
+        <th>vehicle Integrity</th>
+        <th>Diagnostic</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-serviceRequest class="text-xs">
+      <tr>
+        <td style="width: 15%; min-width: 7rem;" class="font-normal">{{serviceRequest.id}}</td>
+        <td style="width: 15%; min-width: 7rem;" class="font-normal">{{serviceRequest.descriptionProblems}}</td>
+        <td style="width: 15%; min-width: 3rem;" class="font-normal">{{serviceRequest.vehicleName}}</td>
+        <td style="width: 15%; min-width: 3rem;" class="font-normal">{{serviceRequest.year}}</td>
+        <td style="width: 15%; min-width: 3rem;" class="font-normal">{{serviceRequest.vehicleIntegrity}}</td>
+        <td style="width: 15%; min-width: 7rem;">
+          <p-button icon="pi pi-search" styleClass="p-button-rounded" (onClick)="createDiagnostic(serviceRequest.id)"></p-button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+  <div *ngIf="!serviceRequests || serviceRequests.length === 0"
+       class="h-20rem flex justify-content-center align-items-center
+        flex-column">
+    <h5 class="order-badge add-data">No Service Request yet.</h5>
+    <p>Get started by adding your first Service Request!</p>
+    <button pButton pRipple label="Create Service Request" (click)="createWorkshop()"
+            class="p-button-text p-button-rounded border-none font-light line-height-2 bg-blue-500 text-white"></button>
+  </div>
+</div>
+
+<ng-template #noRequests>
+  <div class="h-20rem flex justify-content-center align-items-center flex-column">
+    <h5 class="order-badge add-data">No  requests yet.</h5>
+    <p>As soon as you have a request, it will appear here.</p>
+  </div>
+</ng-template>
