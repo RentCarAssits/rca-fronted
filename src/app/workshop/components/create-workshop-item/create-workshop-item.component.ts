@@ -33,7 +33,7 @@ export class CreateWorkshopItemComponent implements OnInit {
       country: ['', Validators.required],
       district: ['', Validators.required],
       addressDetail: ['', Validators.required],
-      mechanicId: ['', Validators.required],
+
     });
   }
 
