@@ -71,6 +71,7 @@ export class CreateDiagnosticComponent {
         }, 1000);
       }
     );
+    window.location.reload();
   }
 
   showSuccess() {

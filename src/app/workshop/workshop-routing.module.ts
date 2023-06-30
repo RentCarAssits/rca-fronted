@@ -4,6 +4,7 @@ import { WorkshopChatComponent } from './pages/workshop-chat/workshop-chat.compo
 import { WorkshopAComponent } from './components/workshop/workshop.component';
 import { WarehouseComponent } from './components/warehouse/warehouse.component';
 import {MaintenanceComponent} from "./pages/maintenance/maintenance.component";
+import {CreateProposalComponent} from "./components/proposal/create-proposal/create-proposal.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '', pathMatch: 'full' },
@@ -11,6 +12,7 @@ const routes: Routes = [
   { path: 'workshop', component: WorkshopAComponent },
   { path: 'warehouse/:id', component: WarehouseComponent },
   { path: 'maintenance', component: MaintenanceComponent },
+  { path: 'maintenance/diagnostic/:id/proposal', component: CreateProposalComponent },
 ];
 
 @NgModule({

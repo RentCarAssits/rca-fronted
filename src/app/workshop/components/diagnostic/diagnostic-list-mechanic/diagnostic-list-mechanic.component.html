@@ -8,9 +8,6 @@
       <tr>
 
         <th>Diagnostic Description</th>
-        <th pSortableColumn="name">vehicle Name</th>
-        <th>year</th>
-        <th>vehicle Integrity</th>
         <th>Proposal</th>
       </tr>
     </ng-template>
@@ -18,11 +15,8 @@
       <tr>
 
         <td style="width: 15%; min-width: 7rem;" class="font-normal">{{diagnostic.diagnosticDescription}}</td>
-        <td style="width: 15%; min-width: 3rem;" class="font-normal">{{diagnostic.vehicleName}}</td>
-        <td style="width: 15%; min-width: 3rem;" class="font-normal">{{diagnostic.year}}</td>
-        <td style="width: 15%; min-width: 3rem;" class="font-normal">{{diagnostic.vehicleIntegrity}}</td>
         <td style="width: 15%; min-width: 7rem;">
-          <p-button icon="pi pi-search" styleClass="p-button-rounded" (onClick)="createProposal(diagnostic.id)"></p-button>
+          <p-button icon="pi pi-file-edit" styleClass="p-button-rounded" (onClick)="createProposal(diagnostic.id)"></p-button>
         </td>
       </tr>
     </ng-template>

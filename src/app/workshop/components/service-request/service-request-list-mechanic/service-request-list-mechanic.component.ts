@@ -8,6 +8,9 @@ import {
 } from "../../../../renting/components/renting-items/selected-renting-order-item-dialog/selected-renting-order-item-dialog.component";
 import {CreateServiceRequestComponent} from "../create-service-request/create-service-request.component";
 import {CreateDiagnosticComponent} from "../../diagnostic/create-diagnostic/create-diagnostic.component";
+import {
+  CreateCarFormComponent
+} from "../../../../renting/components/vehicles/create-car-form/create-car-form.component";
 
 @Component({
   selector: 'app-service-request-list-mechanic',
@@ -88,7 +91,11 @@ export class ServiceRequestListMechanicComponent {
       width: width,
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
+    }).onClose.subscribe(() => {
+      window.location.reload();
     });
+
+
   }
   createDiagnostic(id: number) {
     let width = '60%';
