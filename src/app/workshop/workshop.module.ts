@@ -19,6 +19,8 @@ import { CreateProposalComponent } from './components/proposal/create-proposal/c
 import { InventoryComponent } from './components/inventory/inventory.component';
 import { InventoryCreateComponent } from './components/inventory-create/inventory-create.component';
 import { ProductCreateComponent } from './components/product-create/product-create.component';
+import { ProposalsComponent } from './components/proposal/proposals/proposals.component';
+import { CreateServiceItemComponent } from './components/proposal/create-service-item/create-service-item.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,8 @@ import { ProductCreateComponent } from './components/product-create/product-crea
     DiagnosticListComponent,
     DiagnosticListMechanicComponent,
     CreateProposalComponent,
+    ProposalsComponent,
+    CreateServiceItemComponent,
   ],
 
   exports: [WorkshopChatComponent],

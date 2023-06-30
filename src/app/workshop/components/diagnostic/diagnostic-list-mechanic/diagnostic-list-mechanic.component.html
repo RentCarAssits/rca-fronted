@@ -16,7 +16,7 @@
 
         <td style="width: 15%; min-width: 7rem;" class="font-normal">{{diagnostic.diagnosticDescription}}</td>
         <td style="width: 15%; min-width: 7rem;">
-          <p-button icon="pi pi-file-edit" styleClass="p-button-rounded" (onClick)="createProposal(diagnostic.id)"></p-button>
+          <p-button icon="pi pi-file-edit" styleClass="p-button-rounded" [routerLink]="'/workshop/maintanance/diagnostic/'+diagnostic.id+'/proposal'"></p-button>
         </td>
       </tr>
     </ng-template>
