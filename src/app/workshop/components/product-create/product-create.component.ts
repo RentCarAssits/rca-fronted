@@ -51,14 +51,20 @@ export class ProductCreateComponent implements OnInit {
     this.productService.createProduct(data).subscribe(
       (response) => {
         this.showSuccess();
+        setTimeout(()=>{
+          this.dialogRef.close();
+        })
       },
       (error) => {
         console.error(error);
         this.showError();
+        setTimeout(() => {
+          this.dialogRef.close();
+        });
       }
     );
   }
-  
+
   showSuccess() {
     this.message.add({
       severity: 'success',
