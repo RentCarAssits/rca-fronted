@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { WorkshopChatComponent } from './pages/workshop-chat/workshop-chat.component';
 import { WorkshopRoutingModule } from './workshop-routing.module';
 import { PrimeNgModule } from '../prime-ng/prime-ng.module';
-import {ReactiveFormsModule} from "@angular/forms";
+import { ReactiveFormsModule } from '@angular/forms';
 import { WorkshopAComponent } from './components/workshop/workshop.component';
 import { CreateWorkshopItemComponent } from './components/create-workshop-item/create-workshop-item.component';
 import { WarehouseComponent } from './components/warehouse/warehouse.component';
@@ -21,9 +21,31 @@ import { InventoryCreateComponent } from './components/inventory-create/inventor
 import { ProductCreateComponent } from './components/product-create/product-create.component';
 
 @NgModule({
-  declarations: [WorkshopChatComponent, WorkshopAComponent, CreateWorkshopItemComponent, WarehouseComponent, WarehouseCreationComponent,, InventoryComponent, InventoryCreateComponent, ProductCreateComponent, MaintenanceComponent, ServiceRequestListComponent, CreateServiceRequestComponent, ServiceRequestListMechanicComponent, CreateDiagnosticComponent, DiagnosticListComponent, DiagnosticListMechanicComponent, CreateProposalComponent],
+  declarations: [
+    WorkshopChatComponent,
+    WorkshopAComponent,
+    CreateWorkshopItemComponent,
+    WarehouseComponent,
+    WarehouseCreationComponent,
+    InventoryComponent,
+    InventoryCreateComponent,
+    ProductCreateComponent,
+    MaintenanceComponent,
+    ServiceRequestListComponent,
+    CreateServiceRequestComponent,
+    ServiceRequestListMechanicComponent,
+    CreateDiagnosticComponent,
+    DiagnosticListComponent,
+    DiagnosticListMechanicComponent,
+    CreateProposalComponent,
+  ],
 
   exports: [WorkshopChatComponent],
-    imports: [CommonModule, WorkshopRoutingModule, PrimeNgModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    WorkshopRoutingModule,
+    PrimeNgModule,
+    ReactiveFormsModule,
+  ],
 })
 export class WorkshopModule {}
