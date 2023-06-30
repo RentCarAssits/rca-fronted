@@ -10,9 +10,10 @@ import { WarehouseComponent } from './components/warehouse/warehouse.component';
 import { WarehouseCreationComponent } from './components/warehouse-creation/warehouse-creation.component';
 import { InventoryComponent } from './components/inventory/inventory.component';
 import { InventoryCreateComponent } from './components/inventory-create/inventory-create.component';
+import { ProductCreateComponent } from './components/product-create/product-create.component';
 
 @NgModule({
-  declarations: [WorkshopChatComponent, WorkshopAComponent, CreateWorkshopItemComponent, WarehouseComponent, WarehouseCreationComponent, InventoryComponent, InventoryCreateComponent],
+  declarations: [WorkshopChatComponent, WorkshopAComponent, CreateWorkshopItemComponent, WarehouseComponent, WarehouseCreationComponent, InventoryComponent, InventoryCreateComponent, ProductCreateComponent],
   exports: [WorkshopChatComponent],
     imports: [CommonModule, WorkshopRoutingModule, PrimeNgModule, ReactiveFormsModule],
 })
