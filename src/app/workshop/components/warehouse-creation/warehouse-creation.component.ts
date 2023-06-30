@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
-import { DynamicDialogRef } from 'primeng/dynamicdialog';
+import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { WarehouseService } from '../../services/warehouse/warehouse.service';
 import { WorkshopService } from '../../services/workshop-s/workshop.service';
+import { InventoryService } from '../../services/inventory/inventory.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-warehouse-creation',
@@ -12,12 +14,18 @@ import { WorkshopService } from '../../services/workshop-s/workshop.service';
 })
 export class WarehouseCreationComponent implements OnInit {
   warehouseForm!: FormGroup;
+  workshopId!: any;
   constructor(
+    private route: ActivatedRoute,
+    private config: DynamicDialogConfig,
     private dialogRef: DynamicDialogRef,
     private formBuilder: FormBuilder,
     private service: WarehouseService,
-    private message: MessageService
-  ) {}
+    private message: MessageService,
+    private inventoryService: InventoryService,
+  ) {
+    this.workshopId = this.config.data.workshopId;
+  }
 
   ngOnInit(): void {
     this.warehouseForm = this.formBuilder.group({
@@ -25,15 +33,15 @@ export class WarehouseCreationComponent implements OnInit {
       country: ['', Validators.required],
       district: ['', Validators.required],
       addressDetail: ['', Validators.required],
-      workshopId: ['', Validators.required],
     });
   }
 
-  onSubmit() {
+  onSubmit() { 
     if (!this.warehouseForm.valid) return;
 
+    //workshop id
     let { ...rest } = this.warehouseForm.value;
-    const data = { ...rest };
+    const data = { ...rest, workshopId:this.workshopId };
     this.saveData(data);
   }
 

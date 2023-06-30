@@ -16,10 +16,13 @@ import { CreateDiagnosticComponent } from './components/diagnostic/create-diagno
 import { DiagnosticListComponent } from './components/diagnostic/diagnostic-list/diagnostic-list.component';
 import { DiagnosticListMechanicComponent } from './components/diagnostic/diagnostic-list-mechanic/diagnostic-list-mechanic.component';
 import { CreateProposalComponent } from './components/proposal/create-proposal/create-proposal.component';
-
+import { InventoryComponent } from './components/inventory/inventory.component';
+import { InventoryCreateComponent } from './components/inventory-create/inventory-create.component';
+import { ProductCreateComponent } from './components/product-create/product-create.component';
 
 @NgModule({
-  declarations: [WorkshopChatComponent, WorkshopAComponent, CreateWorkshopItemComponent, WarehouseComponent, WarehouseCreationComponent, MaintenanceComponent, ServiceRequestListComponent, CreateServiceRequestComponent, ServiceRequestListMechanicComponent, CreateDiagnosticComponent, DiagnosticListComponent, DiagnosticListMechanicComponent, CreateProposalComponent],
+  declarations: [WorkshopChatComponent, WorkshopAComponent, CreateWorkshopItemComponent, WarehouseComponent, WarehouseCreationComponent,, InventoryComponent, InventoryCreateComponent, ProductCreateComponent, MaintenanceComponent, ServiceRequestListComponent, CreateServiceRequestComponent, ServiceRequestListMechanicComponent, CreateDiagnosticComponent, DiagnosticListComponent, DiagnosticListMechanicComponent, CreateProposalComponent],
+
   exports: [WorkshopChatComponent],
     imports: [CommonModule, WorkshopRoutingModule, PrimeNgModule, ReactiveFormsModule],
 })

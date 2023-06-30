@@ -1,10 +1,10 @@
 <div class="card mb-5">
   <div class="flex justify-content-between align-items-center mb-2">
-    <h5 class="text-800 font-semibold">My Workshops</h5>
+    <h5 class="text-800 font-semibold">My Products</h5>
   </div>
   <p-table
-    *ngIf="workshops && workshops.length > 0"
-    [value]="workshops"
+    *ngIf="products && products.length > 0"
+    [value]="products"
     [paginator]="true"
     [rows]="7"
     responsiveLayout="scroll"
@@ -12,61 +12,53 @@
     <ng-template pTemplate="header">
       <tr>
         <th>Id</th>
-        <th pSortableColumn="name">Name</th>
-        <th>Country</th>
-        <th>District</th>
-        <th>Address Details</th>
-        <th>Actions</th>
+        <th pSortableColumn="name">Product Name</th>
+        <th>Quantity</th>
+        <th>Amount</th>
+        <th>currency</th>
       </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-workshop class="text-xs">
+    <ng-template pTemplate="body" let-product class="text-xs">
       <tr>
         <td style="width: 5%; min-width: 2rem" class="font-normal">
-          {{ workshop.id }}
+          {{ product.id }}
         </td>
         <td style="width: 15%; min-width: 7rem" class="font-normal">
-          {{ workshop.name }}
+          {{ product.productName }}
         </td>
         <td style="width: 15%; min-width: 3rem" class="font-normal">
-          {{ workshop.country }}
+          {{ product.quantityProduct }}
         </td>
         <td style="width: 15%; min-width: 3rem" class="font-normal">
-          {{ workshop.district }}
+          {{ product.amount }}
         </td>
         <td style="width: 15%; min-width: 3rem" class="font-normal">
-          {{ workshop.addressDetail }}
-        </td>
-        <td style="width: 15%; min-width: 7rem">
-          <p-button
-            icon="pi pi-search"
-            styleClass="p-button-rounded"
-            [routerLink]="'/workshop/' + workshop.id + '/warehouse'"
-          ></p-button>
+          {{ product.currency }}
         </td>
       </tr>
     </ng-template>
   </p-table>
   <div
     class="flex justify-content-center mt-5"
-    *ngIf="workshops && workshops.length > 0"
+    *ngIf="products && products.length > 0"
   >
     <p-button
       icon="pi pi-pencil"
-      (onClick)="createWorkshop()"
-      label="Create new workshop"
+      (onClick)="createProduct()"
+      label="Create new Product"
     ></p-button>
   </div>
   <div
-    *ngIf="!workshops || workshops.length === 0"
+    *ngIf="!products || products.length === 0"
     class="h-20rem flex justify-content-center align-items-center flex-column"
   >
-    <h5 class="order-badge add-data">No workshops yet.</h5>
-    <p>Get started by adding your first workshop!</p>
+    <h5 class="order-badge add-data">No Products yet.</h5>
+    <p>Get started by adding your first product!</p>
     <button
       pButton
       pRipple
-      label="Create Workshop"
-      (click)="createWorkshop()"
+      label="Create Product"
+      (click)="createProduct()"
       class="p-button-text p-button-rounded border-none font-light line-height-2 bg-blue-500 text-white"
     ></button>
   </div>

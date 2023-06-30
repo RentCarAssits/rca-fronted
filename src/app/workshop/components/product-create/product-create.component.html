@@ -1,0 +1,51 @@
+<div class="col-12">
+  <div class="card1">
+    <div class="col-12">
+      <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+        <h5>Product Information</h5>
+        <div class="p-fluid p-formgrid grid">
+          <div class="field col-12 md:col-6">
+            <label for="name">Product name</label>
+            <input
+              pInputText
+              id="name"
+              type="text"
+              formControlName="productName"
+            />
+          </div>
+          <div class="field col-12 md:col-6">
+            <label for="quantity">Quantity Product</label>
+            <input
+              pInputText
+              id="quantity"
+              type="number"
+              formControlName="quantityProduct"
+            />
+          </div>
+          <div class="field col-12 md:col-6">
+            <label for="amount">Amount</label>
+            <input
+              pInputText
+              id="amount"
+              type="number"
+              formControlName="amount"
+            />
+          </div>
+          <div class="field col-6">
+            <label for="currency">Currency:</label>
+            <input
+              pInputText
+              id="currency"
+              type="text"
+              formControlName="currency"
+            />
+          </div>
+        </div>
+        <div class="flex justify-content-center">
+          <p-toast></p-toast>
+          <p-button type="submit">Save</p-button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

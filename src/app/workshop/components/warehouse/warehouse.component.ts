@@ -4,6 +4,7 @@ import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { FormGroup } from '@angular/forms';
 import { WarehouseCreationComponent } from '../warehouse-creation/warehouse-creation.component';
 import { WorkshopService } from '../../services/workshop-s/workshop.service';
+import { InventoryCreateComponent } from '../inventory-create/inventory-create.component';
 
 @Component({
   selector: 'app-warehouse',
@@ -52,11 +53,35 @@ export class WarehouseComponent implements OnInit {
   }
 
   getAllWarehouses() {
-    this.workshopService.getAllWarehouseByWorkshopid(this.workshopId).subscribe((response: any) =>{
-      this.warehouses = response.result;
-    }, (error) =>{
-      console.error(error);
-    })
+    this.workshopService.getAllWarehouseByWorkshopid(this.workshopId).subscribe(
+      (response: any) => {
+        this.warehouses = response.result;
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
+
+  createInventory(warehouseId: any) {
+    let width = '60%';
+    const windowWidth =
+      window.innerWidth ||
+      document.documentElement.clientWidth ||
+      document.body.clientWidth;
+    if (windowWidth < 768) {
+      width = '100%';
+    } else if (windowWidth < 1200) {
+      width = '80%';
+    }
+
+    this.dialogService.open(InventoryCreateComponent, {
+      header: 'Create Inventory',
+      width: width,
+      contentStyle: { overflow: 'auto' },
+      baseZIndex: 10000,
+      data: { warehouseId },
+    });
   }
 
   createWarehouse() {
@@ -75,7 +100,8 @@ export class WarehouseComponent implements OnInit {
       header: 'Create WorkShop',
       width: width,
       contentStyle: { overflow: 'auto' },
-      baseZIndex: 10000, 
+      baseZIndex: 10000,
+      data: {workshopId: this.workshopId}
     });
   }
 }
