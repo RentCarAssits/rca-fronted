@@ -1,0 +1,42 @@
+<div class="card mb-5">
+  <div class="flex justify-content-between align-items-center mb-2">
+    <h5 class="text-800 font-semibold">Request Item </h5>
+  </div>
+  <p-table  *ngIf="requestItems && requestItems.length > 0"  [value]="requestItems"  [paginator]="true" [rows]="5"
+            responsiveLayout="scroll">
+    <ng-template pTemplate="header">
+      <tr>
+
+        <th>Quantity Request Item</th>
+        <th>Product</th>
+        <th>Amount</th>
+        <th>Currency</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-serviceItem class="text-xs">
+      <tr>
+
+        <td style="width: 15%; min-width: 7rem;" class="font-normal">{{serviceItem.quantityRequestItem}}</td>
+        <td style="width: 15%; min-width: 7rem;" class="font-normal">{{serviceItem.productId}}</td>
+        <td style="width: 15%; min-width: 7rem;" class="font-normal">{{serviceItem.amount}}</td>
+        <td style="width: 15%; min-width: 7rem;" class="font-normal">{{serviceItem.currency}}</td>
+
+      </tr>
+    </ng-template>
+  </p-table>
+
+  <div *ngIf="!requestItems || requestItems.length === 0"
+       class="h-20rem flex justify-content-center align-items-center
+        flex-column">
+    <h5 class="order-badge add-data">No Request Item yet.</h5>
+    <p>Get started by adding your first Request Item !</p>
+
+  </div>
+</div>
+
+<ng-template #noRequests>
+  <div class="h-20rem flex justify-content-center align-items-center flex-column">
+    <h5 class="order-badge add-data">No Request Item  yet.</h5>
+    <p>As soon as you have a Request Item, it will appear here.</p>
+  </div>
+</ng-template>
