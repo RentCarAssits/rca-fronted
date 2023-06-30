@@ -1,34 +1,33 @@
-import { Component } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {DynamicDialogRef} from "primeng/dynamicdialog";
-import {ServiceRequestService} from "../../../services/service-request.service";
-import {MessageService} from "primeng/api";
-import {AuthService} from "../../../../iam/services/auth.service";
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../../../../iam/services/auth.service';
+import { ProposalService } from 'src/app/workshop/services/proposal/proposal.service';
+import { MessageService } from 'primeng/api';
+import { DynamicDialogRef } from 'primeng/dynamicdialog';
 
 @Component({
   selector: 'app-create-proposal',
   templateUrl: './create-proposal.component.html',
-  styleUrls: ['./create-proposal.component.css']
+  styleUrls: ['./create-proposal.component.css'],
 })
-export class CreateProposalComponent {
+export class CreateProposalComponent implements OnInit {
   proposalForm!: FormGroup;
-  user:any;
+  user = this.authService.getCurrentUser();
   constructor(
-    private dialogRef: DynamicDialogRef,
+    private authService: AuthService,
     private formBuilder: FormBuilder,
-    private service: ServiceRequestService,
-    private message: MessageService,
-    private authService:AuthService,
+    private dialogRef: DynamicDialogRef,
+    private service: ProposalService,
+    private message: MessageService
   ) {}
 
   ngOnInit(): void {
-    this.user = this.authService.getCurrentUser();
     this.proposalForm = this.formBuilder.group({
-      vehicleName: ['', Validators.required],
-      vehicleId: ['', Validators.required],
-      year: ['', Validators.required],
-      workshopId: ['', Validators.required],
-      descriptionProblems: ['', Validators.required],
+      humanResources: ['', Validators.required],
+      amount: ['', Validators.required],
+      currency: ['', Validators.required],
+      start: ['', Validators.required],
+      end: ['', Validators.required],
     });
   }
 
@@ -36,33 +35,24 @@ export class CreateProposalComponent {
     if (!this.proposalForm.valid) return;
 
     let { ...rest } = this.proposalForm.value;
-    console.log(this.proposalForm.value)
-    const data = {
-      ...rest,
-      vehicleIntegrity: "maintenance",
-      ownerId: this.user.id
-    };
+    const data = { ...rest };
     this.saveData(data);
   }
 
   saveData(data: any) {
-    this.service.create(data).subscribe(
-      (response) => {
-        console.log(response);
-        this.showSuccess();
-        setTimeout(() => {
-          this.dialogRef.close();
-        }, 1000);
-
-      },
-      (err) => {
-        console.error('Error', err);
-        this.showError();
-        setTimeout(() => {
-          this.dialogRef.close();
-        }, 1000);
-      }
-    );
+    this.service.createProposal(data).subscribe((response) => {
+      console.log(response);
+      this.showSuccess();
+      setTimeout(() => {
+        this.dialogRef.close();
+      }, 1000);
+    }, error => {
+      console.error(error);
+      this.showError();
+      setTimeout(() => {
+        this.dialogRef.close();
+      }, 1000);
+    });
   }
 
   showSuccess() {

@@ -6,6 +6,7 @@ import { WarehouseComponent } from './components/warehouse/warehouse.component';
 import {MaintenanceComponent} from "./pages/maintenance/maintenance.component";
 import {CreateProposalComponent} from "./components/proposal/create-proposal/create-proposal.component";
 import { InventoryComponent } from './components/inventory/inventory.component';
+import { ProposalsComponent } from './components/proposal/proposals/proposals.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '', pathMatch: 'full' },
@@ -13,7 +14,7 @@ const routes: Routes = [
   { path: 'workshop', component: WorkshopAComponent },
   { path: 'warehouse/:id', component: WarehouseComponent },
   { path: 'maintenance', component: MaintenanceComponent },
-  { path: 'maintenance/diagnostic/:id/proposal', component: CreateProposalComponent },
+  { path: 'maintenance/diagnostic/:id/proposal', component: ProposalsComponent },
   { path: ':id/warehouse', component: WarehouseComponent },
   { path: 'warehouse/:wid/inventory/:id', component: InventoryComponent },
 ];

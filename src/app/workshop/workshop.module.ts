@@ -19,11 +19,15 @@ import { CreateProposalComponent } from './components/proposal/create-proposal/c
 import { InventoryComponent } from './components/inventory/inventory.component';
 import { InventoryCreateComponent } from './components/inventory-create/inventory-create.component';
 import { ProductCreateComponent } from './components/product-create/product-create.component';
+
 import { ProposalListComponent } from './components/proposal/proposal-list/proposal-list.component';
 import { ServiceItemListComponent } from './components/proposal/service-item-list/service-item-list.component';
 import { ServiceOrderListComponent } from './components/service-order/service-order-list/service-order-list.component';
 import { RequestItemListComponent } from './components/proposal/request-item-list/request-item-list.component';
 import { ServiceItemOrderListComponent } from './components/service-order/service-item-order-list/service-item-order-list.component';
+import { ProposalsComponent } from './components/proposal/proposals/proposals.component';
+import { CreateServiceItemComponent } from './components/proposal/create-service-item/create-service-item.component';
+
 
 @NgModule({
   declarations: [
@@ -48,6 +52,8 @@ import { ServiceItemOrderListComponent } from './components/service-order/servic
     ServiceOrderListComponent,
     RequestItemListComponent,
     ServiceItemOrderListComponent,
+    ProposalsComponent,
+    CreateServiceItemComponent,
   ],
 
   exports: [WorkshopChatComponent],

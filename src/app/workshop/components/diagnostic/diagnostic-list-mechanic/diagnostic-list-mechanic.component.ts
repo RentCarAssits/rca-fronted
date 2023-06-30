@@ -10,7 +10,7 @@ import {
 import {
   CreateServiceRequestComponent
 } from "../../service-request/create-service-request/create-service-request.component";
-import {CreateProposalComponent} from "../../proposal/create-proposal/create-proposal.component";
+
 
 @Component({
   selector: 'app-diagnostic-list-mechanic',
@@ -96,28 +96,6 @@ export class DiagnosticListMechanicComponent {
       width: '500px',
       contentStyle: {'max-height': '500px', overflow: 'auto'},
       data: {item},
-    });
-  }
-  createProposal(diagnosticId: number) {
-    let width = '60%';
-    const windowWidth =
-      window.innerWidth ||
-      document.documentElement.clientWidth ||
-      document.body.clientWidth;
-    if (windowWidth < 768) {
-      width = '100%';
-    } else if (windowWidth < 1200) {
-      width = '80%';
-    }
-
-    this.dialogService.open(CreateProposalComponent, {
-      header: 'Create Service Request',
-      width: width,
-      contentStyle: { overflow: 'auto' },
-      baseZIndex: 10000,
-      data:{
-        diagnosticId: diagnosticId
-      }
     });
   }
 }
