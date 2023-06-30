@@ -22,4 +22,19 @@ export class ProposalService extends ResourceService<any> {
     const jsonBody = JSON.stringify(item);
     return this.http.post<any>(this.basePath, jsonBody, this.httpOptions);
   }
+
+  getServiceItems(proposalId: any) {
+    return this.http
+      .get<any>(`${this.basePath}/${proposalId}/serviceItem`)
+      .pipe(retry(2), catchError(this.handleError));
+  }
+
+  createServiceItem(proposalId: any, item: any): Observable<any> {
+    const jsonBody = JSON.stringify(item);
+    return this.http.post<any>(
+      `${this.basePath}/${proposalId}/serviceItem`,
+      jsonBody,
+      this.httpOptions
+    );
+  }
 }

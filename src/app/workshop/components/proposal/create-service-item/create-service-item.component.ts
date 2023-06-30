@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { InventoryService } from 'src/app/workshop/services/inventory/inventory.service';
+import { ProposalService } from 'src/app/workshop/services/proposal/proposal.service';
+import { ServiceItemService } from 'src/app/workshop/services/service-item/service-item.service';
 import { WarehouseService } from 'src/app/workshop/services/warehouse/warehouse.service';
 
 @Component({
@@ -25,14 +27,29 @@ export class CreateServiceItemComponent implements OnInit {
     private router: Router,
     private service: WarehouseService,
     private message: MessageService,
-    private inventoryService: InventoryService
+    private serviceItemService: ProposalService
   ){
     this.proposalId = this.config.data.proposalId;
   };
 
   ngOnInit(): void {
-      this.serviceItemForm = this.formBuilder.group({
-        
-      })
+    this.serviceItemForm = this.formBuilder.group({
+      serviceType: ['', Validators.required],
+      resources: ['', Validators.required],
+      amount: ['', Validators.required],
+      currency: ['', Validators.required]
+    });
+
+    //TODO: descomentar 
+    
+  }
+
+  getAllServiceItem() {
+    this.serviceItemService.getServiceItems(this.proposalId).subscribe(
+      (response: any) => {
+        this.serviceItems = response.result
+      }
+    )
+
   }
 }
