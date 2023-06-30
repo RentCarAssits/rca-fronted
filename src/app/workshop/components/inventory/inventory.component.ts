@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { InventoryService } from '../../services/inventory/inventory.service';
+import { DialogService } from 'primeng/dynamicdialog';
+import { ProductCreateComponent } from '../product-create/product-create.component';
 
 @Component({
   selector: 'app-inventory',
@@ -33,7 +35,8 @@ export class InventoryComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private service: InventoryService
+    private service: InventoryService,
+    private dialogService: DialogService,
   ) {}
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
@@ -52,5 +55,26 @@ export class InventoryComponent implements OnInit {
         console.error(error);
       }
     );
+  }
+
+  createProduct(){
+    let width = '60%';
+    const windowWidth =
+      window.innerWidth ||
+      document.documentElement.clientWidth ||
+      document.body.clientWidth;
+    if (windowWidth < 768) {
+      width = '100%';
+    } else if (windowWidth < 1200) {
+      width = '80%';
+    }
+
+    this.dialogService.open(ProductCreateComponent, {
+      header: 'Create Inventory',
+      width: width,
+      contentStyle: { overflow: 'auto' },
+      baseZIndex: 10000,
+      data: { inventoryId:this.inventoryId },
+    });
   }
 }

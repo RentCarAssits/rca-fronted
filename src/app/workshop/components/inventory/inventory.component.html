@@ -42,25 +42,25 @@
     class="flex justify-content-center mt-5"
     *ngIf="products && products.length > 0"
   >
-    <!-- <p-button
+    <p-button
       icon="pi pi-pencil"
-      (onClick)="createWarehouse()"
-      label="Create new Warehouse"
-    ></p-button> -->
+      (onClick)="createProduct()"
+      label="Create new Product"
+    ></p-button>
   </div>
   <div
     *ngIf="!products || products.length === 0"
     class="h-20rem flex justify-content-center align-items-center flex-column"
   >
-    <h5 class="order-badge add-data">No Warehouses yet.</h5>
-    <p>Get started by adding your first warehouse!</p>
-    <!-- <button
+    <h5 class="order-badge add-data">No Products yet.</h5>
+    <p>Get started by adding your first product!</p>
+    <button
       pButton
       pRipple
-      label="Create Workshop"
-      (click)="createWarehouse()"
+      label="Create Product"
+      (click)="createProduct()"
       class="p-button-text p-button-rounded border-none font-light line-height-2 bg-blue-500 text-white"
-    ></button> -->
+    ></button>
   </div>
 </div>
 <!--(click)=""-->
