@@ -1,0 +1,21 @@
+<div class="col-12">
+  <div class="card1">
+    <div class="col-12">
+      <form [formGroup]="diagnosticForm" (ngSubmit)="onSubmit()">
+
+        <h5>Diagnostic Information</h5>
+        <div class="p-fluid p-formgrid grid">
+          <div class="field col-12 md:col-12">
+            <label for="diagnosticDescription">Description Diagnostic</label>
+            <input pInputText id="diagnosticDescription" type="text" formControlName="diagnosticDescription"/>
+          </div>
+        </div>
+        <div class="flex justify-content-center">
+          <p-toast></p-toast>
+          <p-button type="submit">Save</p-button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
