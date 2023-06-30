@@ -41,9 +41,35 @@
 
       <ng-container *ngIf="userRole == 'mechanic'">
         <app-diagnostic-list-mechanic></app-diagnostic-list-mechanic>
-
       </ng-container>
-    </div>
 
+    </div>
+  </div>
+
+  <div class="col-12 xl:col-6">
+      <ng-container *ngIf="userRole == 'owner'">
+        <app-proposal-list></app-proposal-list>
+      </ng-container>
+
+      <ng-container *ngIf="userRole == 'renter'">
+        <app-proposal-list></app-proposal-list>
+      </ng-container>
+
+      <ng-container *ngIf="userRole == 'mechanic'">
+        <app-proposal-list></app-proposal-list>
+      </ng-container>
+  </div>
+  <div class="col-12 xl:col-6">
+    <ng-container *ngIf="userRole == 'owner'">
+      <app-service-order-list></app-service-order-list>
+    </ng-container>
+
+    <ng-container *ngIf="userRole == 'renter'">
+      <app-service-order-list></app-service-order-list>
+    </ng-container>
+
+    <ng-container *ngIf="userRole == 'mechanic'">
+      <app-service-order-list></app-service-order-list>
+    </ng-container>
   </div>
 </div>

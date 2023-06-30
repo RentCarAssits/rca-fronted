@@ -1,0 +1,42 @@
+<div class="card mb-5">
+  <div class="flex justify-content-between align-items-center mb-2">
+    <h5 class="text-800 font-semibold">Service Order</h5>
+  </div>
+  <p-table  *ngIf="serviceItemOrders && serviceItemOrders.length > 0"  [value]="serviceItemOrders"  [paginator]="true" [rows]="5"
+            responsiveLayout="scroll">
+    <ng-template pTemplate="header">
+      <tr>
+
+        <th>Service Type</th>
+        <th>Resources</th>
+        <th>Amount</th>
+        <th>Currency</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-serviceItem class="text-xs">
+      <tr>
+
+        <td style="width: 15%; min-width: 7rem;" class="font-normal">{{serviceItem.serviceName}}</td>
+        <td style="width: 15%; min-width: 7rem;" class="font-normal">{{serviceItem.resources}}</td>
+        <td style="width: 15%; min-width: 7rem;" class="font-normal">{{serviceItem.amount}}</td>
+        <td style="width: 15%; min-width: 7rem;" class="font-normal">{{serviceItem.currency}}</td>
+
+      </tr>
+    </ng-template>
+  </p-table>
+
+  <div *ngIf="!serviceItemOrders || serviceItemOrders.length === 0"
+       class="h-20rem flex justify-content-center align-items-center
+        flex-column">
+    <h5 class="order-badge add-data">No Service Order yet.</h5>
+    <p>Get started by adding your first Service Order!</p>
+
+  </div>
+</div>
+
+<ng-template #noRequests>
+  <div class="h-20rem flex justify-content-center align-items-center flex-column">
+    <h5 class="order-badge add-data">No Service Order yet.</h5>
+    <p>As soon as you have a Service Order, it will appear here.</p>
+  </div>
+</ng-template>

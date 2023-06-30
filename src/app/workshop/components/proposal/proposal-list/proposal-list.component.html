@@ -1,0 +1,51 @@
+<div class="card mb-5">
+  <div class="flex justify-content-between align-items-center mb-2">
+    <h5 class="text-800 font-semibold">Proposal</h5>
+  </div>
+  <p-table  *ngIf="proposals && proposals.length > 0"  [value]="proposals"  [paginator]="true" [rows]="5"
+            responsiveLayout="scroll">
+    <ng-template pTemplate="header">
+      <tr>
+
+        <th>Human Resources</th>
+        <th>Amount</th>
+        <th>Currency</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>See details</th>
+        <th>Accept</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-proposal class="text-xs">
+      <tr>
+
+        <td style="width: 15%; min-width: 7rem;" class="font-normal">{{proposal.humanResources}}</td>
+        <td style="width: 15%; min-width: 7rem;" class="font-normal">{{proposal.amount}}</td>
+        <td style="width: 15%; min-width: 7rem;" class="font-normal">{{proposal.currency}}</td>
+        <td style="width: 15%; min-width: 7rem;" class="font-normal">{{proposal.start}}</td>
+        <td style="width: 15%; min-width: 7rem;" class="font-normal">{{proposal.end}}</td>
+        <td style="width: 15%; min-width: 7rem;">
+          <p-button icon="pi pi-file-edit" styleClass="p-button-rounded" (onClick)="seeServiceItem(proposal.id)"></p-button>
+        </td>
+        <td style="width: 15%; min-width: 7rem;">
+          <p-button icon="pi pi-check" styleClass="p-button-rounded" (onClick)="accept(proposal.id)"></p-button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+  <div *ngIf="!proposals || proposals.length === 0"
+       class="h-20rem flex justify-content-center align-items-center
+        flex-column">
+    <h5 class="order-badge add-data">No proposal yet.</h5>
+    <p>Get started by adding your first proposal!</p>
+
+  </div>
+</div>
+
+<ng-template #noRequests>
+  <div class="h-20rem flex justify-content-center align-items-center flex-column">
+    <h5 class="order-badge add-data">No proposal yet.</h5>
+    <p>As soon as you have a proposal, it will appear here.</p>
+  </div>
+</ng-template>
