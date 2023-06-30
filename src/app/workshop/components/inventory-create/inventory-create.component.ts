@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
 export class InventoryCreateComponent implements OnInit {
   inventoryForm!: FormGroup;
   item: any;
-  // inventories = [
+  // inventories = [ 
   //   { id:1,name: 'inventario 1', country: 'Peru', district: 'lima' },
   //   { id:2, name: 'inventario 2', country: 'Peru', district: 'lima' },
   // ];
