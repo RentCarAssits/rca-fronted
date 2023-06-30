@@ -25,31 +25,72 @@ export class CreateServiceItemComponent implements OnInit {
     private dialogRef: DynamicDialogRef,
     private formBuilder: FormBuilder,
     private router: Router,
-    private service: WarehouseService,
     private message: MessageService,
     private serviceItemService: ProposalService
-  ){
+  ) {
     this.proposalId = this.config.data.proposalId;
-  };
+  }
 
   ngOnInit(): void {
     this.serviceItemForm = this.formBuilder.group({
       serviceType: ['', Validators.required],
       resources: ['', Validators.required],
       amount: ['', Validators.required],
-      currency: ['', Validators.required]
+      currency: ['', Validators.required],
     });
 
-    //TODO: descomentar 
-    
+    //TODO: descomentar
+    this.getAllServiceItem();
+  }
+
+  onSubmit() {
+    if (!this.serviceItemForm.valid) return;
+
+    let { ...rest } = this.serviceItemForm.value;
+    const data = {
+      ...rest,
+      proposalId: this.proposalId,
+    };
+    this.saveData(data);
   }
 
   getAllServiceItem() {
     this.serviceItemService.getServiceItems(this.proposalId).subscribe(
       (response: any) => {
-        this.serviceItems = response.result
+        this.serviceItems = response.result;
+      },
+      (error) => {
+        console.error(error);
       }
-    )
+    );
+  }
 
+  saveData(data: any) {
+    this.serviceItemService.createServiceItem(this.proposalId, data).subscribe(
+      (response) => {
+        this.getAllServiceItem();
+        this.showSuccess();
+      },
+      (error) => {
+        console.error(error);
+        this.showError();
+      }
+    );
+  }
+
+  showSuccess() {
+    this.message.add({
+      severity: 'success',
+      summary: 'Success',
+      detail: 'Operation completed successfully',
+    });
+  }
+
+  showError() {
+    this.message.add({
+      severity: 'error',
+      summary: 'Error',
+      detail: 'An error occurred. Please try again.',
+    });
   }
 }
