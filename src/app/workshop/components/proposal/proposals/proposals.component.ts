@@ -13,13 +13,13 @@ import { CreateServiceItemComponent } from '../create-service-item/create-servic
 })
 export class ProposalsComponent implements OnInit {
   ref!: DynamicDialogRef;
-  // proposals!: any[];
-  proposals = [
-    {
-      id: 1,
-      humanResources: 2,
-    },
-  ];
+  proposals!: any[];
+  // proposals = [
+  //   {
+  //     id: 1,
+  //     humanResources: 2,
+  //   },
+  // ];
 
   constructor(
     private route: ActivatedRoute,
@@ -29,7 +29,7 @@ export class ProposalsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // this.getAllProposals();
+    this.getAllProposals();
   }
 
   getAllProposals() {
