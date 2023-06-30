@@ -10,7 +10,7 @@ export class ProductService extends ResourceService<any>{
 
   constructor(http: HttpClient) {
     super(http);
-    this.basePath += 'product'
+    this.basePath += '/product'
   }
 
   createProduct(product: any): Observable<any>{
