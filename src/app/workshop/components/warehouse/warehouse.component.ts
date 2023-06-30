@@ -101,6 +101,7 @@ export class WarehouseComponent implements OnInit {
       width: width,
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
+      data: {workshopId: this.workshopId}
     });
   }
 }

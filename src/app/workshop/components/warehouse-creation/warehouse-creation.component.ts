@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
-import { DynamicDialogRef } from 'primeng/dynamicdialog';
+import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { WarehouseService } from '../../services/warehouse/warehouse.service';
 import { WorkshopService } from '../../services/workshop-s/workshop.service';
 import { InventoryService } from '../../services/inventory/inventory.service';
@@ -17,12 +17,15 @@ export class WarehouseCreationComponent implements OnInit {
   workshopId!: any;
   constructor(
     private route: ActivatedRoute,
+    private config: DynamicDialogConfig,
     private dialogRef: DynamicDialogRef,
     private formBuilder: FormBuilder,
     private service: WarehouseService,
     private message: MessageService,
     private inventoryService: InventoryService,
-  ) {}
+  ) {
+    this.workshopId = this.config.data.workshopId;
+  }
 
   ngOnInit(): void {
     this.warehouseForm = this.formBuilder.group({
@@ -30,10 +33,6 @@ export class WarehouseCreationComponent implements OnInit {
       country: ['', Validators.required],
       district: ['', Validators.required],
       addressDetail: ['', Validators.required],
-    });
-
-    this.route.params.subscribe((params) => {
-      this.workshopId = params['id'];
     });
   }
 
