@@ -4,6 +4,7 @@ import { MessageService } from 'primeng/api';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { CloudinaryService } from 'src/app/shared/services/cloudinary/cloudinary.service';
 import { WorkshopService } from '../../services/workshop-s/workshop.service';
+import { AuthService } from '../../../iam/services/auth.service';
 
 @Component({
   selector: 'app-create-workshop-item',
@@ -14,13 +15,15 @@ export class CreateWorkshopItemComponent implements OnInit {
   @ViewChild('fileInput') fileInput!: ElementRef;
 
   workshopForm!: FormGroup;
+  user = this.authService.getCurrentUser();
 
   constructor(
     private ref: DynamicDialogRef,
+    private authService: AuthService,
     private cloudinaryService: CloudinaryService,
     private dialogRef: DynamicDialogRef,
     private formBuilder: FormBuilder,
-    private service:WorkshopService,
+    private service: WorkshopService,
     private message: MessageService
   ) {}
 
@@ -39,25 +42,28 @@ export class CreateWorkshopItemComponent implements OnInit {
 
     let { ...rest } = this.workshopForm.value;
 
-    const data = { ...rest };
+    const data = { ...rest, mechanicId: this.user?.id };
     console.log(data);
     this.saveData(data);
   }
 
   saveData(data: any) {
-    this.service.createWorkshop(data).subscribe(response => {
-      console.log(response);
-      this.showSuccess();
-      setTimeout(()=>{
-        this.dialogRef.close();
-      }, 1000)
-    }, err => {
-      console.error('Error', err);
-      this.showError();
-      setTimeout(() => {
-        this.dialogRef.close();
-      }, 1000);
-    })
+    this.service.createWorkshop(data).subscribe(
+      (response) => {
+        console.log(response);
+        this.showSuccess();
+        setTimeout(() => {
+          this.dialogRef.close();
+        }, 1000);
+      },
+      (err) => {
+        console.error('Error', err);
+        this.showError();
+        setTimeout(() => {
+          this.dialogRef.close();
+        }, 1000);
+      }
+    );
   }
 
   showSuccess() {

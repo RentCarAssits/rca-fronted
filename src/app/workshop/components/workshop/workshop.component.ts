@@ -12,12 +12,12 @@ import { AuthService } from 'src/app/iam/services/auth.service';
   styleUrls: ['./workshop.component.css'],
 })
 export class WorkshopAComponent implements OnInit {
-  //  workshops!: any[]
-   user = this.authService.getCurrentUser();
-  workshops = [
-    { id: 1, name: 'hola', ownerId: 3, address: 'la marina' },
-    { id: 2, name: 'hey', ownerId: 4, address: 'la marina' },
-  ];
+   workshops!: any[]
+  user = this.authService.getCurrentUser();
+  // workshops = [
+  //   { id: 1, name: 'hola', ownerId: 3, address: 'la marina' },
+  //   { id: 2, name: 'hey', ownerId: 4, address: 'la marina' },
+  // ];
   // workshops = [];
   ref!: DynamicDialogRef;
   workshopItemForm!: FormGroup;
@@ -29,7 +29,7 @@ export class WorkshopAComponent implements OnInit {
   ) {}
   ngOnInit(): void {
     //TODO: Descomentar
-    // this.getAllWorkshops();
+    this.getAllWorkshops();
   }
 
   getAllWorkshops(){
