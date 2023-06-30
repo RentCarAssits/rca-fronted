@@ -5,7 +5,7 @@ import { WorkshopAComponent } from './components/workshop/workshop.component';
 import { WarehouseComponent } from './components/warehouse/warehouse.component';
 import {MaintenanceComponent} from "./pages/maintenance/maintenance.component";
 import {CreateProposalComponent} from "./components/proposal/create-proposal/create-proposal.component";
-import { InventoryComponent } from './components/inventory/inventory.component';t
+import { InventoryComponent } from './components/inventory/inventory.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '', pathMatch: 'full' },

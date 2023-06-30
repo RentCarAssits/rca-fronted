@@ -21,7 +21,7 @@ import { InventoryCreateComponent } from './components/inventory-create/inventor
 import { ProductCreateComponent } from './components/product-create/product-create.component';
 
 @NgModule({
-  declarations: [WorkshopChatComponent, WorkshopAComponent, CreateWorkshopItemComponent, WarehouseComponent, WarehouseCreationComponent,, InventoryComponent, InventoryCreateComponent, ProductCreateComponent, MaintenanceComponent, ServiceRequestListComponent, CreateServiceRequestComponent, ServiceRequestListMechanicComponent, CreateDiagnosticComponent, DiagnosticListComponent, DiagnosticListMechanicComponent, CreateProposalComponent],
+  declarations: [WorkshopChatComponent, WorkshopAComponent, CreateWorkshopItemComponent, WarehouseComponent, WarehouseCreationComponent, InventoryComponent, InventoryCreateComponent, ProductCreateComponent, MaintenanceComponent, ServiceRequestListComponent, CreateServiceRequestComponent, ServiceRequestListMechanicComponent, CreateDiagnosticComponent, DiagnosticListComponent, DiagnosticListMechanicComponent, CreateProposalComponent],
 
   exports: [WorkshopChatComponent],
     imports: [CommonModule, WorkshopRoutingModule, PrimeNgModule, ReactiveFormsModule],
