@@ -5,6 +5,7 @@ import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { WarehouseService } from '../../services/warehouse/warehouse.service';
 import { WorkshopService } from '../../services/workshop-s/workshop.service';
 import { InventoryService } from '../../services/inventory/inventory.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-warehouse-creation',
@@ -13,7 +14,9 @@ import { InventoryService } from '../../services/inventory/inventory.service';
 })
 export class WarehouseCreationComponent implements OnInit {
   warehouseForm!: FormGroup;
+  workshopId!: any;
   constructor(
+    private route: ActivatedRoute,
     private dialogRef: DynamicDialogRef,
     private formBuilder: FormBuilder,
     private service: WarehouseService,
@@ -27,15 +30,19 @@ export class WarehouseCreationComponent implements OnInit {
       country: ['', Validators.required],
       district: ['', Validators.required],
       addressDetail: ['', Validators.required],
-      workshopId: ['', Validators.required],
+    });
+
+    this.route.params.subscribe((params) => {
+      this.workshopId = params['id'];
     });
   }
 
   onSubmit() { 
     if (!this.warehouseForm.valid) return;
 
+    //workshop id
     let { ...rest } = this.warehouseForm.value;
-    const data = { ...rest };
+    const data = { ...rest, workshopId:this.workshopId };
     this.saveData(data);
   }
 
