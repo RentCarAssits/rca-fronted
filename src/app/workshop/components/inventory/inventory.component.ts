@@ -14,24 +14,25 @@ export class InventoryComponent implements OnInit {
   // products!: any[];
 
   inventoryId!: number;
-  products = [
-    {
-      id: 1,
-      productName: 'platos',
-      quantityProduct: 30,
-      amount: 400,
-      currency: 'soles',
-      inventoryId: 1,
-    },
-    {
-      id: 2,
-      productName: 'sd',
-      quantityProduct: 30,
-      amount: 400,
-      currency: 'soles',
-      inventoryId: 1,
-    },
-  ];
+  // products = [
+  //   {
+  //     id: 1,
+  //     productName: 'platos',
+  //     quantityProduct: 30,
+  //     amount: 400,
+  //     currency: 'soles',
+  //     inventoryId: 1,
+  //   },
+  //   {
+  //     id: 2,
+  //     productName: 'sd',
+  //     quantityProduct: 30,
+  //     amount: 400,
+  //     currency: 'soles',
+  //     inventoryId: 1,
+  //   },
+  // ];
+  products!: any[];
 
   constructor(
     private route: ActivatedRoute,
@@ -43,7 +44,7 @@ export class InventoryComponent implements OnInit {
       this.inventoryId = params['id'];
     });
 
-    //getAllProducts()
+    this.getAllProducts()
   }
 
   getAllProducts() {
