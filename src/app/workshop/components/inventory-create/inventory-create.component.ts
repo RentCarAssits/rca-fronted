@@ -4,6 +4,7 @@ import { MessageService } from 'primeng/api';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { InventoryService } from '../../services/inventory/inventory.service';
 import { WarehouseService } from '../../services/warehouse/warehouse.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-inventory-create',
@@ -13,15 +14,16 @@ import { WarehouseService } from '../../services/warehouse/warehouse.service';
 export class InventoryCreateComponent implements OnInit {
   inventoryForm!: FormGroup;
   item: any;
-  // inventories = [
-  //   { id:1,name: 'inventario 1', country: 'Peru', district: 'lima' },
-  //   { id:2, name: 'inventario 2', country: 'Peru', district: 'lima' },
-  // ];
-  inventories = []
+  inventories = [
+    { id:1,name: 'inventario 1', country: 'Peru', district: 'lima' },
+    { id:2, name: 'inventario 2', country: 'Peru', district: 'lima' },
+  ];
+  // inventories = []
   constructor(
     private config: DynamicDialogConfig,
     private dialogRef: DynamicDialogRef,
     private formBuilder: FormBuilder,
+    private router: Router,
     private service: WarehouseService,
     private message: MessageService,
     private inventoryService: InventoryService
@@ -35,7 +37,7 @@ export class InventoryCreateComponent implements OnInit {
     });
 
     //TODO: descomentar
-    this.getInventories();
+    // this.getInventories();
   }
 
   getInventories() {
@@ -63,8 +65,9 @@ export class InventoryCreateComponent implements OnInit {
     this.saveData(data);
   }
 
-  close(){
+  changeView(data: any){
     this.dialogRef.close();
+    this.router.navigate(['workshop','warehouse',this.item,'inventory',data]);
   }
 
   saveData(data: any) {

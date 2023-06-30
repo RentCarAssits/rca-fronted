@@ -1,1 +1,66 @@
-<p>inventory works!</p>
+<div class="card mb-5">
+  <div class="flex justify-content-between align-items-center mb-2">
+    <h5 class="text-800 font-semibold">My Products</h5>
+  </div>
+  <p-table
+    *ngIf="products && products.length > 0"
+    [value]="products"
+    [paginator]="true"
+    [rows]="7"
+    responsiveLayout="scroll"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Id</th>
+        <th pSortableColumn="name">Product Name</th>
+        <th>Quantity</th>
+        <th>Amount</th>
+        <th>currency</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-product class="text-xs">
+      <tr>
+        <td style="width: 5%; min-width: 2rem" class="font-normal">
+          {{ product.id }}
+        </td>
+        <td style="width: 15%; min-width: 7rem" class="font-normal">
+          {{ product.productName }}
+        </td>
+        <td style="width: 15%; min-width: 3rem" class="font-normal">
+          {{ product.quantityProduct }}
+        </td>
+        <td style="width: 15%; min-width: 3rem" class="font-normal">
+          {{ product.amount }}
+        </td>
+        <td style="width: 15%; min-width: 3rem" class="font-normal">
+          {{ product.currency }}
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+  <div
+    class="flex justify-content-center mt-5"
+    *ngIf="products && products.length > 0"
+  >
+    <!-- <p-button
+      icon="pi pi-pencil"
+      (onClick)="createWarehouse()"
+      label="Create new Warehouse"
+    ></p-button> -->
+  </div>
+  <div
+    *ngIf="!products || products.length === 0"
+    class="h-20rem flex justify-content-center align-items-center flex-column"
+  >
+    <h5 class="order-badge add-data">No Warehouses yet.</h5>
+    <p>Get started by adding your first warehouse!</p>
+    <!-- <button
+      pButton
+      pRipple
+      label="Create Workshop"
+      (click)="createWarehouse()"
+      class="p-button-text p-button-rounded border-none font-light line-height-2 bg-blue-500 text-white"
+    ></button> -->
+  </div>
+</div>
+<!--(click)=""-->

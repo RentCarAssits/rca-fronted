@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, catchError, retry } from 'rxjs';
 import { ResourceService } from 'src/app/shared/services/base/resource.service';
 
 @Injectable({
@@ -17,6 +17,8 @@ export class InventoryService extends ResourceService<any> {
     console.log(jsonBody);
     return this.http.post<any>(this.basePath, jsonBody, this.httpOptions);
   }
-
+  getAllProducts(inventoryId:any){
+    return this.http.get<any>(`${this.basePath}/${inventoryId}/products`, this.httpOptions).pipe(retry(2), catchError(this.handleError));
+  }
   
 }

@@ -36,7 +36,7 @@
           <p-button
             icon="pi pi-search"
             styleClass="p-button-rounded"
-            [routerLink]="'workshop/warehouse/' + item + '/inventory/'+ inventory.id"
+            (onClick)="changeView(inventory.id)"
           ></p-button>
         </td>
       </tr>
