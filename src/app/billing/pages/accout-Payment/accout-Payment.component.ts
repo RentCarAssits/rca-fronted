@@ -154,7 +154,7 @@ export class AccoutPaymentComponent implements OnInit {
 
   createOrder(id:any) {
     const user:any = this.authService.getCurrentUser()
-    const body = {state: 0, renterId: user.account?.id, itemIds: [id]};
+    const body = {state: 0, renterId: user.id, itemIds: [id]};
     this.rentOrderService.create(body).subscribe(response => {
       console.log(response);
 

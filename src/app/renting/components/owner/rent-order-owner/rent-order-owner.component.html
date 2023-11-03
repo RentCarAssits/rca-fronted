@@ -6,23 +6,23 @@
            responsiveLayout="scroll">
     <ng-template pTemplate="header">
       <tr>
-        <th>Id</th>
         <th>vehicle</th>
-        <th pSortableColumn="name">Renter</th>
         <th pSortableColumn="stars">Renter email</th>
-        <th pSortableColumn="stars">state</th>
+        <th pSortableColumn="start">start Date</th>
+        <th pSortableColumn="end">end Date</th>
+        <th pSortableColumn="state">state</th>
         <th>Actions</th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-rent class="text-xs">
       <tr>
-        <td style="width: 5%; min-width: 2rem;" class="font-normal">{{rent.id}}</td>
         <td style="width: 15%; min-width: 5rem;">
           <p-image src="{{ rent.vehicleImage }}" alt="{{rent.vehicleName}}" [preview]="true"
                    width="50"></p-image>
         </td>
-        <td style="width: 15%; min-width: 7rem;" class="font-normal">{{rent.renterName}}</td>
-        <td style="width: 15%; min-width: 3rem;" class="font-normal">{{rent.renterEmail}}</td>
+        <td style="width: 15%; min-width: 7rem;" class="font-normal">{{rent.renterEmail}}</td>
+        <td style="width: 15%; min-width: 7rem;" class="font-normal">{{ rent.startTime | date:'dd-MM-yyyy' }}</td>
+        <td style="width: 15%; min-width: 7rem;" class="font-normal">{{ rent.endTime | date:'dd-MM-yyyy' }}</td>
         <td style="width: 15%; min-width: 7rem;">
           <span class="flex justify-content-center" [ngClass]="getCarStateClass(rent.state)">{{getCarStateCode(rent.state)}}</span>
         </td>

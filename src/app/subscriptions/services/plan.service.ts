@@ -12,13 +12,13 @@ export class PlanService extends BaseService{
     }
 
     getAllPlans(): Observable<any> {
-        const url = 'http://localhost:8080/api/v1/Plans';
+        const url =`${this.basePath}`;
         return this.http.get(url);
     }
 
     getCurrentPlanByUser(userId: number): Observable<any> {
-        const url = `http://localhost:8080/api/v1/Plans/By/${userId}`;
+        const url = `${this.basePath}/By/${userId}`;
         return this.http.get(url);
     }
-      
+
 }

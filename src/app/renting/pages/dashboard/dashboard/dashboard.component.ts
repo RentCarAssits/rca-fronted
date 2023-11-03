@@ -6,6 +6,8 @@ import {RentingOrderItemsService} from 'src/app/renting/services/renting-items/r
 import {elementAt} from 'rxjs';
 import {error} from '@angular/compiler-cli/src/transformers/util';
 import {AuthService} from 'src/app/iam/services/auth.service';
+import {User} from "../../../../iam/models/user";
+import {PlanService} from "../../../../subscriptions/services/plan.service";
 
 @Component({
   selector: 'app-dashboard',
@@ -13,37 +15,30 @@ import {AuthService} from 'src/app/iam/services/auth.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent {
-  //// data for graphics
-
   basicData: any;
   basicOptions: any;
-
   currentuser: any;
   elementos: any;
   dataGraphics: any = [];
-
-  ///////////////
-
-
+  user: any;
   items!: MenuItem[];
-
-  //products!: Product[];
-
-  chartData: any;
-
-  chartOptions: any;
-
   subscription!: any;
   totalVehicles: number = 0;
-  userRole:any;
-  constructor( 
-    public layoutService: LayoutService, 
+  userRole: any;
+  currentPlan:any
+
+  constructor(
+    public layoutService: LayoutService,
+    private planService:PlanService,
     private carService: CarService,
-    private rentingOrderItemsServices:RentingOrderItemsService, 
-    private authService:AuthService) 
-    {this.subscription = this.layoutService.configUpdate$.subscribe(() => {});}
+    private rentingOrderItemsServices: RentingOrderItemsService,
+    private authService: AuthService) {
+    this.subscription = this.layoutService.configUpdate$.subscribe(() => {
+    });
+  }
 
   ngOnInit() {
+    this.getInitialInfo()
     this.getTotalVehicles();
     this.getCurrenUserId();
     this.getData();
@@ -125,23 +120,17 @@ export class DashboardComponent {
       (error) => {
         console.log(error);
       }
-    );    
+    );
   }
 
   getCurrenUserId() {
     let user = this.authService.getCurrentUser();
     this.currentuser = user?.id;
     this.userRole = user?.roles
-    console.log(this.userRole);
-    console.log('rol: ',  this.userRole[0])
-    this.userRole=user?.roles;
-    console.log("USER ID: ",user);
-    console.log("USER ID: ",this.currentuser);
-
+    this.userRole = user?.roles;
   }
 
   getData() {
-    //this.rentingOrderItemsServices.getRentingOrderItemsByUserId(this.currentuser).subscribe({
     this.rentingOrderItemsServices.getRentingOrderItemsByUserId(this.currentuser).subscribe({
       next: (response) => {
         this.elementos = response.result;
@@ -158,8 +147,6 @@ export class DashboardComponent {
         let accepts = 0
         let denied = 0
         let pending = 0
-
-        console.log(this.dataGraphics);
 
         this.dataGraphics.map((e: any) => {
           if (e === 'A') {
@@ -187,6 +174,20 @@ export class DashboardComponent {
       },
     });
   }
+
+  getInitialInfo() {
+    this.user =   this.authService.getCurrentUser()
+
+    this.planService.getCurrentPlanByUser(this.user.account.id).subscribe(
+      {
+        next:(res)=>{
+          this.currentPlan = res.result.name
+        }
+      }
+    )
+  }
+
+
 
 }
 
