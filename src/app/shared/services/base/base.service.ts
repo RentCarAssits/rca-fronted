@@ -1,24 +1,27 @@
-import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
-import {catchError, Observable, retry, throwError} from "rxjs";
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpHeaders,
+} from '@angular/common/http';
+import { catchError, Observable, retry, throwError } from 'rxjs';
 
 export class BaseService {
   // Base Endpoint
 
-  prod = 'https://rca.azurewebsites.net/api/v1'
-  dev = 'http://localhost:3000/api/v1'
+  prod = 'https://rca-iot-parsimonia.azurewebsites.net/api/v1';
+  dev = 'http://localhost:3000/api/v1';
 
-  token = localStorage.getItem('accessToken')
+  token = localStorage.getItem('accessToken');
   // Students Endpoint
-  basePath = this.prod;
+  basePath = this.dev;
 
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
-    })
+    }),
   };
 
-  constructor(protected http: HttpClient) {
-  }
+  constructor(protected http: HttpClient) {}
 
   // API Error Handling
   handleError(error: HttpErrorResponse) {
@@ -27,10 +30,13 @@ export class BaseService {
       console.log(`An error occurred: ${error.error}`);
     } else {
       // Unsuccessful Response Error Code returned from Backend
-      console.error(`Backend returned code ${error.status}, body was: ${error.error.message}`);
+      console.error(
+        `Backend returned code ${error.status}, body was: ${error.error.message}`
+      );
     }
     // Return observable with Error Message to Client
-    return throwError(() =>
-      new Error('Something happened with request, please try again later'));
+    return throwError(
+      () => new Error('Something happened with request, please try again later')
+    );
   }
 }
